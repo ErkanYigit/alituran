@@ -1,4 +1,4 @@
-# ALI TURAN — Furniture & Living
+# Ali Turan Koltuk — İnegöl / Bursa
 
 Türkçe, statik bir mobilya kataloğu ve Three.js oda tasarımcısı. Sepet, ödeme, hesap, veritabanı, ücretli API veya sürekli çalışan Node.js sunucusu gerektirmez. Üretim çıktısı `dist/` klasöründeki statik dosyalardır.
 
@@ -93,13 +93,13 @@ Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yen
 
 ### İletişim bilgileri
 
-`company.json` içindeki `address`, `phone`, `email`, `whatsapp`, `showroomHours`, `mapUrl`, `story`, `production` alanlarına **gerçek ve onaylı** bilgileri ekleyin. WhatsApp numarasını ülke koduyla girin (`+90...`); bağlantı için rakamlar kullanılır. `socials` için örnek biçim: `{ "label": "Instagram", "url": "https://..." }`.
+`company.json` içindeki `address`, `phone`, `phoneDisplay`, `contactPerson`, `email`, `whatsapp`, `showroomHours`, `mapUrl`, `story`, `production` alanlarından iletişim ve şirket bilgilerini düzenleyin. Adres, Feyzi Yiğit’in telefon/WhatsApp numarası ve sevkiyat yapılan ülkeler site sahibi tarafından sağlanan bilgilerle doldurulmuştur. E-posta, sosyal medya ve ziyaret saatleri paylaşılmadığından uydurulmamıştır. WhatsApp numarasını ülke koduyla girin (`+90...`); bağlantı için rakamlar kullanılır. `socials` için örnek biçim: `{ "label": "Instagram", "url": "https://..." }`.
 
 `null` alanlar bilinmeyen bilgileri açıkça belirtir; boş bilgiler için sahte e-posta veya WhatsApp düğmesi gösterilmez. Bu sürüm mesaj gönderen form içermez. Gizlilik metninin resmî şirket/veri sorumlusu bölümü yayımdan önce tamamlanmalıdır.
 
 ### Uluslararası konumlar
 
-`locations.json` içine `id`, `country`, `city`, `latitude`, `longitude`, `description`, `demo` alanları ekleyin. Gerçek konumlar onaylandıysa `demo: false` kullanın. İlk İstanbul işareti sadece etkileşim örneğidir; şirketin faaliyeti, adresi veya ihracat iddiası değildir. Hiç işaret istemiyorsanız dosyayı `[]` yapın.
+`locations.json` içindeki İnegöl kaydı şirketin bulunduğu ilçeyi, Almanya/Avusturya/Kosova kayıtları sevkiyat yapılan ülkeleri gösterir. Bilgiler site sahibi tarafından sağlanmıştır. `kind: "base"` şirket konumunu, `kind: "export"` sevkiyat ülkesini belirtir. Ülke işaretlerinde `city: null` kullanılır; bir depo veya showroom adresi ima edilmez. Koordinatlar ülke/ilçe genelini temsil eder; açık adres Google Maps arama bağlantısındadır. Diğer Balkan ülkeleri tek tek belirtilmediğinden listeye eklenmemiştir. Yeni kayıtlar için `id`, `kind`, `country`, `city`, `latitude`, `longitude`, `description`, `demo` alanlarını düzenleyin. Örnek işaretler eklenirse `demo: true` kullanın.
 
 ### QR kodları
 
@@ -138,7 +138,7 @@ Testler ürün ölçülerini, gerçek pencere açıklıklarını, dönmüş nesn
 
 Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Referans ekran görüntüsü paylaşılmadığı için tarif edilen görsel yön esas alındı.
 
-Ürün isimleri, ölçüler, renkler, prosedürel mobilyalar ve iç mekân fotoğrafları başlangıç örnekleridir. Şirket tarihçesi, üretim kapasitesi, sertifika, gerçek ürün malzemesi veya ihracat ülkesi uydurulmadı. Yayımdan önce örnek koleksiyonu gerçek bilgilerle değiştirin.
+Ürün isimleri, ölçüler, renkler, prosedürel mobilyalar ve iç mekân fotoğrafları başlangıç örnekleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır. Şirket tarihçesi, üretim kapasitesi, sertifika, gerçek ürün malzemesi veya paylaşılmayan ihracat ülkeleri uydurulmadı. Yayımdan önce örnek koleksiyonu gerçek bilgilerle değiştirin.
 
 ## Proje yapısı
 

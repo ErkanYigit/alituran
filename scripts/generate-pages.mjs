@@ -2,8 +2,33 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import products from "../src/data/products.json" with { type: "json" };
 import company from "../src/data/company.json" with { type: "json" };
 import navigation from "../src/data/navigation.json" with { type: "json" };
+import locations from "../src/data/locations.json" with { type: "json" };
 import { imageSrcset } from "../src/utils/ui.js";
 const template = await readFile("dist/index.html", "utf8");
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${company.domain}/#organization`,
+  name: company.name,
+  url: company.domain,
+  ...(company.postalAddress
+    ? { address: { "@type": "PostalAddress", ...company.postalAddress } }
+    : {}),
+  ...(company.phone
+    ? {
+        telephone: company.phone.replace(/[^+\d]/g, ""),
+        contactPoint: {
+          "@type": "ContactPoint",
+          name: company.contactPerson,
+          telephone: company.phone.replace(/[^+\d]/g, ""),
+          contactType: "Ürün ve sevkiyat bilgisi",
+        },
+      }
+    : {}),
+  areaServed: locations
+    .filter((location) => location.kind === "export" && !location.demo)
+    .map((location) => location.country),
+};
 const escape = (s) =>
   String(s).replace(
     /[&<>"']/g,
@@ -37,7 +62,7 @@ for (const route of routes) {
   let html = template
     .replace(
       /<title>.*?<\/title>/,
-      `<title>${escape(route.title)} — ALI TURAN</title>`,
+      `<title>${escape(route.title)} — ${escape(company.name)}</title>`,
     )
     .replace(
       /(<meta name="description" content=")[^"]*/,
@@ -46,7 +71,7 @@ for (const route of routes) {
     .replace(/(<link rel="canonical" href=")[^"]*/, `$1${escape(url)}`)
     .replace(
       /(<meta property="og:title" content=")[^"]*/,
-      `$1${escape(route.title + " — ALI TURAN")}`,
+      `$1${escape(route.title + " — " + company.name)}`,
     )
     .replace(
       /(<meta property="og:description" content=")[^"]*/,
@@ -65,7 +90,7 @@ for (const route of routes) {
         description: route.description,
         image: route.product.images.map((i) => company.domain + i),
         url,
-        brand: { "@type": "Brand", name: "ALI TURAN" },
+        brand: { "@type": "Brand", name: company.name },
       }
     : {
         "@context": "https://schema.org",
@@ -84,7 +109,7 @@ for (const route of routes) {
   html = html
     .replace(
       "</head>",
-      `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script></head>`,
+      `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script><script type="application/ld+json">${JSON.stringify(organization).replace(/</g, "\\u003c")}</script></head>`,
     )
     .replace(
       '<div id="app"></div>',

@@ -23,9 +23,9 @@ import {
   imageSrcset,
 } from "./utils/ui.js";
 
-const wordmark = `<span class="wordmark">ALI TURAN<small>FURNITURE & LIVING</small></span>`;
+const wordmark = `<span class="wordmark">${e(company.wordmark || company.name)}<small>${e(company.subtitle)}</small></span>`;
 document.querySelector("#app").innerHTML =
-  `<header class="site-header"><a href="/" aria-label="ALI TURAN Furniture & Living — Ana Sayfa">${wordmark}</a><nav class="nav" id="navigation" aria-label="Ana menü">${navigation.map((n) => `<a href="${n.path}" class="${n.path === "/odani-tasarla" ? "designer-nav" : ""}">${n.label}</a>`).join("")}</nav><button class="menu-button icon-button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menüyü aç">${icon("menu")}</button><button class="menu-backdrop" aria-label="Menüyü kapat" tabindex="-1"></button></header><main id="main" tabindex="-1"></main><footer class="site-footer wrap"><div class="footer-main"><div class="footer-brand"><a href="/">${wordmark}</a><p>Yaşama alan açan tasarımlar.<br>Zamansız çizgiler, size ait hikâyeler.</p></div><div><div class="footer-title">Keşfedin</div><div class="footer-links">${navigation
+  `<header class="site-header"><a href="/" aria-label="${e(company.wordmark || company.name)} ${e(company.subtitle)} — Ana Sayfa">${wordmark}</a><nav class="nav" id="navigation" aria-label="Ana menü">${navigation.map((n) => `<a href="${n.path}" class="${n.path === "/odani-tasarla" ? "designer-nav" : ""}">${n.label}</a>`).join("")}</nav><button class="menu-button icon-button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menüyü aç">${icon("menu")}</button><button class="menu-backdrop" aria-label="Menüyü kapat" tabindex="-1"></button></header><main id="main" tabindex="-1"></main><footer class="site-footer wrap"><div class="footer-main"><div class="footer-brand"><a href="/">${wordmark}</a><p>${e(company.footerDescription || company.introduction)}</p></div><div><div class="footer-title">Keşfedin</div><div class="footer-links">${navigation
     .filter((n) => n.path !== "/")
     .map((n) => `<a href="${n.path}">${n.label}</a>`)
     .join(
@@ -36,7 +36,7 @@ document.querySelector("#app").innerHTML =
     .map((p) => `<a href="/urun/${p.slug}">${e(p.name)}</a>`)
     .join(
       "",
-    )}</div></div><div><div class="footer-title">Tanışalım</div><p class="footer-note">${e(company.address || "Showroom ve iletişim bilgileri firma tarafından paylaşılacak.")}</p><a class="text-link" href="/iletisim">İletişim Bilgileri ${icon("diagonal", 16)}</a>${
+    )}</div></div><div><div class="footer-title">Tanışalım</div><p class="footer-note">${e(company.address || "Showroom ve iletişim bilgileri firma tarafından paylaşılacak.")}</p>${company.phone ? `<p class="footer-note">${e(company.contactPerson || "")}<br><a href="tel:${e(company.phone.replace(/[^+\d]/g, ""))}">${e(company.phoneDisplay || company.phone)}</a></p>` : ""}<a class="text-link" href="/iletisim">İletişim Bilgileri ${icon("diagonal", 16)}</a>${
     company.socials.length
       ? `<div class="footer-social">${company.socials
           .filter((s) => safeURL(s.url))
@@ -45,8 +45,8 @@ document.querySelector("#app").innerHTML =
               `<a href="${e(safeURL(s.url))}" target="_blank" rel="noopener">${e(s.label)}</a>`,
           )
           .join("")}</div>`
-      : '<p class="notice">Sosyal bağlantılar hazırlanıyor.</p>'
-  }</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ALI TURAN · Furniture & Living</span><span>Örnek dijital koleksiyon</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
+      : ""
+  }</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>Örnek dijital koleksiyon</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
 const main = document.querySelector("#main");
 let cleanups = [],
   routeId = 0;
@@ -121,7 +121,7 @@ window.addEventListener(
 );
 
 function setMetadata(title, description, path, image = company.hero.image) {
-  document.title = `${title} — ALI TURAN`;
+  document.title = `${title} — ${company.name}`;
   document.querySelector('meta[name="description"]').content = description;
   document.querySelector('link[rel="canonical"]').href =
     `${company.domain}${path}`;
@@ -285,7 +285,7 @@ async function render(focus = false) {
     main.innerHTML = contact(company);
     title = "İletişim";
   } else if (path === "/dunyada-biz") {
-    main.innerHTML = world(locations);
+    main.innerHTML = world(company, locations);
     title = "Dünyada Biz";
   } else if (path === "/gizlilik") {
     main.innerHTML = privacy();
@@ -322,7 +322,7 @@ async function render(focus = false) {
         try {
           const { mountGlobe } = await import("./three/globe.js");
           if (disposed) return;
-          const dispose = await mountGlobe(host, [], { preview: true });
+          const dispose = await mountGlobe(host, locations, { preview: true });
           if (disposed) dispose();
           else cleanups.push(dispose);
         } catch {

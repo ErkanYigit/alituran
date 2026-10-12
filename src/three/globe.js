@@ -1,7 +1,11 @@
 import * as THREE from "three";
 import { feature } from "topojson-client";
 import { createEngine } from "./engine.js";
-import { escapeHTML as e } from "../utils/ui.js";
+import {
+  escapeHTML as e,
+  locationLabel,
+  locationCategory,
+} from "../utils/ui.js";
 
 function vector(lat, lon, r = 1.58) {
   const phi = ((90 - lat) * Math.PI) / 180,
@@ -157,7 +161,7 @@ export async function mountGlobe(host, locations, { preview = false } = {}) {
     if (!location) return;
     const panel = document.querySelector("#location-info");
     if (panel)
-      panel.innerHTML = `<h3>${e(location.city)}, ${e(location.country)}</h3><p>${e(location.description)}</p>${location.demo ? '<span class="demo-badge">Yalnızca örnek konum</span>' : ""}`;
+      panel.innerHTML = `<h3>${e(locationLabel(location))}</h3><p>${e(location.description)}</p><span class="demo-badge">${e(locationCategory(location))}</span>`;
     if (engine && !disposed) {
       const position = vector(location.latitude, location.longitude)
         .applyAxisAngle(new THREE.Vector3(0, 1, 0), group.rotation.y)

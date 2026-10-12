@@ -1,11 +1,42 @@
 [
   {
-    "id": "demo-istanbul",
+    "id": "inegol",
+    "kind": "base",
     "country": "Türkiye",
-    "city": "İstanbul",
-    "latitude": 41.0082,
-    "longitude": 28.9784,
-    "demo": true,
-    "description": "Yalnızca küre etkileşimini göstermek için eklenmiş örnek konumdur. Şirketin showroom, ihracat veya iş ortaklığı bilgisi değildir."
+    "city": "İnegöl / Bursa",
+    "latitude": 40.0781,
+    "longitude": 29.5132,
+    "demo": false,
+    "description": "Ali Turan Koltuk Bursa İnegöl'dedir. Adresimiz: Mahmudiye, 7. Mobilya Sk. No:24, 16400 İnegöl/Bursa. Haritadaki işaret İnegöl merkezini temsil eder."
+  },
+  {
+    "id": "almanya",
+    "kind": "export",
+    "country": "Almanya",
+    "city": null,
+    "latitude": 51.1657,
+    "longitude": 10.4515,
+    "demo": false,
+    "description": "Almanya, koltuk ve mobilya sevkiyatı yaptığımız ülkeler arasındadır. Haritadaki işaret ülke genelini temsil eder."
+  },
+  {
+    "id": "avusturya",
+    "kind": "export",
+    "country": "Avusturya",
+    "city": null,
+    "latitude": 47.5162,
+    "longitude": 14.5501,
+    "demo": false,
+    "description": "Avusturya, koltuk ve mobilya sevkiyatı yaptığımız ülkeler arasındadır. Haritadaki işaret ülke genelini temsil eder."
+  },
+  {
+    "id": "kosova",
+    "kind": "export",
+    "country": "Kosova",
+    "city": null,
+    "latitude": 42.6026,
+    "longitude": 20.903,
+    "demo": false,
+    "description": "Kosova, koltuk ve mobilya sevkiyatı yaptığımız ülkeler arasındadır. Haritadaki işaret ülke genelini temsil eder."
   }
 ]

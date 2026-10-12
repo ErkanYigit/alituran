@@ -222,9 +222,7 @@ test("planner keyboard movement, placement bounds and overlap warnings", async (
   await page.keyboard.press("Delete");
   await expect(page.locator("[data-select-furniture]")).toHaveCount(1);
 });
-test("globe interaction and truthful demonstration location", async ({
-  page,
-}) => {
+test("globe interaction and confirmed export countries", async ({ page }) => {
   const errors = observeErrors(page);
   await page.goto("/dunyada-biz/");
   await expect(page.locator("#world-canvas canvas")).toBeVisible();
@@ -232,9 +230,21 @@ test("globe interaction and truthful demonstration location", async ({
     "data-map-state",
     "ready",
   );
-  await page.locator("[data-location]").click();
+  await expect(page.locator("[data-location]")).toHaveCount(4);
+  await page.locator('[data-location="almanya"]').click();
   await expect(page.locator("#location-info")).toContainText(
-    "Yalnızca örnek konum",
+    "Almanya, koltuk ve mobilya sevkiyatı yaptığımız ülkeler arasındadır.",
+  );
+  await expect(page.locator("#location-info")).toContainText(
+    "Sevkiyat yapılan ülke",
+  );
+  await page.locator('[data-location="avusturya"]').click();
+  await expect(page.locator("#location-info h3")).toHaveText("Avusturya");
+  await page.locator('[data-location="kosova"]').click();
+  await expect(page.locator("#location-info h3")).toHaveText("Kosova");
+  await page.locator('[data-location="inegol"]').click();
+  await expect(page.locator("#location-info")).toContainText(
+    "Mahmudiye, 7. Mobilya Sk. No:24",
   );
   await page.locator("#globe-in").click();
   await page.locator("#globe-out").click();

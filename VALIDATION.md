@@ -3,7 +3,7 @@
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 14 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
 - 7 birim testi geçti; sıfır başarısız/atlanmış test.
-- 12 gerçek Chromium tarayıcı senaryosu geçti; sıfır başarısız/atlanmış senaryo.
+- 13 gerçek Chromium tarayıcı senaryosu geçti; sıfır başarısız/atlanmış senaryo.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
@@ -22,4 +22,4 @@ Tam Lighthouse raporu bu çalışma ortamında `/workspace/scratch/alituran-ligh
 
 ## Yayım öncesi gerçek içerikler
 
-Mevcut ürünler, ölçüler, renkler, görseller, mobilya modelleri ve İstanbul işareti açıkça etiketlenmiş örneklerdir. Gerçek ürün GLB dosyaları ve fiziksel cihazlarda QR/tarayıcı kontrolleri, firma bilgileri, domain DNS/HTTPS ve canlı hosting henüz doğrulanmadı. Halka açık site yayımı ve DNS değişikliği yapılmadı. Yayımlama ve içerik düzenleme adımları README.md içindedir.
+Ürünler, ölçüler, renkler, görseller ve mobilya modelleri açıkça etiketlenmiş örneklerdir. Ali Turan Koltuk adı, İnegöl adresi, Feyzi Yiğit’in telefon/WhatsApp numarası ve Almanya/Avusturya/Kosova sevkiyat bilgileri site sahibi tarafından sağlanmıştır. Küredeki işaretler ülke ve ilçe genelini temsil eder. Telefon, WhatsApp ve Google Maps hedefleri tarayıcı testinde doğrulandı. Gerçek ürün GLB dosyaları, fiziksel cihazlar ve canlı domain DNS/HTTPS ayrıca doğrulanmalıdır. Halka açık site yayımı ve DNS değişikliği yapılmadı. Yayımlama ve içerik düzenleme adımları README.md içindedir.
