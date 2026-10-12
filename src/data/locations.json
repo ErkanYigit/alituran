@@ -1,0 +1,11 @@
+[
+  {
+    "id": "demo-istanbul",
+    "country": "Türkiye",
+    "city": "İstanbul",
+    "latitude": 41.0082,
+    "longitude": 28.9784,
+    "demo": true,
+    "description": "Yalnızca küre etkileşimini göstermek için eklenmiş örnek konumdur. Şirketin showroom, ihracat veya iş ortaklığı bilgisi değildir."
+  }
+]

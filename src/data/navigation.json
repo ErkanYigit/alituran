@@ -1,0 +1,8 @@
+[
+  { "label": "Ana Sayfa", "path": "/" },
+  { "label": "Koleksiyon", "path": "/koleksiyon" },
+  { "label": "Odanı Tasarla", "path": "/odani-tasarla" },
+  { "label": "Hakkımızda", "path": "/hakkimizda" },
+  { "label": "Dünyada Biz", "path": "/dunyada-biz" },
+  { "label": "İletişim", "path": "/iletisim" }
+]
