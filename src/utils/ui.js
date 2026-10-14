@@ -16,7 +16,7 @@ export function imageSrcset(source) {
 }
 export function responsiveAttrs(
   source,
-  sizes = "(max-width:600px) 45vw, 33vw",
+  sizes = "(max-width:600px) 45vw, 50vw",
 ) {
   const srcset = imageSrcset(source);
   return srcset

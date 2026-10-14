@@ -52,7 +52,7 @@ const routes = [
   ...products.map((p) => ({
     path: `/urun/${p.slug}`,
     title: p.name,
-    description: `${p.description} Tanıtım amaçlı örnek model.`,
+    description: `${p.description} Model adı geçicidir; ölçüler tahminidir.`,
     image: p.images[0],
     product: p,
   })),

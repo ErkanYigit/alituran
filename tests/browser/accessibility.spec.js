@@ -7,7 +7,8 @@ test("standard content pages have no WCAG A/AA accessibility violations", async 
   for (const path of [
     "/",
     "/koleksiyon/",
-    "/urun/atlas-kose-koltuk/",
+    "/urun/fuari-gozdesi-berjer/",
+    "/urun/koltuk-takimi-01/",
     "/hakkimizda/",
     "/iletisim/",
     "/gizlilik/",

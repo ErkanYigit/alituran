@@ -1,149 +1,149 @@
 [
   {
-    "id": "atlas",
-    "slug": "atlas-kose-koltuk",
-    "name": "Atlas Köşe Koltuk",
-    "category": "Köşe Koltuklar",
-    "description": "Geniş oturumlar ve sakin çizgiler. Bir araya gelmenin en doğal hâli.",
-    "images": [
-      "/assets/images/atlas.webp",
-      "/assets/images/sunlit-living-room.webp",
-      "/assets/images/upholstery-detail.webp"
-    ],
-    "colors": [
-      { "name": "Keten", "hex": "#c7b7a1" },
-      { "name": "Zeytin", "hex": "#858775" },
-      { "name": "Toprak", "hex": "#a97b60" }
-    ],
-    "dimensions": { "width": 280, "depth": 190, "height": 85 },
-    "type": "corner",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "luna",
-    "slug": "luna-kose-koltuk",
-    "name": "Luna Köşe Koltuk",
-    "category": "Köşe Koltuklar",
-    "description": "Yumuşak hatlar, hafif bir silüet. Günün ritmine eşlik eden bir köşe.",
-    "images": [
-      "/assets/images/luna.webp",
-      "/assets/images/upholstery-detail.webp",
-      "/assets/images/sunlit-living-room.webp"
-    ],
-    "colors": [
-      { "name": "Kum", "hex": "#d8c9b5" },
-      { "name": "Taş", "hex": "#b1a79b" }
-    ],
-    "dimensions": { "width": 260, "depth": 180, "height": 82 },
-    "type": "corner",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "vera",
-    "slug": "vera-kose-koltuk",
-    "name": "Vera Köşe Koltuk",
-    "category": "Köşe Koltuklar",
-    "description": "Dengeli oranlar ve doğal tonlar. Kendine özgü yaşam alanları için.",
-    "images": [
-      "/assets/images/vera.webp",
-      "/assets/images/sunlit-living-room.webp",
-      "/assets/images/upholstery-detail.webp"
-    ],
-    "colors": [
-      { "name": "Zeytin", "hex": "#858775" },
-      { "name": "Keten", "hex": "#c7b7a1" }
-    ],
-    "dimensions": { "width": 300, "depth": 200, "height": 88 },
-    "type": "corner",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "nova",
-    "slug": "nova-moduler-koltuk",
-    "name": "Nova Modüler Koltuk",
-    "category": "Modüler Koltuklar",
-    "description": "Bir mekân, pek çok olasılık. Yaşamınıza uyum sağlayan modüler çizgiler.",
-    "images": [
-      "/assets/images/nova.webp",
-      "/assets/images/upholstery-detail.webp",
-      "/assets/images/sunlit-living-room.webp"
-    ],
-    "colors": [
-      { "name": "Toprak", "hex": "#a97b60" },
-      { "name": "Kum", "hex": "#d8c9b5" }
-    ],
-    "dimensions": { "width": 320, "depth": 105, "height": 80 },
-    "type": "modular",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "mira",
-    "slug": "mira-kose-koltuk",
-    "name": "Mira Köşe Koltuk",
-    "category": "Köşe Koltuklar",
-    "description": "Kompakt ölçülerde ferah bir his. Küçük alanlara özenli bir yaklaşım.",
-    "images": [
-      "/assets/images/mira.webp",
-      "/assets/images/upholstery-detail.webp",
-      "/assets/images/sunlit-living-room.webp"
-    ],
-    "colors": [
-      { "name": "Taş", "hex": "#b1a79b" },
-      { "name": "Keten", "hex": "#c7b7a1" }
-    ],
-    "dimensions": { "width": 240, "depth": 160, "height": 82 },
-    "type": "corner",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "terra",
-    "slug": "terra-oturma-grubu",
-    "name": "Terra Oturma Grubu",
-    "category": "Oturma Grupları",
-    "description": "Davetkâr bir duruş ve yalın bir tasarım. Her günün buluşma noktası.",
-    "images": [
-      "/assets/images/terra.webp",
-      "/assets/images/sunlit-living-room.webp",
-      "/assets/images/upholstery-detail.webp"
-    ],
-    "colors": [
-      { "name": "Keten", "hex": "#c7b7a1" },
-      { "name": "Toprak", "hex": "#a97b60" }
-    ],
-    "dimensions": { "width": 230, "depth": 95, "height": 85 },
-    "type": "straight",
-    "model3d": null,
-    "featured": true,
-    "demo": true
-  },
-  {
-    "id": "ada",
-    "slug": "ada-berjer",
-    "name": "Ada Berjer",
+    "id": "fair-favorite-armchair",
+    "name": "Berjer Modeli 01",
     "category": "Berjerler",
-    "description": "Kitabınız, bir kahve, biraz sessizlik. Kendinize ayırdığınız anlar için.",
-    "images": [
-      "/assets/images/ada.webp",
-      "/assets/images/upholstery-detail.webp"
-    ],
+    "description": "Kiremit tonlarında dokulu döşemesi, yuvarlak hatları ve koyu ahşap detaylarıyla öne çıkan berjer.",
     "colors": [
-      { "name": "Zeytin", "hex": "#858775" },
-      { "name": "Kum", "hex": "#d8c9b5" }
+      {
+        "name": "Kiremit",
+        "hex": "#b44f20"
+      }
     ],
-    "dimensions": { "width": 90, "depth": 90, "height": 82 },
+    "slug": "fuari-gozdesi-berjer",
+    "images": ["/assets/images/fair-favorite-armchair.webp"],
+    "dimensions": {
+      "width": 95,
+      "depth": 95,
+      "height": 90
+    },
+    "dimensionStatus": "estimated",
+    "temporaryName": true,
     "type": "chair",
     "model3d": null,
-    "featured": false,
-    "demo": true
+    "featured": true,
+    "demo": false,
+    "badge": "Fuarın Gözdesi"
+  },
+  {
+    "id": "corner-01",
+    "name": "Köşe Modeli 01",
+    "category": "Köşe Koltuklar",
+    "description": "Krem tonları ve koyu ahşap detaylarıyla geniş oturumlu köşe koltuk.",
+    "colors": [
+      {
+        "name": "Krem",
+        "hex": "#e8dfd0"
+      }
+    ],
+    "slug": "kose-modeli-01",
+    "images": ["/assets/images/corner-01.webp"],
+    "dimensions": {
+      "width": 360,
+      "depth": 240,
+      "height": 85
+    },
+    "dimensionStatus": "estimated",
+    "temporaryName": true,
+    "type": "corner",
+    "model3d": null,
+    "featured": true,
+    "demo": false
+  },
+  {
+    "id": "corner-02",
+    "name": "Köşe Modeli 02",
+    "category": "Köşe Koltuklar",
+    "description": "Sıcak bej tonları, koyu ahşap detayları ve geniş oturumuyla köşe koltuk.",
+    "colors": [
+      {
+        "name": "Bej",
+        "hex": "#c8a882"
+      }
+    ],
+    "slug": "kose-modeli-02",
+    "images": ["/assets/images/corner-02.webp"],
+    "dimensions": {
+      "width": 330,
+      "depth": 220,
+      "height": 85
+    },
+    "dimensionStatus": "estimated",
+    "temporaryName": true,
+    "type": "corner",
+    "model3d": null,
+    "featured": true,
+    "demo": false
+  },
+  {
+    "id": "living-set-331",
+    "name": "Koltuk Takımı 01",
+    "category": "Koltuk Takımları",
+    "description": "Antrasit desenli döşeme ve ahşap kol detaylarıyla iki üçlü kanepe ve bir berjerden oluşan 3+3+1 koltuk takımı.",
+    "colors": [
+      {
+        "name": "Antrasit",
+        "hex": "#4e4b49"
+      }
+    ],
+    "slug": "koltuk-takimi-01",
+    "images": ["/assets/images/living-set-331.webp"],
+    "dimensions": {
+      "width": 325,
+      "depth": 315,
+      "height": 85
+    },
+    "dimensionStatus": "estimated",
+    "temporaryName": true,
+    "type": "set",
+    "model3d": null,
+    "featured": true,
+    "demo": false,
+    "composition": "3+3+1",
+    "dimensionScope": "preview-layout",
+    "components": [
+      {
+        "id": "living-set-331-sofa",
+        "name": "Üçlü Kanepe",
+        "type": "straight",
+        "quantity": 2,
+        "dimensions": {
+          "width": 230,
+          "depth": 95,
+          "height": 85
+        }
+      },
+      {
+        "id": "living-set-331-chair",
+        "name": "Takım Berjeri",
+        "type": "chair",
+        "quantity": 1,
+        "dimensions": {
+          "width": 85,
+          "depth": 90,
+          "height": 85
+        }
+      }
+    ],
+    "previewLayout": [
+      {
+        "componentId": "living-set-331-sofa",
+        "x": -1.15,
+        "z": 0,
+        "rotation": 1.5707963267948966
+      },
+      {
+        "componentId": "living-set-331-sofa",
+        "x": 1.15,
+        "z": 0,
+        "rotation": -1.5707963267948966
+      },
+      {
+        "componentId": "living-set-331-chair",
+        "x": 0,
+        "z": -1.55,
+        "rotation": 0
+      }
+    ]
   }
 ]

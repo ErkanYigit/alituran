@@ -543,7 +543,7 @@ section {
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px 25px;
 }
 .product-card {
@@ -553,11 +553,11 @@ section {
   background: #ebe4da;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1.23;
+  aspect-ratio: 4 / 3;
 }
 .product-photo img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.65s;
 }
 .product-card:hover .product-photo img {
@@ -830,12 +830,12 @@ section {
 }
 .gallery-main {
   background: var(--color-surface);
-  aspect-ratio: 1.12;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 .gallery-main img {
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: opacity 0.3s;
 }
 .gallery-thumbs {
@@ -2142,4 +2142,28 @@ dialog::backdrop {
   .product-card .text-link {
     font-size: 11px;
   }
+}
+
+.product-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  background: var(--color-text);
+  color: var(--color-background);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.product-number {
+  padding: 5px 8px;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+.set-composition {
+  font-size: 13px;
+  margin-top: 18px;
+}
+.dimension-table th[scope="row"] {
+  color: var(--color-text);
+  font-size: 11px;
 }

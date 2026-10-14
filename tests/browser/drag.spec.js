@@ -22,7 +22,9 @@ test("furniture follows pointer drag and remains within the floor", async ({
   page,
 }) => {
   await page.goto("/odani-tasarla/");
-  await expect(page.locator("#selection-info")).toContainText("Atlas");
+  await expect(page.locator("#selection-info")).toContainText(
+    "Berjer Modeli 01",
+  );
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
   await page.waitForTimeout(400);
   const canvas = page.locator("#planner-stage canvas"),
@@ -35,8 +37,8 @@ test("furniture follows pointer drag and remains within the floor", async ({
   await page.mouse.up();
   const after = Number(await page.locator("#furniture-x").inputValue());
   expect(Math.abs(after - before)).toBeGreaterThan(0.1);
-  expect(after).toBeGreaterThanOrEqual(1.4);
-  expect(after).toBeLessThanOrEqual(2.6);
+  expect(after).toBeGreaterThanOrEqual(0.475);
+  expect(after).toBeLessThanOrEqual(3.525);
 });
 test("touch dragging moves furniture on a phone viewport", async ({
   browser,

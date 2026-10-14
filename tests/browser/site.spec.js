@@ -18,7 +18,9 @@ function observeErrors(page) {
 async function planner(page) {
   await page.goto("/odani-tasarla/");
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
-  await expect(page.locator("#selection-info")).toContainText("Atlas");
+  await expect(page.locator("#selection-info")).toContainText(
+    "Berjer Modeli 01",
+  );
   await page.waitForTimeout(300);
 }
 async function saveState(page) {
@@ -38,13 +40,10 @@ test("navigation, all generated direct routes, page metadata, assets and desktop
     "/dunyada-biz/",
     "/iletisim/",
     "/gizlilik/",
-    "/urun/atlas-kose-koltuk/",
-    "/urun/luna-kose-koltuk/",
-    "/urun/vera-kose-koltuk/",
-    "/urun/nova-moduler-koltuk/",
-    "/urun/mira-kose-koltuk/",
-    "/urun/terra-oturma-grubu/",
-    "/urun/ada-berjer/",
+    "/urun/kose-modeli-01/",
+    "/urun/kose-modeli-02/",
+    "/urun/koltuk-takimi-01/",
+    "/urun/fuari-gozdesi-berjer/",
   ]) {
     await page.goto(path);
     await expect(page.locator("main h1")).toBeVisible();
@@ -71,7 +70,7 @@ test("navigation, all generated direct routes, page metadata, assets and desktop
     .click();
   await expect(page).toHaveURL(/koleksiyon/);
   await page.reload();
-  await expect(page.locator("#catalog-grid article")).toHaveCount(7);
+  await expect(page.locator("#catalog-grid article")).toHaveCount(4);
   expect(errors).toEqual([]);
 });
 test("catalog search, category selection and empty results", async ({
@@ -81,32 +80,37 @@ test("catalog search, category selection and empty results", async ({
   await page
     .getByRole("button", { name: "Köşe Koltuklar", exact: true })
     .click();
-  await expect(page.locator("#catalog-grid article")).toHaveCount(4);
-  await page.getByRole("searchbox", { name: "Ürün ara" }).fill("atlas");
+  await expect(page.locator("#catalog-grid article")).toHaveCount(2);
+  await page
+    .getByRole("searchbox", { name: "Ürün ara" })
+    .fill("Köşe Modeli 01");
   await expect(page.locator("#catalog-grid article")).toHaveCount(1);
   await page.getByRole("searchbox").fill("bulunmayan ürün");
   await expect(page.locator(".empty-state")).toBeVisible();
   await page.getByRole("searchbox").fill("");
   await page.getByRole("button", { name: "Berjerler", exact: true }).click();
-  await expect(page.locator("#catalog-grid")).toContainText("Ada");
+  await expect(page.locator("#catalog-grid")).toContainText("Berjer Modeli 01");
   await page.getByRole("button", { name: "Tümü", exact: true }).click();
-  await expect(page.locator("#catalog-grid article")).toHaveCount(7);
+  await expect(page.locator("#catalog-grid article")).toHaveCount(4);
 });
 test("product gallery, colors, canonical QR decoding and actual PNG download", async ({
   page,
 }) => {
   const errors = observeErrors(page);
-  await page.goto("/urun/atlas-kose-koltuk/");
-  await page.locator("[data-image]").nth(1).click();
+  await page.goto("/urun/kose-modeli-01/");
+  await page.locator("[data-image]").first().click();
   await expect(page.locator("#gallery-image")).toHaveAttribute(
     "src",
-    "/assets/images/sunlit-living-room.webp",
+    "/assets/images/corner-01.webp",
   );
-  await page.getByRole("button", { name: "Zeytin rengi", exact: true }).click();
-  await expect(page.locator("#color-name")).toHaveText("Zeytin");
+  await page.getByRole("button", { name: "Krem rengi", exact: true }).click();
+  await expect(page.locator("#color-name")).toHaveText("Krem");
   await expect(page.locator("#product-room-link")).toHaveAttribute(
     "href",
-    /color=%23858775/,
+    /color=%23e8dfd0/,
+  );
+  await expect(page.locator(".dimension-table caption")).toHaveText(
+    "Tahmini ölçüler",
   );
   await page.getByRole("button", { name: "QR Kodu Göster" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
@@ -117,10 +121,10 @@ test("product gallery, colors, canonical QR decoding and actual PNG download", a
   const downloadEvent = page.waitForEvent("download");
   await page.locator("#qr-save").click();
   const download = await downloadEvent;
-  expect(download.suggestedFilename()).toBe("ali-turan-atlas-qr.png");
+  expect(download.suggestedFilename()).toBe("ali-turan-corner-01-qr.png");
   const png = PNG.sync.read(await readFile(await download.path()));
   const decoded = jsQR(new Uint8ClampedArray(png.data), png.width, png.height);
-  expect(decoded?.data).toBe("https://alituran.com/urun/atlas-kose-koltuk");
+  expect(decoded?.data).toBe("https://alituran.com/urun/kose-modeli-01");
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).not.toBeVisible();
   expect(errors).toEqual([]);
@@ -162,7 +166,9 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
   await page.locator("#furniture-replace").click();
   await expect(page.locator("#selection-info")).toContainText("Yan Sehpa");
   await page.locator("[data-select-furniture]").first().click();
-  await page.getByRole("button", { name: "Zeytin rengi", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Kiremit rengi", exact: true })
+    .click();
   let saved = await saveState(page);
   expect(saved.width).toBe(6);
   expect(saved.windows[0]).toMatchObject({
@@ -171,7 +177,7 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
     width: 1.5,
   });
   expect(saved.columns[0].width).toBe(0.6);
-  expect(saved.furniture[0].color).toBe("#858775");
+  expect(saved.furniture[0].color).toBe("#b44f20");
   const screenshotEvent = page.waitForEvent("download");
   await page
     .getByRole("button", { name: "Görünümü PNG olarak kaydet" })
@@ -215,7 +221,7 @@ test("planner keyboard movement, placement bounds and overlap warnings", async (
   );
   await page.keyboard.press("r");
   await expect(page.locator("#furniture-angle")).toHaveValue("15");
-  await page.locator("#furniture-model").selectOption("atlas");
+  await page.locator("#furniture-model").selectOption("fair-favorite-armchair");
   await page.locator("#furniture-add").click();
   await expect(page.locator("#planner-warning")).toContainText("üst üste");
   await page.locator("#planner-stage canvas").focus();
@@ -265,7 +271,7 @@ test("exploded furniture progress, play, pause, reverse and restart", async ({
   page,
 }) => {
   const errors = observeErrors(page);
-  await page.goto("/urun/atlas-kose-koltuk/");
+  await page.goto("/urun/kose-modeli-01/");
   await page.locator("#exploded-host").scrollIntoViewIfNeeded();
   await expect(page.locator("#exploded-canvas canvas")).toBeVisible();
   await page.locator("#explode-progress").evaluate((el) => {
@@ -318,7 +324,7 @@ test("mobile navigation, focus, responsive layouts and planner bottom controls",
   for (const path of [
     "/",
     "/koleksiyon/",
-    "/urun/atlas-kose-koltuk/",
+    "/urun/kose-modeli-01/",
     "/hakkimizda/",
     "/iletisim/",
     "/dunyada-biz/",
@@ -336,7 +342,7 @@ test("mobile navigation, focus, responsive layouts and planner bottom controls",
   await expect(page.locator("#panel-toggle")).toBeVisible();
   await page.locator("#panel-toggle").click();
   await expect(page.locator("#planner-panel")).toBeVisible();
-  await page.locator("#furniture-model").selectOption("ada");
+  await page.locator("#furniture-model").selectOption("fair-favorite-armchair");
   await page.locator("#furniture-add").click();
   await expect(page.locator("[data-select-furniture]")).toHaveCount(2);
 });
@@ -354,11 +360,11 @@ test("graceful WebGL failure leaves product content and catalog usable", async (
   await expect(page.locator("#planner-stage")).toContainText(
     "WebGL bu tarayıcıda kullanılamıyor",
   );
-  await page.goto("/urun/atlas-kose-koltuk/");
+  await page.goto("/urun/kose-modeli-01/");
   await page.locator("#exploded-host").scrollIntoViewIfNeeded();
   await expect(page.locator("#exploded-canvas")).toContainText(
     "Bu tarayıcı 3D gösterimi desteklemiyor",
   );
   await page.goto("/koleksiyon/");
-  await expect(page.locator("#catalog-grid article")).toHaveCount(7);
+  await expect(page.locator("#catalog-grid article")).toHaveCount(4);
 });

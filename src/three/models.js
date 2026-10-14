@@ -29,7 +29,21 @@ export function proceduralFurniture(product, color = product.colors[0].hex) {
     group.add(mesh);
     return mesh;
   };
-  if (product.type === "rug") {
+  if (product.type === "set") {
+    for (const placement of product.previewLayout) {
+      const component = product.components.find(
+        (p) => p.id === placement.componentId,
+      );
+      const model = proceduralFurniture(
+        { ...component, colors: product.colors },
+        color,
+      );
+      model.name = component.name;
+      model.position.set(placement.x, 0, placement.z);
+      model.rotation.y = placement.rotation;
+      group.add(model);
+    }
+  } else if (product.type === "rug") {
     add("Halı", [w, 0.02, depth], [0, 0.01, 0], fabric, 0.006);
     for (let i = 0; i < 10; i++)
       add(

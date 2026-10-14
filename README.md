@@ -18,11 +18,11 @@ npm run build
 npm run preview
 ```
 
-Üretim önizlemesi 4173 portundadır. `npm run build` önce yerel görsellerin farklı ekranlar için WebP kopyalarını hazırlar, ardından tüm normal sayfalar ve ürünler için bağımsız HTML dosyaları, sosyal paylaşım metaverisi, canonical adresleri, `robots.txt`, `sitemap.xml` ve `404.html` oluşturur. Örneğin `dist/urun/atlas-kose-koltuk/index.html` doğrudan açılabilir; sayfa yenilemek bağlantıyı bozmaz.
+Üretim önizlemesi 4173 portundadır. `npm run build` önce yerel görsellerin farklı ekranlar için WebP kopyalarını hazırlar, ardından tüm normal sayfalar ve ürünler için bağımsız HTML dosyaları, sosyal paylaşım metaverisi, canonical adresleri, `robots.txt`, `sitemap.xml` ve `404.html` oluşturur. Örneğin `dist/urun/fuari-gozdesi-berjer/index.html` doğrudan açılabilir; sayfa yenilemek bağlantıyı bozmaz.
 
 ## Özellikler
 
-- Mobil menü, editoryal ana sayfa, 7 örnek ürün, kategori filtreleri ve Türkçe arama.
+- Mobil menü, editoryal ana sayfa, 4 model: Fuarın Gözdesi berjer, iki köşe koltuk ve bir 3+3+1 takım, kategori filtreleri ve Türkçe arama.
 - Ürün galerileri, renk seçimi, santimetre cinsinden ölçüler, ilgili modeller.
 - `https://alituran.com/urun/<slug>` adresini içeren yüksek çözünürlüklü QR kodu ve PNG indirme.
 - Ortografik kamera, iki duvarlı gerçek 3D oda, sınırlı orbit ve yakınlaştırma.
@@ -63,17 +63,27 @@ Site sahibi `src/data/` altındaki JSON dosyalarını düzenleyebilir. JSON dosy
   "type": "corner",
   "model3d": null,
   "featured": true,
-  "demo": true
+  "demo": false,
+  "temporaryName": true,
+  "dimensionStatus": "estimated"
 }
 ```
 
 - Ölçüler **santimetredir**; tasarımcı bunları metreye dönüştürür. Gerçek üretici ölçülerini ekleyin.
-- `type`: `corner`, `modular`, `straight`, `chair`. GLB yoksa buna göre orantılı örnek model üretilir.
+- `type`: `corner`, `modular`, `straight`, `chair`, `set`. GLB yoksa buna göre orantılı örnek model üretilir.
 - `images`: en az bir yerel görsel. İlk görsel katalog kartıdır; diğerleri ürün galerisidir.
 - `colors`: en az bir isim ve geçerli 6 basamaklı hex renk.
 - `featured`: ana sayfada görünmesini sağlar.
 - Katalog kategorileri veriden otomatik oluşturulur.
 - Ürün silmek için kaydı kaldırın ve yeniden derleyin. Ürün bağlantılarının dışarıda paylaşılmış olabileceğini dikkate alın.
+
+### Mevcut dört model
+
+Sıra: Fuarın Gözdesi (Berjer Modeli 01), Köşe Modeli 01, Köşe Modeli 02, Koltuk Takımı 01. Eski yedi örnek ürün ve fotoğrafları kaldırılmıştır.
+
+Takım `type: "set"` ve `composition: "3+3+1"` kullanır. `components` alanındaki `quantity` iki üçlü kanepe ve bir berjeri belirtir; ölçü tablosu her parçanın tahmini ölçüsünü ayrı gösterir. `dimensions` bu kayıtta yalnızca 3D önizleme yerleşiminin sınır kutusudur (`dimensionScope: "preview-layout"`), takımın üretici ölçüsü değildir. `previewLayout` metre cinsinden parça merkezlerini ve radyan cinsinden dönüşlerini belirler. Oda tasarımcısı takım bağlantısını üç bağımsız mobilya olarak açar; parça ölçülerini yerleşimden dolayı değiştirmez.
+
+Ek kanepe veya berjer fotoğrafları gelirse takımın `images` listesine ekleyin; bunlar yeni katalog ürünü değildir. Ana sayfa etiketini, görsel alt metnini ve bağlantısını `company.json → hero.eyebrow/imageAlt/productSlug` alanlarından düzenleyin.
 
 ### Fotoğraf değiştirmek
 
@@ -83,13 +93,13 @@ Derleme JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px We
 
 ### Gerçek 3D model eklemek
 
-GLB dosyasını `public/assets/models/` içine koyun; ürünün `model3d` alanını `/assets/models/atlas.glb` gibi ayarlayın. `null` değeri prosedürel örnek modeli seçer. Model yüklenemezse açıklamalı örnek model kullanılır.
+GLB dosyasını `public/assets/models/` içine koyun; ürünün `model3d` alanını `/assets/models/kose-modeli-01.glb` gibi ayarlayın. `null` değeri prosedürel örnek modeli seçer. Model yüklenemezse açıklamalı örnek model kullanılır.
 
 Modeller Y yukarı ekseniyle hazırlanmalıdır. Yerleşimde modelin sınır kutusu ürünün `width/depth/height` ölçülerine ölçeklenir ve zemine oturtulur. Gömülü dokulu GLB tercih edin. Aynı dizindeki dış dokulu GLTF de desteklenir. Malzeme renklerinin değişmesini istediğiniz mesh adlarında `fabric`, `upholstery` veya `kumas` kullanın.
 
 Parçalanma animasyonu için ayrı meshler kullanın: `base`, `seat`, `back`, `arm`, `leg`, `cushion`; sol/sağ kol için `left`/`right`. Ayrı parçalar bulunamazsa açıkça örnek animasyona dönülür. Birleşik tek mesh gerçek iç yapı gösterimi olarak sunulmaz. Yerleşim ve görsel tutarlılığını her model eklendikten sonra doğrulayın.
 
-Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yeniden üretim: Vite çalışırken `node scripts/render-assets.mjs`. Bu yardımcı işlem ayrıca Chromium ve Python/Pillow ister; sitenin çalışması veya normal derlemesi bunları gerektirmez.
+Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yeniden üretim: Vite çalışırken `node scripts/render-assets.mjs`. Bu yardımcı işlem ayrıca Chromium ister; sitenin çalışması veya normal derlemesi bunları gerektirmez.
 
 ### İletişim bilgileri
 
@@ -138,7 +148,7 @@ Testler ürün ölçülerini, gerçek pencere açıklıklarını, dönmüş nesn
 
 Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Referans ekran görüntüsü paylaşılmadığı için tarif edilen görsel yön esas alındı.
 
-Ürün isimleri, ölçüler, renkler, prosedürel mobilyalar ve iç mekân fotoğrafları başlangıç örnekleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır. Şirket tarihçesi, üretim kapasitesi, sertifika, gerçek ürün malzemesi veya paylaşılmayan ihracat ülkeleri uydurulmadı. Yayımdan önce örnek koleksiyonu gerçek bilgilerle değiştirin.
+Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Model adları geçici, tüm ölçüler tahminidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
 
 ## Proje yapısı
 
@@ -149,6 +159,6 @@ src/three/       3D motor, modeller, oda geometrisi, küre, animasyon
 src/styles/      Tasarım sistemi, mobil görünümler, yerel fontlar
 src/utils/       İkonlar, güvenli metin/bağlantı yardımcıları
 public/assets/   Yerel görseller, fontlar, modeller, coğrafi veri, lisanslar
-scripts/         Statik ürün sayfası üretimi ve isteğe bağlı görsel üretimi
+scripts/         Statik ürün sayfası üretimi ve isteğe bağlı oda önizlemesi üretimi
 tests/           Boyut/geometri testleri ve tarayıcı kabul testleri
 ```

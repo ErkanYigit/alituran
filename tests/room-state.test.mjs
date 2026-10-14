@@ -11,6 +11,8 @@ import {
   validWindow,
   validateSaved,
   extras,
+  furnitureLibrary,
+  startingFurniture,
 } from "../src/three/room-state.js";
 
 test("every procedural product has its configured real-world dimensions and rests on the floor", () => {
@@ -113,7 +115,7 @@ test("saved room round-trips, and corrupted or unrecognized models are rejected"
   room.furniture = [
     {
       id: "f",
-      productId: "atlas",
+      productId: products[0].id,
       x: 2,
       z: 2.5,
       rotation: 0,
@@ -168,4 +170,33 @@ test("catalog IDs and slugs are stable and unique; model and image sources are l
         p.dimensions.height > 0,
     );
   }
+});
+test("3+3+1 opens as two sofas and a chair with independent sizes, fits without overlap and survives saved-room validation", () => {
+  const set = products.find((p) => p.type === "set"),
+    room = defaultRoom();
+  const library = [...furnitureLibrary(products), ...extras];
+  room.furniture = startingFurniture(set, room);
+  assert.deepEqual(
+    room.furniture.map((p) => p.productId),
+    ["living-set-331-sofa", "living-set-331-sofa", "living-set-331-chair"],
+  );
+  assert.equal(new Set(room.furniture.map((p) => p.id)).size, 3);
+  for (const [i, item] of room.furniture.entries()) {
+    const product = library.find((p) => p.id === item.productId);
+    const original = { ...item };
+    assert.equal(clampPlacement(item, dimensions(product), room), true);
+    assert.deepEqual(item, original);
+    for (const other of room.furniture.slice(i + 1)) {
+      assert.equal(
+        overlaps(
+          item,
+          dimensions(product),
+          other,
+          dimensions(library.find((p) => p.id === other.productId)),
+        ),
+        false,
+      );
+    }
+  }
+  assert.deepEqual(validateSaved({ version: 1, room }, library), room);
 });

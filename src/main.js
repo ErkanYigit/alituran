@@ -46,7 +46,7 @@ document.querySelector("#app").innerHTML =
           )
           .join("")}</div>`
       : ""
-  }</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>Örnek dijital koleksiyon</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
+  }</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
 const main = document.querySelector("#main");
 let cleanups = [],
   routeId = 0;
@@ -151,7 +151,7 @@ function collectionEvents() {
       ? filtered.map(productCard).join("")
       : '<p class="empty-state">Bu aramaya uygun bir model bulunamadı. Farklı bir isim veya kategori deneyin.</p>';
     document.querySelector("#catalog-count").textContent =
-      `${filtered.length} örnek model`;
+      `${filtered.length} model`;
     observeReveals();
   };
   document.querySelectorAll("[data-category]").forEach(
@@ -175,7 +175,7 @@ async function productEvents(p, id) {
           btn.dataset.image,
         );
         document.querySelector("#gallery-image").alt =
-          `${p.name} — ${btn === document.querySelector("[data-image]") ? "örnek model" : "ilham görseli"}`;
+          `${p.name} — ürün görseli`;
         document
           .querySelectorAll("[data-image]")
           .forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));

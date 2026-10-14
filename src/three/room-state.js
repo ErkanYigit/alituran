@@ -38,6 +38,65 @@ export const dimensions = (p) => ({
   depth: p.dimensions.depth / 100,
   height: p.dimensions.height / 100,
 });
+// Set components are room objects, while the set remains one catalog product.
+export function furnitureLibrary(products) {
+  return products.flatMap((p) =>
+    p.type === "set"
+      ? p.components.map((component) => ({
+          ...component,
+          name: `${p.name} · ${component.name}`,
+          parentId: p.id,
+          colors: p.colors,
+          dimensionStatus: p.dimensionStatus,
+          model3d: null,
+        }))
+      : [p],
+  );
+}
+export function startingFurniture(
+  product,
+  room,
+  color = product.colors[0].hex,
+) {
+  const selectedColor = product.colors.some((c) => c.hex === color)
+    ? color
+    : product.colors[0].hex;
+  if (product.type !== "set")
+    return [
+      {
+        id: uid(),
+        productId: product.id,
+        x: room.width / 2,
+        z: room.depth / 2,
+        rotation: 0,
+        color: selectedColor,
+      },
+    ];
+  // Center the preview layout; each piece retains its own dimensions and rotation.
+  const bounds = product.previewLayout.map((placement) => {
+    const component = product.components.find(
+      (p) => p.id === placement.componentId,
+    );
+    const size = footprint(placement, dimensions(component));
+    return { x: placement.x, z: placement.z, ...size };
+  });
+  const centerX =
+    (Math.min(...bounds.map((b) => b.x - b.width / 2)) +
+      Math.max(...bounds.map((b) => b.x + b.width / 2))) /
+    2;
+  const centerZ =
+    (Math.min(...bounds.map((b) => b.z - b.depth / 2)) +
+      Math.max(...bounds.map((b) => b.z + b.depth / 2))) /
+    2;
+  return product.previewLayout.map((placement) => ({
+    id: uid(),
+    productId: placement.componentId,
+    x: room.width / 2 + placement.x - centerX,
+    z: room.depth / 2 + placement.z - centerZ,
+    rotation: placement.rotation,
+    color: selectedColor,
+  }));
+}
 export function footprint(item, size) {
   const cos = Math.abs(Math.cos(item.rotation || 0)),
     sin = Math.abs(Math.sin(item.rotation || 0));

@@ -3,9 +3,12 @@
   "subtitle": "KOLTUK · İNEGÖL / BURSA",
   "domain": "https://alituran.com",
   "hero": {
-    "image": "/assets/images/sunlit-living-room.webp",
-    "heading": "Yaşam alanlarına\nyeni bir hikâye.",
-    "description": "Zamansız çizgiler, doğal dokular. Kendinizi ait hissedeceğiniz yaşam alanları için."
+    "image": "/assets/images/fair-favorite-armchair.webp",
+    "heading": "Bir berjerden\nçok daha fazlası.",
+    "description": "Kiremit tonları, yumuşak hatlar ve ahşap detaylar. Fuarın Gözdesi berjerimizi keşfedin.",
+    "eyebrow": "Fuarın Gözdesi",
+    "imageAlt": "Fuarın Gözdesi — kiremit renkli Berjer Modeli 01",
+    "productSlug": "fuari-gozdesi-berjer"
   },
   "introduction": "Ali Turan Koltuk olarak Bursa İnegöl'de faaliyet gösteriyoruz. Koltuk ve mobilya ihtiyaçlarınız için İnegöl'deki adresimizde bizimle iletişime geçebilirsiniz.",
   "story": "İnegöl'den Almanya, Avusturya ve Kosova'nın yanı sıra çeşitli Balkan ülkelerine koltuk ve mobilya gönderiyoruz. Ürünler ve sevkiyat hakkında bilgi almak için Feyzi Yiğit'e ulaşabilirsiniz.",
@@ -17,7 +20,7 @@
   "showroomHours": null,
   "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mahmudiye%2C%207.%20Mobilya%20Sk.%20No%3A24%2C%2016400%20%C4%B0neg%C3%B6l/Bursa",
   "socials": [],
-  "contentNotice": "Koleksiyondaki ürünler, ölçüler ve görseller tanıtım amaçlı örneklerdir. Gerçek ürün bilgileri henüz paylaşılmamıştır.",
+  "contentNotice": "Ürün adları geçicidir; ölçüler tahminidir. Kesin ölçüler ve kumaş seçenekleri için Feyzi Yiğit ile iletişime geçin.",
   "wordmark": "ALI TURAN",
   "postalAddress": {
     "streetAddress": "Mahmudiye, 7. Mobilya Sk. No:24",
