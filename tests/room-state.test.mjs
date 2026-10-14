@@ -2,7 +2,12 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
 import products from "../src/data/products.json" with { type: "json" };
-import { proceduralFurniture, makeRoom } from "../src/three/models.js";
+import {
+  proceduralFurniture,
+  makeRoom,
+  replaceColor,
+} from "../src/three/models.js";
+import { disposeGroup } from "../src/three/engine.js";
 import {
   defaultRoom,
   dimensions,
@@ -199,4 +204,40 @@ test("3+3+1 opens as two sofas and a chair with independent sizes, fits without 
     }
   }
   assert.deepEqual(validateSaved({ version: 1, room }, library), room);
+});
+test("detailed models have finite mesh data and stay within a mobile-friendly geometry budget", () => {
+  for (const product of [...products, ...furnitureLibrary(products)]) {
+    const model = proceduralFurniture(product);
+    let triangles = 0;
+    model.traverse((object) => {
+      if (!object.isMesh) return;
+      const positions = object.geometry.attributes.position;
+      assert.ok(Array.from(positions.array).every(Number.isFinite), product.id);
+      triangles += (object.geometry.index?.count || positions.count) / 3;
+    });
+    assert.ok(triangles < 100000, `${product.id}: ${triangles} triangles`);
+    disposeGroup(model);
+  }
+});
+test("recoloring fabric preserves timber, metal and decorative pillow colors", () => {
+  for (const product of products) {
+    const model = proceduralFurniture(product);
+    const fixed = [],
+      fabric = [];
+    model.traverse((object) => {
+      if (!object.isMesh) return;
+      if (object.userData.colorable && !object.material.userData.tintOffset)
+        fabric.push(object.material);
+      else if (!object.userData.colorable)
+        fixed.push([object.material, object.material.color.getHex()]);
+    });
+    assert.ok(fabric.length > 0, product.id + " fabric");
+    assert.ok(fixed.length > 0, product.id + " trim");
+    replaceColor(model, "#3e7b50");
+    for (const material of fabric)
+      assert.equal(material.color.getHexString(), "3e7b50");
+    for (const [material, original] of fixed)
+      assert.equal(material.color.getHex(), original);
+    disposeGroup(model);
+  }
 });

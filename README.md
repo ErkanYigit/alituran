@@ -95,6 +95,10 @@ Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/i
 
 ### Gerçek 3D model eklemek
 
+Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo-furniture.js` içindedir. Köşeler iki oturma kolu, yuvarlak birleşim, modele göre tek/çift sırt minderleri, ahşap kuşak ve yan kol detayları kullanır. Fuarın Gözdesi oval kollar, yüksek sırt başlığı, bel minderi ve koyu ayaklarla modellenmiştir. 3+3+1 parçalarında ahşap yan çerçeveler ve desenli minderler bulunur. Kumaş dokusu, ahşap damarı ve yastık desenleri yerel, sentetik `DataTexture` yüzeyleridir; fotoğraftaki gerçek kumaşın birebir taraması değildir. Modeller mevcut tahmini ölçülere ölçeklenir. Renk değişimi yalnızca döşemeyi etkiler; ahşap, metal ve dekoratif yastıklar korunur.
+
+Geliştirme sunucusu açıkken `npm run render:models`, gerçek etkileşimli geometrilerin fotoğraflarla karşılaştırmasını `docs/3d-models.png` dosyasına yazar. Fotoğrafları değiştirmez. Render araçları mevcut Chromium'u veya `CHROMIUM_PATH` değerini kullanır.
+
 GLB dosyasını `public/assets/models/` içine koyun; ürünün `model3d` alanını `/assets/models/kose-modeli-01.glb` gibi ayarlayın. `null` değeri prosedürel örnek modeli seçer. Model yüklenemezse açıklamalı örnek model kullanılır.
 
 Modeller Y yukarı ekseniyle hazırlanmalıdır. Yerleşimde modelin sınır kutusu ürünün `width/depth/height` ölçülerine ölçeklenir ve zemine oturtulur. Gömülü dokulu GLB tercih edin. Aynı dizindeki dış dokulu GLTF de desteklenir. Malzeme renklerinin değişmesini istediğiniz mesh adlarında `fabric`, `upholstery` veya `kumas` kullanın.

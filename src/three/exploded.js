@@ -39,6 +39,21 @@ export async function mountExploded(host, product) {
   model.position.set(d.width / 2, 0, d.depth / 2);
   engine.reset(d.width, d.depth, 1.7);
   engine.camera.zoom = 0.8;
+  if (product.type === "corner") {
+    engine.controls.minAzimuthAngle = -Math.PI;
+    engine.controls.maxAzimuthAngle = Math.PI;
+    engine.camera.position.set(d.width / 2 - 5, 3.2, d.depth / 2 + 6);
+    engine.controls.target.set(d.width / 2, d.height * 0.55, d.depth / 2);
+    engine.controls.update();
+    engine.camera.zoom = 1.35;
+  } else if (product.type === "set") {
+    engine.controls.minAzimuthAngle = -Math.PI;
+    engine.controls.maxAzimuthAngle = Math.PI;
+    engine.camera.position.set(d.width / 2, 3.4, d.depth / 2 + 7);
+    engine.controls.target.set(d.width / 2, d.height * 0.55, d.depth / 2);
+    engine.controls.update();
+    engine.camera.zoom = 1.05;
+  }
   engine.camera.updateProjectionMatrix();
   engine.controls.enableRotate = false;
   engine.controls.enableZoom = false;

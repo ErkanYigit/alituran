@@ -3,8 +3,29 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { dimensions } from "./room-state.js";
 import { disposeGroup } from "./engine.js";
+import { photoFurniture } from "./photo-furniture.js";
 
 export function proceduralFurniture(product, color = product.colors[0].hex) {
+  if (product.type === "set") {
+    const group = new THREE.Group();
+    group.userData.photoProfile = product.id;
+    for (const placement of product.previewLayout) {
+      const component = product.components.find(
+        (p) => p.id === placement.componentId,
+      );
+      const model = proceduralFurniture(
+        { ...component, colors: product.colors },
+        color,
+      );
+      model.name = component.name;
+      model.position.set(placement.x, 0, placement.z);
+      model.rotation.y = placement.rotation;
+      group.add(model);
+    }
+    return normalizeFurniture(group, product, color);
+  }
+  const photo = photoFurniture(product, color);
+  if (photo) return normalizeFurniture(photo, product, color);
   const group = new THREE.Group();
   const d = dimensions(product),
     w = d.width,
@@ -26,24 +47,12 @@ export function proceduralFurniture(product, color = product.colors[0].hex) {
     mesh.name = name;
     mesh.castShadow = true;
     mesh.receiveShadow = true;
+    mesh.userData.colorable = material === fabric;
+    mesh.userData.materialRole = material === wood ? "wood" : "fabric";
     group.add(mesh);
     return mesh;
   };
-  if (product.type === "set") {
-    for (const placement of product.previewLayout) {
-      const component = product.components.find(
-        (p) => p.id === placement.componentId,
-      );
-      const model = proceduralFurniture(
-        { ...component, colors: product.colors },
-        color,
-      );
-      model.name = component.name;
-      model.position.set(placement.x, 0, placement.z);
-      model.rotation.y = placement.rotation;
-      group.add(model);
-    }
-  } else if (product.type === "rug") {
+  if (product.type === "rug") {
     add("Halı", [w, 0.02, depth], [0, 0.01, 0], fabric, 0.006);
     for (let i = 0; i < 10; i++)
       add(
@@ -146,15 +155,24 @@ export function proceduralFurniture(product, color = product.colors[0].hex) {
           0.012,
         );
   }
+  return normalizeFurniture(group, product, color);
+}
+function normalizeFurniture(group, product, color) {
   const bounds = new THREE.Box3().setFromObject(group),
     size = bounds.getSize(new THREE.Vector3());
-  group.scale.set(w / size.x, h / size.y, depth / size.z);
+  const { width, height, depth } = dimensions(product);
+  group.scale.set(width / size.x, height / size.y, depth / size.z);
   const scaled = new THREE.Box3().setFromObject(group),
     center = scaled.getCenter(new THREE.Vector3());
   const wrapper = new THREE.Group();
   group.position.set(-center.x, -scaled.min.y, -center.z);
   wrapper.add(group);
-  wrapper.userData = { procedural: true, productId: product.id, color };
+  wrapper.userData = {
+    procedural: true,
+    productId: product.id,
+    color,
+    photoProfile: group.userData.photoProfile || null,
+  };
   return wrapper;
 }
 export async function loadFurniture(product, color) {
@@ -192,14 +210,16 @@ export async function loadFurniture(product, color) {
 }
 export function replaceColor(group, color) {
   group.traverse((object) => {
-    if (
-      object.isMesh &&
-      !/Ayak|Tabla|Dokuma/i.test(object.name) &&
-      (group.userData.procedural ||
-        /fabric|upholstery|kumas|kumaş/i.test(object.name))
-    )
-      for (const material of [].concat(object.material))
-        material.color?.set(color);
+    if (!object.isMesh) return;
+    const colorable = group.userData.procedural
+      ? object.userData.colorable === true
+      : /fabric|upholstery|kumas|kumaş/i.test(object.name);
+    if (!colorable) return;
+    for (const material of [].concat(object.material)) {
+      material.color?.set(color);
+      if (material.userData.tintOffset)
+        material.color?.offsetHSL(0, 0, material.userData.tintOffset);
+    }
   });
 }
 

@@ -22,3 +22,5 @@ ZIP eşleştirmesi:
 - `Terracotta Armchair in a Sunlit Lounge.png` → `fair-favorite-armchair` (kiremit berjer).
 
 `npm run render:assets` yalnızca oda önizlemesini üretir, ürün fotoğraflarını değiştirmez.
+
+3D model geometrileri `src/three/photo-furniture.js` içinde, kullanıcının dört fotoğrafındaki biçimlere göre programatik olarak oluşturulmuştur. Kumaş mikro dokusu, döşeme deseni, ahşap damarı ve dekoratif yastık desenleri sentetik, yerel DataTexture verileridir; dış varlık indirilmez ve birebir kumaş taraması iddia edilmez. `docs/3d-models.png` bu geometrilerin Three.js ile gerçek renderlarını ürün fotoğraflarıyla karşılaştırır.

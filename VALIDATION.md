@@ -2,7 +2,7 @@
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
-- 8 birim testi geçti; sıfır başarısız/atlanmış test.
+- 10 birim testi geçti; sıfır başarısız/atlanmış test.
 - 15 gerçek Chromium tarayıcı senaryosu geçti; sıfır başarısız/atlanmış senaryo.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
@@ -18,6 +18,12 @@ Görsel türevleri ve `dist/` olmadan hazırlanan temiz Git dosyalarında eski `
 Fotoğraf üzerinde kapsül menü, büyük marka yazısı, krem/kahverengi paneller ve berjerin altı tasarım detayını işaretleyen bölüm kullanıcının gönderdiği referansa göre uyarlandı. Katalog, ürün ve diğer sayfalar aynı tipografi, düğme ve panel düzenine taşındı. Dört ürün, fotoğrafları ve iletişim bilgileri korundu. Yeni tasarımda 8 birim testi ve 15 tarayıcı senaryosu doğrulandı; erişilebilirlik testinde bulunan oda tasarımcısı tanıtım metninin kontrastı düzeltilip yedi sayfalık erişilebilirlik taraması tekrar geçti.
 
 Ana sayfa, koleksiyon, 3+3+1 detay, iletişim ve hakkımızda sayfaları 320, 390, 768, 1024 ve 1440 px genişliklerde kontrol edildi; 25 görünümde yatay taşma bulunmadı. Dar ekranlardaki 3D animasyon kontrolleri iki satıra uyarlanıp animasyon, mobil menü ve erişilebilirlik testleri tekrar geçti. Masaüstü ve mobil ana sayfa önizlemeleri `docs/design-desktop.png` ve `docs/design-mobile.png` dosyalarındadır.
+
+## Fotoğraflara göre güncellenen 3D modeller
+
+Dört model ve 3+3+1 takımın bağımsız parçaları fotoğraflardaki oturma düzeni, sırt/kollar, ahşap kuşak/yan çerçeve, ayaklar ve yastıklarla uyarlanmıştır. Tahmini ölçüler ve zemine oturma kontrolü korunur. Yeni testler tüm üretilen geometri verilerinin sonlu olduğunu, her modelin 100.000 üçgenin altında kaldığını ve renk değişiminin ahşap, metal ve dekoratif yastıkları değiştirmediğini doğrular. Oda tasarımcısı ve parçalanma animasyonu tarayıcıda kontrol edildi. Karşılaştırma `docs/3d-models.png`, güncel oda önizlemesi `public/assets/images/room-preview.webp` dosyasındadır. 3D geometri ve sentetik kumaş desenleri yaklaşık temsillerdir.
+
+Dört ürün sayfasının canlı 3D gösterimi hem birleşik hem tamamen ayrılmış durumda tekrar renderlandı; boş canvas veya JavaScript hatası bulunmadı. Köşe ve takım kameraları oturumları daha net gösterecek şekilde ayarlandı.
 
 ## Mobil Lighthouse
 
