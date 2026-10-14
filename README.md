@@ -95,7 +95,7 @@ Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/i
 
 ### Gerçek 3D model eklemek
 
-Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo-furniture.js` içindedir. Köşeler iki oturma kolu, yuvarlak birleşim, modele göre tek/çift sırt minderleri, ahşap kuşak ve yan kol detayları kullanır. Fuarın Gözdesi oval kollar, yüksek sırt başlığı, bel minderi ve koyu ayaklarla modellenmiştir. 3+3+1 parçalarında ahşap yan çerçeveler ve desenli minderler bulunur. Kumaş dokusu, ahşap damarı ve yastık desenleri yerel, sentetik `DataTexture` yüzeyleridir; fotoğraftaki gerçek kumaşın birebir taraması değildir. Modeller mevcut tahmini ölçülere ölçeklenir. Renk değişimi yalnızca döşemeyi etkiler; ahşap, metal ve dekoratif yastıklar korunur.
+Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo-furniture.js` içindedir. GPT-6 Astra ile yenilenen sürümde dolgulu oturumlar, hacimli serbest yastıklar, köşe boyunca devam eden kapalı döşemeli sırtlar, pahlanmış geniş ahşap çerçeveler ve incelen ayaklar kullanılır. Fuarın Gözdesi oval kollar, ayrı yüksek başlık ve bel minderiyle modellenmiştir. Eğrisel yüzey normalleri ortak konumlarda yumuşatılır; kumaş UV'leri panel ölçeğine göre hesaplanır. Kumaş dokusu, ahşap damarı ve yastık desenleri yerel, sentetik `DataTexture` yüzeyleridir; fotoğraftaki gerçek kumaşın birebir taraması değildir. Modeller mevcut tahmini ölçülere ölçeklenir. Renk değişimi yalnızca döşemeyi etkiler; ahşap, metal ve dekoratif yastıklar korunur.
 
 Geliştirme sunucusu açıkken `npm run render:models`, gerçek etkileşimli geometrilerin fotoğraflarla karşılaştırmasını `docs/3d-models.png` dosyasına yazar. Fotoğrafları değiştirmez. Render araçları mevcut Chromium'u veya `CHROMIUM_PATH` değerini kullanır.
 
@@ -152,7 +152,7 @@ Testler ürün ölçülerini, gerçek pencere açıklıklarını, dönmüş nesn
 
 ## Varlık kaynakları ve örnek içerik
 
-Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Referans ekran görüntüsü paylaşılmadığı için tarif edilen görsel yön esas alındı.
+Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Güncel tasarım, kullanıcının paylaştığı referans ekran görüntüsüne göre uyarlanmıştır.
 
 Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Model adları geçici, tüm ölçüler tahminidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
 

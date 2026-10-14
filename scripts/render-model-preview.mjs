@@ -51,7 +51,7 @@ try {
       engine.controls.maxAzimuthAngle = Math.PI;
       engine.controls.target.set(0, h * 0.48, 0);
       engine.camera.position.set(
-        p.type === "corner" ? -4 : p.type === "set" ? 0 : 4,
+        p.type === "corner" || p.type === "set" ? -4 : 4,
         2.7,
         5.5,
       );

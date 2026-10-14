@@ -1,4 +1,4 @@
-# Doğrulama — 14 Ekim 2026
+# Doğrulama — 15 Ekim 2026
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
@@ -24,6 +24,12 @@ Ana sayfa, koleksiyon, 3+3+1 detay, iletişim ve hakkımızda sayfaları 320, 39
 Dört model ve 3+3+1 takımın bağımsız parçaları fotoğraflardaki oturma düzeni, sırt/kollar, ahşap kuşak/yan çerçeve, ayaklar ve yastıklarla uyarlanmıştır. Tahmini ölçüler ve zemine oturma kontrolü korunur. Yeni testler tüm üretilen geometri verilerinin sonlu olduğunu, her modelin 100.000 üçgenin altında kaldığını ve renk değişiminin ahşap, metal ve dekoratif yastıkları değiştirmediğini doğrular. Oda tasarımcısı ve parçalanma animasyonu tarayıcıda kontrol edildi. Karşılaştırma `docs/3d-models.png`, güncel oda önizlemesi `public/assets/images/room-preview.webp` dosyasındadır. 3D geometri ve sentetik kumaş desenleri yaklaşık temsillerdir.
 
 Dört ürün sayfasının canlı 3D gösterimi hem birleşik hem tamamen ayrılmış durumda tekrar renderlandı; boş canvas veya JavaScript hatası bulunmadı. Köşe ve takım kameraları oturumları daha net gösterecek şekilde ayarlandı.
+
+### GPT-6 Astra ile ikinci modelleme geçişi
+
+Berjer ve köşe kolları öne/aşağı kıvrılan oval hacimlere dönüştürüldü. Oturumlar ve serbest yastıklar dolduruldu; köşelerde düz sırtları birleştiren kapalı, eğrisel döşeme paneli oluşturuldu. Ahşap kuşaklar ve üçgen yan çerçeveler geniş, pahlanmış yüzeyler kullanır. Deforme edilmiş döşeme geometrilerinde konuma göre ortak normal hesaplaması yüzeydeki sert üçgen/bant izlerini giderir. Bouclé dokusunda renk ve kabartı aynı düzensiz ilmek alanından üretilir; antrasit döşemede düşük kontrastlı çiçek desenleri kullanılır. Döşeme rengi değişirken kumaş parlaklık rengi de güncellenir.
+
+Son geometriyle 10 birim testi ve üretim derlemesi üzerinde 15 Chromium tarayıcı senaryosu geçti. Dört modelin oda yerleşimleri ayrıca 1440 ve 390 px genişliklerde açılıp klavyeyle hareket ettirildi; takım üç bağımsız parça olarak kaldı. Her ürünün gerçek WebGL canvas'ı birleşik ve tamamen ayrılmış durumda renderlandı; boş canvas veya JavaScript hatası bulunmadı. Fotoğraf karşılaştırması ve oda önizlemesi yeni geometriyle tekrar üretildi. Fotoğraflar ve tahmini ölçü verileri değiştirilmedi. Bu sürüm fotoğraftan uyarlanan yaklaşık geometri kullanır; CAD veya fotogrametri taraması değildir.
 
 ## Mobil Lighthouse
 

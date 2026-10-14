@@ -219,6 +219,8 @@ export function replaceColor(group, color) {
       material.color?.set(color);
       if (material.userData.tintOffset)
         material.color?.offsetHSL(0, 0, material.userData.tintOffset);
+      if (group.userData.procedural && material.sheenColor)
+        material.sheenColor.copy(material.color);
     }
   });
 }

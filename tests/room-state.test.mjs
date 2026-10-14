@@ -234,8 +234,11 @@ test("recoloring fabric preserves timber, metal and decorative pillow colors", (
     assert.ok(fabric.length > 0, product.id + " fabric");
     assert.ok(fixed.length > 0, product.id + " trim");
     replaceColor(model, "#3e7b50");
-    for (const material of fabric)
+    for (const material of fabric) {
       assert.equal(material.color.getHexString(), "3e7b50");
+      if (material.sheenColor)
+        assert.equal(material.sheenColor.getHexString(), "3e7b50");
+    }
     for (const [material, original] of fixed)
       assert.equal(material.color.getHex(), original);
     disposeGroup(model);
