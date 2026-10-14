@@ -26,7 +26,7 @@ Tasarım, site sahibinin paylaştığı mobilya sitesi referansına göre uyarla
 
 - Mobil menü, editoryal ana sayfa, 4 model: Fuarın Gözdesi berjer, iki köşe koltuk ve bir 3+3+1 takım, kategori filtreleri ve Türkçe arama.
 - Ürün galerileri, renk seçimi, santimetre cinsinden ölçüler, ilgili modeller.
-- `https://alituran.com/urun/<slug>` adresini içeren yüksek çözünürlüklü QR kodu ve PNG indirme.
+- `https://alituranmob.com/urun/<slug>` adresini içeren yüksek çözünürlüklü QR kodu ve PNG indirme.
 - Ortografik kamera, iki duvarlı gerçek 3D oda, sınırlı orbit ve yakınlaştırma.
 - Oda genişliği/derinliği/yüksekliği, duvarda gerçek pencere açıklıkları, kolon ekleme/düzenleme/silme.
 - Mobilya seçme, mouse/touch sürükleme, konum girme, 15° döndürme, silme, model ve renk değiştirme.
@@ -121,7 +121,7 @@ Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yen
 
 Ürünün sayfasında “QR Kodu Göster” → “PNG Olarak Kaydet”. Kodlar 768 px, dört modül kenar boşluğu ve yüksek hata düzeltme seviyesiyle oluşturulur. Tarayıcı testinde indirilen PNG gerçek bir QR okuyucuyla çözülür ve canonical hedef doğrulanır.
 
-Canonical domain `company.json → domain` alanından gelir ve başlangıçta `https://alituran.com` olarak ayarlıdır. Alan adını değiştirirseniz yeniden derleyin; önceden basılmış QR kodlarının hedefi değişmez. Kodların yayında açılması için domain ve HTTPS kurulumunu tamamlamak gerekir.
+Canonical domain `company.json → domain` alanından gelir ve `https://alituranmob.com` olarak ayarlıdır. Alan adını değiştirirseniz yeniden derleyin; önceden basılmış QR kodlarının hedefi değişmez. Kodların yayında açılması için domain ve HTTPS kurulumunu tamamlamak gerekir.
 
 ## Statik yayımlama ve alan adı
 
@@ -131,11 +131,13 @@ Canonical domain `company.json → domain` alanından gelir ve başlangıçta `h
 
 **Apache/cPanel:** `dist` içindeki tüm dosyaları (gizli `.htaccess` dahil) domainin belge köküne yükleyin. `mod_rewrite` ve izin verilen `.htaccess` kuralları temiz ürün yollarını destekler.
 
+Güncellemede proje ana klasöründe `git pull` ve `npm run build` çalıştırın. Yeni oluşan `dist` içeriğini ZIP'e ekleyin; cPanel'de belge köküne çıkarırken aynı adlı dosyaların üzerine yazın. `index.html`, `assets/` ve sayfa klasörleri aynı seviyede bulunmalıdır. Apache `mod_headers` etkinse `.htaccess`, HTML ve sitemap gibi metin dosyalarına `Cache-Control: no-cache` ekleyerek tarayıcının yeni sürümü sunucudan doğrulamasını sağlar. Vite'ın JS/CSS dosya adları içerik değiştiğinde yenilenir; güncellemede yalnızca `index.html` yerine tüm `dist` içeriğini yükleyin.
+
 **Nginx:** Site kökünü `dist` olarak ayarlayın; örnek konum kuralı `try_files $uri $uri/ =404;`, dizin indeksi `index.html`. Tüm bilinmeyen yolları ana sayfaya çevirmek gerekmez.
 
-**GitHub Pages:** Özel domain `alituran.com` ve kök yol kullanın; `dist` çıktısını Pages'e dağıtın. Proje alt dizini (`/alituran/`) için Vite `base` ve veri yolları ayrıca uyarlanmalıdır.
+**GitHub Pages:** Özel domain `alituranmob.com` ve kök yol kullanın; `dist` çıktısını Pages'e dağıtın. Proje alt dizini (`/alituran/`) için Vite `base` ve veri yolları ayrıca uyarlanmalıdır.
 
-Barındırma panelinde özel domain olarak `alituran.com` ekleyin. Panelin verdiği A/AAAA veya CNAME değerlerini alan adı DNS ayarlarına **aynen** girin; sağlayıcıya göre değiştikleri için bu projede DNS değerleri uydurulmadı. `www` için tercih ettiğiniz yönlendirmeyi ve HTTPS sertifikasını sağlayıcı panelinde açın. Ardından ana sayfayı, doğrudan ürün adreslerini ve QR hedeflerini gerçek domain üzerinden kontrol edin.
+Barındırma panelinde özel domain olarak `alituranmob.com` ekleyin. Panelin verdiği A/AAAA veya CNAME değerlerini alan adı DNS ayarlarına **aynen** girin; sağlayıcıya göre değiştikleri için bu projede DNS değerleri uydurulmadı. `www` için tercih ettiğiniz yönlendirmeyi ve HTTPS sertifikasını sağlayıcı panelinde açın. Ardından ana sayfayı, doğrudan ürün adreslerini ve QR hedeflerini gerçek domain üzerinden kontrol edin.
 
 GitHub'daki kaynak dosyaları web sitesi yayımı yerine geçmez. Canlı site için yukarıdaki statik barındırma ve DNS adımlarını uygulayın.
 

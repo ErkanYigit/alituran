@@ -49,7 +49,7 @@ test("navigation, all generated direct routes, page metadata, assets and desktop
     await expect(page.locator("main h1")).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
-      `https://alituran.com${path === "/" ? "/" : path.replace(/\/$/, "")}`,
+      `https://alituranmob.com${path === "/" ? "/" : path.replace(/\/$/, "")}`,
     );
     expect(
       await page.evaluate(
@@ -124,7 +124,7 @@ test("product gallery, colors, canonical QR decoding and actual PNG download", a
   expect(download.suggestedFilename()).toBe("ali-turan-corner-01-qr.png");
   const png = PNG.sync.read(await readFile(await download.path()));
   const decoded = jsQR(new Uint8ClampedArray(png.data), png.width, png.height);
-  expect(decoded?.data).toBe("https://alituran.com/urun/kose-modeli-01");
+  expect(decoded?.data).toBe("https://alituranmob.com/urun/kose-modeli-01");
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).not.toBeVisible();
   expect(errors).toEqual([]);

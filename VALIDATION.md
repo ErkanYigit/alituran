@@ -31,6 +31,12 @@ Berjer ve köşe kolları öne/aşağı kıvrılan oval hacimlere dönüştürü
 
 Son geometriyle 10 birim testi ve üretim derlemesi üzerinde 15 Chromium tarayıcı senaryosu geçti. Dört modelin oda yerleşimleri ayrıca 1440 ve 390 px genişliklerde açılıp klavyeyle hareket ettirildi; takım üç bağımsız parça olarak kaldı. Her ürünün gerçek WebGL canvas'ı birleşik ve tamamen ayrılmış durumda renderlandı; boş canvas veya JavaScript hatası bulunmadı. Fotoğraf karşılaştırması ve oda önizlemesi yeni geometriyle tekrar üretildi. Fotoğraflar ve tahmini ölçü verileri değiştirilmedi. Bu sürüm fotoğraftan uyarlanan yaklaşık geometri kullanır; CAD veya fotogrametri taraması değildir.
 
+## Güzel Hosting alan adı ve güncelleme — 15 Ekim 2026
+
+Site sahibinin bildirdiği `https://alituranmob.com` adresi şirket verisi, HTML başlangıç metaverisi, QR hedefleri ve yayımlama belgelerine uygulandı. Yeni derlemede 11 sayfanın canonical adresleri, sitemap, robots ve uygulama paketindeki alan adı kontrol edildi. Doğrudan sayfalar/metaveri ve indirilen QR PNG'sinin gerçek çözümlemesini kapsayan iki Chromium senaryosu geçti. Apache `.htaccess` dosyasına, `mod_headers` etkin olduğunda HTML/XML/TXT yanıtlarını yeniden doğrulatan `Cache-Control: no-cache` kuralı eklendi; gerçek hosting yanıt başlıkları doğrulanamadı.
+
+Kullanıcı yerel geliştirme sunucusunda güncel sürümün açıldığını doğruladı. Bu ortamın HTTPS proxy'si alan adına erişimi 403 ile engellediğinden canlı sunucudaki dosyalar ve eski görünümün kesin nedeni incelenemedi. Yeni `dist` içeriğinin cPanel'de tümüyle üzerine yazılarak yüklenmesi ve tarayıcıda tekrar kontrol edilmesi gerekiyor. Hosting hesabına dosya yüklenmedi veya DNS değiştirilmedi.
+
 ## Mobil Lighthouse
 
 Aşağıdaki ölçüm önceki örnek katalog sürümünde yapıldı; bu dört ürünlük sürüm için Lighthouse yeniden çalıştırılmadı. Önceki yerel üretim dosyalarında Lighthouse 12.8.2'nin varsayılan mobil benzetimiyle ölçüldü. Temel Python statik sunucusu HTTP sıkıştırma ve üretim cache başlıkları sağlamaz; canlı barındırma koşulları ayrıca ölçülmelidir.
