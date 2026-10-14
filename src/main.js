@@ -1,4 +1,5 @@
 import "./styles/main.css";
+import "./styles/reference.css";
 import products from "./data/products.json";
 import company from "./data/company.json";
 import navigation from "./data/navigation.json";
@@ -24,8 +25,12 @@ import {
 } from "./utils/ui.js";
 
 const wordmark = `<span class="wordmark">${e(company.wordmark || company.name)}<small>${e(company.subtitle)}</small></span>`;
+const headerNavigation = [
+  ...navigation.filter((n) => n.path !== "/koleksiyon"),
+  navigation.find((n) => n.path === "/koleksiyon"),
+];
 document.querySelector("#app").innerHTML =
-  `<header class="site-header"><a href="/" aria-label="${e(company.wordmark || company.name)} ${e(company.subtitle)} — Ana Sayfa">${wordmark}</a><nav class="nav" id="navigation" aria-label="Ana menü">${navigation.map((n) => `<a href="${n.path}" class="${n.path === "/odani-tasarla" ? "designer-nav" : ""}">${n.label}</a>`).join("")}</nav><button class="menu-button icon-button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menüyü aç">${icon("menu")}</button><button class="menu-backdrop" aria-label="Menüyü kapat" tabindex="-1"></button></header><main id="main" tabindex="-1"></main><footer class="site-footer wrap"><div class="footer-main"><div class="footer-brand"><a href="/">${wordmark}</a><p>${e(company.footerDescription || company.introduction)}</p></div><div><div class="footer-title">Keşfedin</div><div class="footer-links">${navigation
+  `<header class="site-header"><a href="/" aria-label="${e(company.wordmark || company.name)} ${e(company.subtitle)} — Ana Sayfa">${wordmark}</a><nav class="nav" id="navigation" aria-label="Ana menü">${headerNavigation.map((n) => `<a href="${n.path}" class="${n.path === "/koleksiyon" ? "catalog-nav" : ""}">${n.label}${n.path === "/koleksiyon" ? `<span class="nav-arrow">${icon("arrow", 15)}</span>` : ""}</a>`).join("")}</nav><button class="menu-button icon-button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menüyü aç">${icon("menu")}</button><button class="menu-backdrop" aria-label="Menüyü kapat" tabindex="-1"></button></header><main id="main" tabindex="-1"></main><footer class="site-footer wrap"><div class="footer-main"><div class="footer-brand"><a href="/">${wordmark}</a><p>${e(company.footerDescription || company.introduction)}</p></div><div><div class="footer-title">Keşfedin</div><div class="footer-links">${navigation
     .filter((n) => n.path !== "/")
     .map((n) => `<a href="${n.path}">${n.label}</a>`)
     .join(
@@ -46,7 +51,7 @@ document.querySelector("#app").innerHTML =
           )
           .join("")}</div>`
       : ""
-  }</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
+  }</div></div><div class="footer-signature" aria-hidden="true">ali turan.</div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
 const main = document.querySelector("#main");
 let cleanups = [],
   routeId = 0;
@@ -255,6 +260,7 @@ async function render(focus = false) {
   closeMenu();
   document.querySelector("#qr-dialog").close();
   const path = decodeURI(location.pathname).replace(/\/$/, "") || "/";
+  document.body.dataset.page = path === "/" ? "home" : "inner";
   document.querySelectorAll(".nav a").forEach((a) => {
     const active =
       a.getAttribute("href") === path ||

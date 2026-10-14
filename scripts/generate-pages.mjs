@@ -104,7 +104,7 @@ for (const route of routes) {
   if (preloadImage)
     html = html.replace(
       "</head>",
-      `<link rel="preload" as="image" href="${escape(preloadImage)}" imagesrcset="${escape(imageSrcset(preloadImage))}" imagesizes="(max-width:600px) calc(100vw - 44px), ${route.product ? "55" : "50"}vw" fetchpriority="high"></head>`,
+      `<link rel="preload" as="image" href="${escape(preloadImage)}" imagesrcset="${escape(imageSrcset(preloadImage))}" imagesizes="(max-width:600px) calc(100vw - 36px), ${route.product ? "55" : "100"}vw" fetchpriority="high"></head>`,
     );
   html = html
     .replace(

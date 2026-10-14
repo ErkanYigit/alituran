@@ -22,6 +22,8 @@ npm run preview
 
 ## Özellikler
 
+Tasarım, site sahibinin paylaştığı mobilya sitesi referansına göre uyarlanmıştır: koyu kahverengi çerçeve, krem paneller, fotoğraf üstünde kapsül menü, büyük marka yazısı ve berjerin detaylarını işaretleyen çizgiler. Ana sayfa, katalog, ürün detayları ve şirket sayfaları aynı Manrope tipografisini kullanır. Ortak arayüz ve 3D alanlarının temel stilleri `src/styles/main.css`, güncel görsel tasarım `src/styles/reference.css` içindedir. Masaüstü ve mobil önizlemeler `docs/` altında bulunur.
+
 - Mobil menü, editoryal ana sayfa, 4 model: Fuarın Gözdesi berjer, iki köşe koltuk ve bir 3+3+1 takım, kategori filtreleri ve Türkçe arama.
 - Ürün galerileri, renk seçimi, santimetre cinsinden ölçüler, ilgili modeller.
 - `https://alituran.com/urun/<slug>` adresini içeren yüksek çözünürlüklü QR kodu ve PNG indirme.

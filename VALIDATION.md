@@ -13,6 +13,12 @@
 
 Görsel türevleri ve `dist/` olmadan hazırlanan temiz Git dosyalarında eski `npm run dev` başlangıcıyla eksik görsel sorunu tekrarlandı. `predev` düzeltmesinden sonra, derleme çalıştırmadan 20 WebP türevi otomatik oluşturuldu. Gerçek Chromium'da ana sayfa, koleksiyon ve 3+3+1 ürün sayfasındaki toplam 32 görsel yüklemesi masaüstü (1440 px) ve mobil (390 px) genişliklerde doğrulandı; eksik görsel kalmadı. Kontrol mevcut kurulu bağımlılıkları kullandı; yeniden bağımlılık kurulumu bu kontrolde denenmedi.
 
+## Referansa göre yenilenen tasarım
+
+Fotoğraf üzerinde kapsül menü, büyük marka yazısı, krem/kahverengi paneller ve berjerin altı tasarım detayını işaretleyen bölüm kullanıcının gönderdiği referansa göre uyarlandı. Katalog, ürün ve diğer sayfalar aynı tipografi, düğme ve panel düzenine taşındı. Dört ürün, fotoğrafları ve iletişim bilgileri korundu. Yeni tasarımda 8 birim testi ve 15 tarayıcı senaryosu doğrulandı; erişilebilirlik testinde bulunan oda tasarımcısı tanıtım metninin kontrastı düzeltilip yedi sayfalık erişilebilirlik taraması tekrar geçti.
+
+Ana sayfa, koleksiyon, 3+3+1 detay, iletişim ve hakkımızda sayfaları 320, 390, 768, 1024 ve 1440 px genişliklerde kontrol edildi; 25 görünümde yatay taşma bulunmadı. Dar ekranlardaki 3D animasyon kontrolleri iki satıra uyarlanıp animasyon, mobil menü ve erişilebilirlik testleri tekrar geçti. Masaüstü ve mobil ana sayfa önizlemeleri `docs/design-desktop.png` ve `docs/design-mobile.png` dosyalarındadır.
+
 ## Mobil Lighthouse
 
 Aşağıdaki ölçüm önceki örnek katalog sürümünde yapıldı; bu dört ürünlük sürüm için Lighthouse yeniden çalıştırılmadı. Önceki yerel üretim dosyalarında Lighthouse 12.8.2'nin varsayılan mobil benzetimiyle ölçüldü. Temel Python statik sunucusu HTTP sıkıştırma ve üretim cache başlıkları sağlamaz; canlı barındırma koşulları ayrıca ölçülmelidir.
