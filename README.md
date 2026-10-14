@@ -89,7 +89,7 @@ Ek kanepe veya berjer fotoğrafları gelirse takımın `images` listesine ekleyi
 
 Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/images/dosya.webp` yolunu kullanın. İnternet fotoğraf bağlantısını doğrudan kullanmayın. Tercihen 900–1600 px genişlikte WebP, gerçek ürünü temsil eden ve kullanım hakları doğrulanmış görseller seçin. Ana sayfa için `company.json → hero.image`, başlık için `hero.heading` ve alt metin için `hero.description` alanlarını düzenleyin. Başlıkta `\n` satır sonudur.
 
-Derleme JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px WebP türevlerini oluşturur; tarayıcı `srcset` ve `sizes` ile uygun olanı seçer. `-w320.webp` gibi son ekler üretilen dosyalara ayrılmıştır. Bu dosyalar Git'e eklenmez, her derlemede hazırlanır. Kaynak görselleri silmeyin.
+`npm run dev` ve `npm run build`, JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px WebP türevlerini oluşturur; tarayıcı `srcset` ve `sizes` ile uygun olanı seçer. Geliştirme sunucusu `predev` adımı tamamlandıktan sonra açılır. Böylece Git'ten yeni indirilen projede de görseller hazır olur. `-w320.webp` gibi son ekler üretilen dosyalara ayrılmıştır. Bu dosyalar Git'e eklenmez. Kaynak görselleri silmeyin.
 
 ### Gerçek 3D model eklemek
 
