@@ -1316,24 +1316,22 @@ body[data-page="home"] .hero {
   }
 }
 
-/* Owner-supplied AL Wolf emblem, displayed at its native 32px size. */
+/* Original transparent wordmark supplied by the owner (4:1 aspect ratio). */
 .brand-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.brand-emblem {
   display: block;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  object-fit: contain;
+  width: 190px;
+  max-width: 100%;
 }
-@media (max-width: 380px) {
+.brand-wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.footer-brand .brand-logo {
+  width: 240px;
+}
+@media (max-width: 600px) {
   .site-header .brand-logo {
-    gap: 7px;
-  }
-  .site-header .wordmark {
-    font-size: 21px;
+    width: 160px;
   }
 }

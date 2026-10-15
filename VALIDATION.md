@@ -9,6 +9,12 @@
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
 
+## Şeffaf tam marka logosu — 15 Ekim 2026
+
+`ali_turan_logo_seffaf.zip` içindeki PNG 3000 × 750 px RGBA biçimindedir. Alfa kanalı 0–255 aralığındadır; 1.807.260 tam şeffaf piksel içerir. Siyaha yakın yazı ve amblem, sitenin krem zemininde doğru görünür. Orijinal dosya baytları değiştirilmeden `public/assets/branding/ali-turan-logo.png` olarak eklendi. Önceki küçük amblem + düz marka yazısı yerine üst menü ve alt bilgide tam logo kullanılır; Organization JSON-LD logo adresi de güncellendi. Favicon önceki ICO dosyası olarak korunur. Önceki bölümde beklenen geniş logo bu ZIP ile tamamlanmıştır.
+
+Derleme ve ilgili üç Chromium senaryosu (sayfa/metaveri/varlıklar, mobil menü, erişilebilirlik) geçti. Orijinal ve derlenmiş logo dosyaları karşılaştırıldı; 320, 390, 768, 1024 ve 1440 px genişlikte yüklenme, 4:1 oranı, şeffaflığın korunması, yatay taşma ve menüyle çakışma olmaması kontrol edildi. Güncel önizlemeler `docs/brand-mobile.png`, `docs/brand-desktop.png` ve `docs/brand-footer.png` içindedir. Canlı hosting bu işlemle güncellenmez.
+
 ## AL Wolf amblemi ve favicon — 15 Ekim 2026
 
 Site sahibinin sağladığı ICO dosyası tek bir 32 × 32 px kare içerir. `public/assets/icons/al-wolf.ico` orijinalle bayt düzeyinde aynıdır; aynı kare kayıpsız PNG olarak `al-wolf.png` dosyasına aktarılıp üst menü ve alt bilgide mevcut marka yazısının yanında doğal boyutuyla kullanılır. Favicon bağlantısı ve Organization JSON-LD logo adresi güncellendi. İletideki geniş görsel tamamen siyah göründüğü ve yerel kaynak dosyası bulunmadığı için geniş logo eklenmedi; orijinal PNG/SVG dosyası bekleniyor.
