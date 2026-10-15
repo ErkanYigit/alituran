@@ -275,18 +275,16 @@ body[data-page="home"] .hero {
 .hero-wordmark {
   position: absolute;
   z-index: 2;
-  left: 0;
-  right: 0;
+  left: 8%;
+  right: 8%;
   bottom: 57px;
-  text-align: center;
-  font-family: var(--sans);
-  font-weight: 500;
-  font-size: clamp(140px, 20vw, 300px);
-  letter-spacing: -0.085em;
-  line-height: 0.95;
-  color: var(--color-background);
-  white-space: nowrap;
   pointer-events: none;
+}
+.hero-wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 .hero-bottom {
   position: absolute;
@@ -871,7 +869,6 @@ body[data-page="home"] .hero {
     font-size: 48px;
   }
   .hero-wordmark {
-    font-size: 23vw;
     bottom: 64px;
   }
   .hero-sample {
@@ -984,9 +981,9 @@ body[data-page="home"] .hero {
     gap: 16px;
   }
   .hero-wordmark {
-    font-size: 24.5vw;
+    left: 4%;
+    right: 4%;
     bottom: 76px;
-    letter-spacing: -0.075em;
   }
   .hero-sample {
     width: 84px;

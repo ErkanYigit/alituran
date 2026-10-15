@@ -24,7 +24,7 @@ export function home(company, products) {
     <div class="hero-copy"><span class="eyebrow">${e(company.hero.eyebrow)}</span><h1>${e(heading[0])}<br>${e(heading[1])}</h1><p>${e(company.hero.description)}</p><a class="btn hero-cta" href="/urun/${e(favorite.slug)}">Berjeri Keşfet <span class="button-arrow">${icon("arrow", 17)}</span></a></div>
     <a class="hero-sample sample-left" href="/urun/${e(corner.slug)}" aria-label="${e(corner.name)} modelini incele"><img src="${e(corner.images[0])}" ${responsiveAttrs(corner.images[0], "120px")} alt="" width="120" height="120"><span>Köşe koleksiyonu ${icon("diagonal", 13)}</span></a>
     <a class="hero-sample sample-right" href="/urun/${e(set.slug)}" aria-label="${e(set.name)} modelini incele"><img src="${e(set.images[0])}" ${responsiveAttrs(set.images[0], "150px")} alt="" width="150" height="150"><span>Bir arada, uyum içinde ${icon("diagonal", 13)}</span></a>
-    <div class="hero-wordmark" aria-hidden="true">ali turan.</div>
+    <div class="hero-wordmark" aria-hidden="true"><img src="/assets/branding/ali-turan-logo.png" alt="" width="3000" height="750"></div>
     <div class="hero-bottom"><span>İNEGÖL'DEN YAŞAM ALANLARINA</span><a href="#detaylar" aria-label="Berjerin tasarım detaylarını keşfet">Detayları keşfet <span>${icon("chevron", 16)}</span></a><span>01 / 04</span></div>
   </section>
   <section class="home-panel details-panel" id="detaylar"><header class="details-heading reveal"><span class="eyebrow">01 / Tasarımın özü</span><h2>Her detayında<br>biraz <em>Ali Turan.</em></h2><p>Bir çizgi, bir doku, bir renk.<br>Fuarın Gözdesi'ni yakından keşfedin.</p></header>

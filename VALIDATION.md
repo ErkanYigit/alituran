@@ -9,6 +9,12 @@
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
 
+## Ana sayfadaki büyük beyaz logo — 15 Ekim 2026
+
+Kullanıcının işaretlediği `.hero-wordmark` içindeki `ali turan.` metni tam marka logosuyla değiştirildi. `Beyaz ALI TURAN Logo ve Kurt Silüeti.zip` içindeki 2172 × 724 px RGBA görsel incelendi; harflerin çevresinde beyaz lekeler ve çizgiler bulundu. Bu izleri yayımlamamak için daha önce sağlanan temiz şeffaf PNG aynı alanda CSS `brightness(0) invert(1)` filtresiyle beyaz gösterilir. Kaynak görsel değiştirilmedi; yeni bir logo üretilmedi.
+
+Görsel 4:1 oranını korur ve dekoratif olduğu için erişilebilirlik ağacında tekrarlanmaz. 320, 390, 768, 1024 ve 1440 px genişlikte yüklenme, beyaz filtre, ana görsel sınırları içinde kalma, yatay taşma olmaması, düğme ve alt açıklamayla çakışmama doğrulandı. Üretim derlemesi ve ilgili üç Chromium senaryosu (erişilebilirlik, sayfa/metaveri/varlıklar, mobil menü) geçti. Masaüstü/mobil önizlemeler `docs/brand-desktop.png` ve `docs/brand-mobile.png` olarak güncellendi. Canlı hosting bu işlemle güncellenmez.
+
 ## Şeffaf tam marka logosu — 15 Ekim 2026
 
 `ali_turan_logo_seffaf.zip` içindeki PNG 3000 × 750 px RGBA biçimindedir. Alfa kanalı 0–255 aralığındadır; 1.807.260 tam şeffaf piksel içerir. Siyaha yakın yazı ve amblem, sitenin krem zemininde doğru görünür. Orijinal dosya baytları değiştirilmeden `public/assets/branding/ali-turan-logo.png` olarak eklendi. Önceki küçük amblem + düz marka yazısı yerine üst menü ve alt bilgide tam logo kullanılır; Organization JSON-LD logo adresi de güncellendi. Favicon önceki ICO dosyası olarak korunur. Önceki bölümde beklenen geniş logo bu ZIP ile tamamlanmıştır.
