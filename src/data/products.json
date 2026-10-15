@@ -27,7 +27,7 @@
   },
   {
     "id": "corner-01",
-    "name": "Köşe Modeli 01",
+    "name": "Nass Model",
     "category": "Köşe Koltuklar",
     "description": "Krem tonları ve koyu ahşap detaylarıyla geniş oturumlu köşe koltuk.",
     "colors": [
@@ -39,12 +39,13 @@
     "slug": "kose-modeli-01",
     "images": ["/assets/images/corner-01.webp"],
     "dimensions": {
-      "width": 360,
-      "depth": 240,
+      "width": 280,
+      "depth": 300,
       "height": 85
     },
-    "dimensionStatus": "estimated",
-    "temporaryName": true,
+    "dimensionStatus": "partial",
+    "dimensionNote": "Yükseklik tahminidir; bilgi geldiğinde güncellenecektir.",
+    "temporaryName": false,
     "type": "corner",
     "model3d": null,
     "featured": true,
@@ -52,7 +53,7 @@
   },
   {
     "id": "corner-02",
-    "name": "Köşe Modeli 02",
+    "name": "Sıla Model",
     "category": "Köşe Koltuklar",
     "description": "Sıcak bej tonları, koyu ahşap detayları ve geniş oturumuyla köşe koltuk.",
     "colors": [
@@ -64,12 +65,13 @@
     "slug": "kose-modeli-02",
     "images": ["/assets/images/corner-02.webp"],
     "dimensions": {
-      "width": 330,
-      "depth": 220,
+      "width": 230,
+      "depth": 300,
       "height": 85
     },
-    "dimensionStatus": "estimated",
-    "temporaryName": true,
+    "dimensionStatus": "partial",
+    "dimensionNote": "Yükseklik tahminidir; bilgi geldiğinde güncellenecektir.",
+    "temporaryName": false,
     "type": "corner",
     "model3d": null,
     "featured": true,
@@ -77,7 +79,7 @@
   },
   {
     "id": "living-set-331",
-    "name": "Koltuk Takımı 01",
+    "name": "Kristal Model",
     "category": "Koltuk Takımları",
     "description": "Antrasit desenli döşeme ve ahşap kol detaylarıyla iki üçlü kanepe ve bir berjerden oluşan 3+3+1 koltuk takımı.",
     "colors": [
@@ -90,11 +92,12 @@
     "images": ["/assets/images/living-set-331.webp"],
     "dimensions": {
       "width": 325,
-      "depth": 315,
+      "depth": 317.5,
       "height": 85
     },
-    "dimensionStatus": "estimated",
-    "temporaryName": true,
+    "dimensionStatus": "partial",
+    "dimensionNote": "Derinlik ve yükseklik değerleri tahminidir; bilgi geldiğinde güncellenecektir.",
+    "temporaryName": false,
     "type": "set",
     "model3d": null,
     "featured": true,
@@ -108,7 +111,7 @@
         "type": "straight",
         "quantity": 2,
         "dimensions": {
-          "width": 230,
+          "width": 235,
           "depth": 95,
           "height": 85
         }
@@ -119,7 +122,7 @@
         "type": "chair",
         "quantity": 1,
         "dimensions": {
-          "width": 85,
+          "width": 90,
           "depth": 90,
           "height": 85
         }

@@ -3,7 +3,7 @@ import products from "../src/data/products.json" with { type: "json" };
 import company from "../src/data/company.json" with { type: "json" };
 import navigation from "../src/data/navigation.json" with { type: "json" };
 import locations from "../src/data/locations.json" with { type: "json" };
-import { imageSrcset } from "../src/utils/ui.js";
+import { imageSrcset, productNotice } from "../src/utils/ui.js";
 const template = await readFile("dist/index.html", "utf8");
 const organization = {
   "@context": "https://schema.org",
@@ -52,7 +52,7 @@ const routes = [
   ...products.map((p) => ({
     path: `/urun/${p.slug}`,
     title: p.name,
-    description: `${p.description} Model adı geçicidir; ölçüler tahminidir.`,
+    description: `${p.description} ${productNotice(p)}`.trim(),
     image: p.images[0],
     product: p,
   })),

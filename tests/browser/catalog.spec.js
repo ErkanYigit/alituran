@@ -18,6 +18,12 @@ test("owner's four models and photos replace the demo catalog; fair favorite com
   ).toHaveText("Fuarın Gözdesi");
   await page.goto("/koleksiyon/");
   await expect(page.locator("#catalog-count")).toHaveText("4 model");
+  await expect(page.locator("#catalog-grid h3")).toHaveText([
+    "Berjer Modeli 01",
+    "Nass Model",
+    "Sıla Model",
+    "Kristal Model",
+  ]);
   const sources = [
     "fair-favorite-armchair",
     "corner-01",
@@ -36,7 +42,7 @@ test("owner's four models and photos replace the demo catalog; fair favorite com
     .getByRole("button", { name: "Koltuk Takımları", exact: true })
     .click();
   await expect(page.locator("#catalog-grid article")).toHaveCount(1);
-  await expect(page.locator("#catalog-grid h3")).toHaveText("Koltuk Takımı 01");
+  await expect(page.locator("#catalog-grid h3")).toHaveText("Kristal Model");
   const sitemap = await (await page.request.get("/sitemap.xml")).text();
   expect(sitemap).not.toMatch(
     /atlas-kose|luna-kose|vera-kose|nova-moduler|mira-kose|terra-oturma|ada-berjer/,
@@ -51,21 +57,21 @@ test("3+3+1 shows per-piece estimates and opens, moves and restores three indepe
     "3+3+1 · 2 üçlü kanepe + 1 berjer",
   );
   await expect(page.locator(".dimension-table caption")).toHaveText(
-    "Tahmini ölçüler · parça başına",
+    "Ölçüler · parça başına",
   );
   await expect(page.locator(".dimension-table tbody tr")).toHaveCount(2);
   await expect(page.locator(".dimension-table tbody tr").first()).toContainText(
     "2 × Üçlü Kanepe",
   );
-  await expect(page.locator(".dimension-table tbody tr").first()).toContainText(
-    "230 cm",
-  );
+  await expect(
+    page.locator(".dimension-table tbody tr").first().locator("td").first(),
+  ).toHaveText("235 cm");
   await expect(page.locator(".dimension-table tbody tr").nth(1)).toContainText(
     "1 × Takım Berjeri",
   );
-  await expect(page.locator(".dimension-table tbody tr").nth(1)).toContainText(
-    "85 cm",
-  );
+  await expect(
+    page.locator(".dimension-table tbody tr").nth(1).locator("td").first(),
+  ).toHaveText("90 cm");
   await page.locator("#product-room-link").click();
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
   await expect(page.locator("[data-select-furniture]")).toHaveCount(3);

@@ -77,7 +77,7 @@ try {
       </style>`,
     );
     document.body.innerHTML =
-      "<header><h1>Ali Turan · Fotoğraf & 3D karşılaştırması</h1><p>Fotoğraflardan uyarlanan yaklaşık geometri. Ölçüler tahminidir; desenler dijital temsillerdir.</p></header>";
+      "<header><h1>Ali Turan · Fotoğraf & 3D karşılaştırması</h1><p>Fotoğraflardan uyarlanan yaklaşık geometri. Eksik ölçüler tahminidir; desenler dijital temsillerdir.</p></header>";
     items.forEach((p) => {
       const section = document.createElement("section");
       section.className = "review-row";

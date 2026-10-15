@@ -120,7 +120,7 @@ export async function mountPlanner(main, products) {
       scene.add(outline);
     }
     main.querySelector("#selection-info").innerHTML = item
-      ? `<strong>${e(p.name)}</strong>${p.dimensions.width} × ${p.dimensions.depth} cm · Tahmini ölçüler<br>Seçili mobilyayı sürükleyerek taşıyın.`
+      ? `<strong>${e(p.name)}</strong>${p.dimensions.width} × ${p.dimensions.depth} cm · ${p.dimensionStatus === "partial" ? "Bazı ölçüler tahmini" : "Tahmini ölçüler"}<br>Seçili mobilyayı sürükleyerek taşıyın.`
       : "<strong>Mekânınıza alan açın.</strong>Bir mobilya ekleyin veya seçin.";
     for (const [key, value] of [
       ["x", item?.x],

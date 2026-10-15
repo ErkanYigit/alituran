@@ -81,9 +81,9 @@ Site sahibi `src/data/` altındaki JSON dosyalarını düzenleyebilir. JSON dosy
 
 ### Mevcut dört model
 
-Sıra: Fuarın Gözdesi (Berjer Modeli 01), Köşe Modeli 01, Köşe Modeli 02, Koltuk Takımı 01. Eski yedi örnek ürün ve fotoğrafları kaldırılmıştır.
+Sıra: Fuarın Gözdesi (Berjer Modeli 01), Nass Model, Sıla Model, Kristal Model. Nass 280 × 300 cm, Sıla 230 × 300 cm (X × Z); her iki köşenin yüksekliği şimdilik 85 cm tahminidir. Kristal takımının üçlü kanepeleri 235 cm, berjeri 90 cm genişliğindedir. Kanepe derinliği 95 cm, berjer derinliği 90 cm ve yükseklikleri 85 cm tahmini değerlerdir. Yeni bilgiler `products.json` içindeki ölçülerden güncellenebilir. `dimensionStatus: "partial"` ve `dimensionNote` kısmen bildirilen ölçüleri açıklar; `temporaryName: false` firma tarafından verilen model adlarını belirtir. Fuarın Gözdesi berjerin adı ve ölçüleri henüz geçicidir.
 
-Takım `type: "set"` ve `composition: "3+3+1"` kullanır. `components` alanındaki `quantity` iki üçlü kanepe ve bir berjeri belirtir; ölçü tablosu her parçanın tahmini ölçüsünü ayrı gösterir. `dimensions` bu kayıtta yalnızca 3D önizleme yerleşiminin sınır kutusudur (`dimensionScope: "preview-layout"`), takımın üretici ölçüsü değildir. `previewLayout` metre cinsinden parça merkezlerini ve radyan cinsinden dönüşlerini belirler. Oda tasarımcısı takım bağlantısını üç bağımsız mobilya olarak açar; parça ölçülerini yerleşimden dolayı değiştirmez.
+Takım `type: "set"` ve `composition: "3+3+1"` kullanır. `components` alanındaki `quantity` iki üçlü kanepe ve bir berjeri belirtir; ölçü tablosu her parçanın ölçülerini ayrı gösterir ve tahmini değerleri açıklayan not içerir. `dimensions` bu kayıtta yalnızca 3D önizleme yerleşiminin sınır kutusudur (`dimensionScope: "preview-layout"`), takımın üretici ölçüsü değildir. `previewLayout` metre cinsinden parça merkezlerini ve radyan cinsinden dönüşlerini belirler. Oda tasarımcısı takım bağlantısını üç bağımsız mobilya olarak açar; parça ölçülerini yerleşimden dolayı değiştirmez.
 
 Ek kanepe veya berjer fotoğrafları gelirse takımın `images` listesine ekleyin; bunlar yeni katalog ürünü değildir. Ana sayfa etiketini, görsel alt metnini ve bağlantısını `company.json → hero.eyebrow/imageAlt/productSlug` alanlarından düzenleyin.
 
@@ -95,7 +95,7 @@ Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/i
 
 ### Gerçek 3D model eklemek
 
-Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo-furniture.js` içindedir. GPT-6 Astra ile yenilenen sürümde dolgulu oturumlar, hacimli serbest yastıklar, köşe boyunca devam eden kapalı döşemeli sırtlar, pahlanmış geniş ahşap çerçeveler ve incelen ayaklar kullanılır. Fuarın Gözdesi oval kollar, ayrı yüksek başlık ve bel minderiyle modellenmiştir. Eğrisel yüzey normalleri ortak konumlarda yumuşatılır; kumaş UV'leri panel ölçeğine göre hesaplanır. Kumaş dokusu, ahşap damarı ve yastık desenleri yerel, sentetik `DataTexture` yüzeyleridir; fotoğraftaki gerçek kumaşın birebir taraması değildir. Modeller mevcut tahmini ölçülere ölçeklenir. Renk değişimi yalnızca döşemeyi etkiler; ahşap, metal ve dekoratif yastıklar korunur.
+Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo-furniture.js` içindedir. GPT-6 Astra ile yenilenen sürümde dolgulu oturumlar, hacimli serbest yastıklar, köşe boyunca devam eden kapalı döşemeli sırtlar, pahlanmış geniş ahşap çerçeveler ve incelen ayaklar kullanılır. Fuarın Gözdesi oval kollar, ayrı yüksek başlık ve bel minderiyle modellenmiştir. Eğrisel yüzey normalleri ortak konumlarda yumuşatılır; kumaş UV'leri panel ölçeğine göre hesaplanır. Kumaş dokusu, ahşap damarı ve yastık desenleri yerel, sentetik `DataTexture` yüzeyleridir; fotoğraftaki gerçek kumaşın birebir taraması değildir. Modeller girilen ölçülere ölçeklenir; eksik ölçüler için kullanılan tahmini değerler ürün açıklamasında belirtilir. Renk değişimi yalnızca döşemeyi etkiler; ahşap, metal ve dekoratif yastıklar korunur.
 
 Geliştirme sunucusu açıkken `npm run render:models`, gerçek etkileşimli geometrilerin fotoğraflarla karşılaştırmasını `docs/3d-models.png` dosyasına yazar. Fotoğrafları değiştirmez. Render araçları mevcut Chromium'u veya `CHROMIUM_PATH` değerini kullanır.
 
@@ -156,7 +156,7 @@ Testler ürün ölçülerini, gerçek pencere açıklıklarını, dönmüş nesn
 
 Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Güncel tasarım, kullanıcının paylaştığı referans ekran görüntüsüne göre uyarlanmıştır.
 
-Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Model adları geçici, tüm ölçüler tahminidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
+Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Nass, Sıla ve Kristal adları ile bildirilen ölçüler site sahibinden alınmıştır; kalan ölçüler ve Fuarın Gözdesi berjerin adı şimdilik geçicidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
 
 ## Proje yapısı
 

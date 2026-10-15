@@ -78,6 +78,14 @@ export function download(url, filename) {
 }
 export const canonicalProduct = (company, product) =>
   `${company.domain.replace(/\/$/, "")}/urun/${product.slug}`;
+export const productNotice = (product) =>
+  [
+    product.temporaryName ? "Model adı geçicidir." : "",
+    product.dimensionNote ||
+      (product.dimensionStatus === "estimated" ? "Ölçüler tahminidir." : ""),
+  ]
+    .filter(Boolean)
+    .join(" ");
 export function safeURL(value) {
   try {
     const url = new URL(value);

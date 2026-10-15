@@ -81,9 +81,7 @@ test("catalog search, category selection and empty results", async ({
     .getByRole("button", { name: "Köşe Koltuklar", exact: true })
     .click();
   await expect(page.locator("#catalog-grid article")).toHaveCount(2);
-  await page
-    .getByRole("searchbox", { name: "Ürün ara" })
-    .fill("Köşe Modeli 01");
+  await page.getByRole("searchbox", { name: "Ürün ara" }).fill("Nass");
   await expect(page.locator("#catalog-grid article")).toHaveCount(1);
   await page.getByRole("searchbox").fill("bulunmayan ürün");
   await expect(page.locator(".empty-state")).toBeVisible();
@@ -109,9 +107,7 @@ test("product gallery, colors, canonical QR decoding and actual PNG download", a
     "href",
     /color=%23e8dfd0/,
   );
-  await expect(page.locator(".dimension-table caption")).toHaveText(
-    "Tahmini ölçüler",
-  );
+  await expect(page.locator(".dimension-table caption")).toHaveText("Ölçüler");
   await page.getByRole("button", { name: "QR Kodu Göster" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect(page.locator("#qr-save")).toBeEnabled();
