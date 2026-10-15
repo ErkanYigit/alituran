@@ -24,7 +24,7 @@ import {
   imageSrcset,
 } from "./utils/ui.js";
 
-const wordmark = `<span class="wordmark">${e(company.wordmark || company.name)}<small>${e(company.subtitle)}</small></span>`;
+const wordmark = `<span class="brand-logo"><img class="brand-emblem" src="/assets/icons/al-wolf.png" alt="" width="32" height="32"><span class="wordmark">${e(company.wordmark || company.name)}<small>${e(company.subtitle)}</small></span></span>`;
 const headerNavigation = [
   ...navigation.filter((n) => n.path !== "/koleksiyon"),
   navigation.find((n) => n.path === "/koleksiyon"),

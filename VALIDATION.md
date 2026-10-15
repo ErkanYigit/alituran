@@ -9,6 +9,12 @@
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
 
+## AL Wolf amblemi ve favicon — 15 Ekim 2026
+
+Site sahibinin sağladığı ICO dosyası tek bir 32 × 32 px kare içerir. `public/assets/icons/al-wolf.ico` orijinalle bayt düzeyinde aynıdır; aynı kare kayıpsız PNG olarak `al-wolf.png` dosyasına aktarılıp üst menü ve alt bilgide mevcut marka yazısının yanında doğal boyutuyla kullanılır. Favicon bağlantısı ve Organization JSON-LD logo adresi güncellendi. İletideki geniş görsel tamamen siyah göründüğü ve yerel kaynak dosyası bulunmadığı için geniş logo eklenmedi; orijinal PNG/SVG dosyası bekleniyor.
+
+Derleme 11 sayfayla geçti. İlgili üç Chromium senaryosu (erişilebilirlik, sayfa/metaveri/varlıklar, mobil menü) geçti. 320, 390, 768, 1024 ve 1440 px genişlikte iki amblemin yüklenmesi, 32 px boyutunu koruması, yatay taşma ve menü düğmesiyle çakışma olmaması doğrulandı. Favicon HTTP 200 ile indirildi ve kaynak ICO ile karşılaştırıldı. 11 sayfa ve 404 belgesi dahil 12 HTML dosyasının tamamı yeni ICO adresini kullanır. Önizlemeler `docs/brand-mobile.png` ve `docs/brand-desktop.png` içindedir. Canlı hosting güncellenmedi.
+
 ## Kullanıcının sağladığı FBX modelinin eklenmesi — 15 Ekim 2026
 
 `orange+lounge+chair+3d+model.zip` içinde bir FBX ve beş doku haritası bulundu. Blender 4.3.2 ile `scripts/convert-nass-fbx.py` kullanılarak GLB üretildi; kaynak dosyalar değiştirilmedi. GLB, 47.770 üçgenli tek mesh ve gömülü renk/normal/metal-pürüzlülük dokuları içerir. Doku boyutları 4096 px'ten 2048 px'e indirildi; dosya 7.736.008 bayttır. Draco veya başka özel çözücü gerektirmez. SHA-256: `ed2ef69b83a1ee15030cf9e07c894844f3817164c61fc711e00fc6179ac52aa9`.

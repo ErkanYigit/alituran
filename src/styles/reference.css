@@ -1315,3 +1315,25 @@ body[data-page="home"] .hero {
     font-size: 34px;
   }
 }
+
+/* Owner-supplied AL Wolf emblem, displayed at its native 32px size. */
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-emblem {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  object-fit: contain;
+}
+@media (max-width: 380px) {
+  .site-header .brand-logo {
+    gap: 7px;
+  }
+  .site-header .wordmark {
+    font-size: 21px;
+  }
+}

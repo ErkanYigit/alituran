@@ -11,6 +11,7 @@ const organization = {
   "@id": `${company.domain}/#organization`,
   name: company.name,
   url: company.domain,
+  logo: `${company.domain}/assets/icons/al-wolf.png`,
   ...(company.postalAddress
     ? { address: { "@type": "PostalAddress", ...company.postalAddress } }
     : {}),
