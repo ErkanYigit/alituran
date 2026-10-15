@@ -3,11 +3,19 @@
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
 - 11 birim testi geçti; sıfır başarısız/atlanmış test.
-- 15 gerçek Chromium tarayıcı senaryosu geçti; sıfır başarısız/atlanmış senaryo.
+- Önceki tam kontrolde 15 Chromium senaryosu geçti; son QR düzeltmesinde ilgili dört senaryo doğrulandı.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
+
+## QR pencere oranı, indirme çözünürlüğü ve hedef adres — 15 Ekim 2026
+
+QR kütüphanesinin canvas'a eklediği 768 px inline yükseklik, genişlik mobilde `max-width` ile kısıtlandığında korunuyordu. Sorun 390 × 844 px görünümde 286 × 768 px QR alanı ve 1040 px pencere içeriğiyle yeniden üretildi. Ekran kodu kare ve duyarlı SVG'ye taşındı; indirme bundan bağımsız canvas'ta tam piksel modülleriyle oluşturulup beyaz kenarlıkla 2048 × 2048 px'e ortalanır. Bu yöntem kütüphanenin kesirli ölçekle 2047 px çıktı üretmesini de giderir. Hazırlık tamamlanana kadar indirme düğmesi kapalıdır; pencere kapatılıp yeniden açıldığında eski asenkron işlem yeni içeriğe yazamaz.
+
+Dört ürün 320 × 568, 390 × 844, 1440 × 1000 ve 844 × 390 px görünümlerde kontrol edildi. Ekran görüntüsündeki QR ve indirilen PNG ayrı ayrı gerçek QR okuyucuyla çözüldü: sekiz çözümlemede de `https://alituranmob.com/urun/<slug>` hedefi doğrulandı. İndirilen dört dosya 2048 × 2048 px'tir. Normal telefon ve masaüstünde pencere içinde dikey/yatay taşma yoktur; kısa yatay görünümde gerekli dikey kaydırma ve PNG indirme çalışır. Sayfalar/metaveri, mobil arayüz, QR ve erişilebilirlik kontrolleri geçti; yedi sayfa ve açık QR penceresindeki axe WCAG A/AA taramasında ihlal bulunmadı. Üretim derlemesi 11 sayfayla geçti. Mobil ve masaüstü örnekler `docs/qr-mobile.png` ve `docs/qr-desktop.png` içindedir.
+
+Canlı alan adına bu ortamın proxy'sinden erişim 403 ile engellendi; hosting dosyaları ve gerçek sunucu önbelleği doğrulanamadı. Kullanıcının paylaştığı görüntü eski ürün adını içerir. Yeni sürümün yayımlanması için `.htaccess`, HTML ve `assets` dahil tüm yeni `dist` içeriği hostingde güncellenmeli; eski kaydedilmiş QR dosyaları yenileriyle değiştirilmelidir.
 
 ## Git'ten yeni indirilen projede geliştirme görselleri
 

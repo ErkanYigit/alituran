@@ -18,9 +18,7 @@ function observeErrors(page) {
 async function planner(page) {
   await page.goto("/odani-tasarla/");
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
-  await expect(page.locator("#selection-info")).toContainText(
-    "Nass Berjer",
-  );
+  await expect(page.locator("#selection-info")).toContainText("Nass Berjer");
   await page.waitForTimeout(300);
 }
 async function saveState(page) {
@@ -108,21 +106,51 @@ test("product gallery, colors, canonical QR decoding and actual PNG download", a
     /color=%23e8dfd0/,
   );
   await expect(page.locator(".dimension-table caption")).toHaveText("Ölçüler");
-  await page.getByRole("button", { name: "QR Kodu Göster" }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await expect(page.locator("#qr-save")).toBeEnabled();
-  await page.waitForFunction(
-    () => !!document.querySelector("#qr-save")?.onclick,
-  );
-  const downloadEvent = page.waitForEvent("download");
-  await page.locator("#qr-save").click();
-  const download = await downloadEvent;
-  expect(download.suggestedFilename()).toBe("ali-turan-corner-01-qr.png");
-  const png = PNG.sync.read(await readFile(await download.path()));
-  const decoded = jsQR(new Uint8ClampedArray(png.data), png.width, png.height);
-  expect(decoded?.data).toBe("https://alituranmob.com/urun/kose-modeli-01");
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).not.toBeVisible();
+  for (const [slug, id, name, width, height] of [
+    ["kose-modeli-01", "corner-01", "Nass Model", 320, 568],
+    ["fuari-gozdesi-berjer", "fair-favorite-armchair", "Nass Berjer", 390, 844],
+    ["kose-modeli-02", "corner-02", "Sıla Model", 1440, 1000],
+    ["koltuk-takimi-01", "living-set-331", "Kristal Model", 844, 390],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.goto(`/urun/${slug}/`);
+    await page.getByRole("button", { name: "QR Kodu Göster" }).click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(page.locator("#qr-title")).toHaveText(name);
+    await expect(page.locator("#qr-save")).toBeEnabled();
+    const target = `https://alituranmob.com/urun/${slug}`;
+    await expect(page.locator(".qr-url")).toHaveAttribute("href", target);
+    const box = await page.locator("#qr-code").boundingBox();
+    expect(Math.abs(box.width - box.height)).toBeLessThan(1);
+    const bounds = await dialog.evaluate((el) => ({
+      horizontal: el.scrollWidth - el.clientWidth,
+      vertical: el.scrollHeight - el.clientHeight,
+      top: el.getBoundingClientRect().top,
+      bottom: el.getBoundingClientRect().bottom,
+    }));
+    expect(bounds.horizontal).toBeLessThanOrEqual(1);
+    expect(bounds.top).toBeGreaterThanOrEqual(0);
+    expect(bounds.bottom).toBeLessThanOrEqual(height);
+    if (height >= 568) expect(bounds.vertical).toBeLessThanOrEqual(1);
+    // Decode what users actually see, not only the original export bitmap.
+    const screen = PNG.sync.read(await page.locator("#qr-code").screenshot());
+    expect(
+      jsQR(new Uint8ClampedArray(screen.data), screen.width, screen.height)
+        ?.data,
+    ).toBe(target);
+    const downloadEvent = page.waitForEvent("download");
+    await page.locator("#qr-save").click();
+    const download = await downloadEvent;
+    expect(download.suggestedFilename()).toBe(`ali-turan-${id}-qr.png`);
+    const png = PNG.sync.read(await readFile(await download.path()));
+    expect([png.width, png.height]).toEqual([2048, 2048]);
+    expect(
+      jsQR(new Uint8ClampedArray(png.data), png.width, png.height)?.data,
+    ).toBe(target);
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+  }
   expect(errors).toEqual([]);
 });
 test("room dimensions, real windows and columns, furniture, colors, warnings, persistence and exports", async ({

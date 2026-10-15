@@ -203,27 +203,58 @@ async function productEvents(p, id) {
   document.querySelector("#open-qr").onclick = async () => {
     const dialog = document.querySelector("#qr-dialog");
     const url = canonicalProduct(company, p);
-    dialog.innerHTML = `<button class="dialog-close icon-button" aria-label="QR penceresini kapat">${icon("close", 18)}</button><div class="qr-content"><h2 id="qr-title">${e(p.name)}</h2><p>Bu modeli telefonunuzda keşfedin.</p><canvas id="qr-canvas" width="768" height="768"></canvas><a class="qr-url" href="${e(url)}" target="_blank" rel="noopener">${e(url)}</a><button class="btn" id="qr-save">PNG Olarak Kaydet ${icon("save", 16)}</button></div>`;
+    dialog.innerHTML = `<button class="dialog-close icon-button" aria-label="QR penceresini kapat">${icon("close", 18)}</button><div class="qr-content"><h2 id="qr-title">${e(p.name)}</h2><p>Bu modeli telefonunuzda keşfedin.</p><div class="qr-code" id="qr-code" role="img" aria-label="${e(p.name)} ürün bağlantısının QR kodu" aria-busy="true"><span>QR kodu hazırlanıyor…</span></div><a class="qr-url" href="${e(url)}" target="_blank" rel="noopener">${e(url)}</a><button class="btn" id="qr-save" disabled>PNG İndir (2048 × 2048) ${icon("save", 16)}</button></div>`;
+    const frame = dialog.querySelector("#qr-code");
+    const save = dialog.querySelector("#qr-save");
     dialog.querySelector(".dialog-close").onclick = () => dialog.close();
     dialog.showModal();
     try {
       const QRCode = await import("qrcode");
-      if (!dialog.open) return;
-      await QRCode.default.toCanvas(dialog.querySelector("canvas"), url, {
-        width: 768,
+      const options = {
         margin: 4,
         errorCorrectionLevel: "H",
         color: { dark: "#352b25", light: "#ffffff" },
+      };
+      const svg = await QRCode.default.toString(url, {
+        ...options,
+        type: "svg",
       });
-      dialog.querySelector("#qr-save").onclick = () =>
-        download(
-          dialog.querySelector("canvas").toDataURL("image/png"),
-          `ali-turan-${p.id}-qr.png`,
-        );
+      if (!dialog.open || !dialog.contains(frame)) return;
+      frame.innerHTML = svg;
+      frame.querySelector("svg").setAttribute("aria-hidden", "true");
+      frame.setAttribute("aria-busy", "false");
+      // Export independently: the library fixes canvas CSS dimensions to its
+      // bitmap size, which must never control the responsive on-screen code.
+      // Integer module pixels avoid both blur and the library's fractional
+      // width rounding (a requested 2048px may otherwise become 2047px).
+      const symbol = QRCode.default.create(url, options);
+      const scale = Math.floor(
+        2048 / (symbol.modules.size + options.margin * 2),
+      );
+      const bitmap = document.createElement("canvas");
+      await QRCode.default.toCanvas(bitmap, url, { ...options, scale });
+      const file = document.createElement("canvas");
+      file.width = file.height = 2048;
+      const context = file.getContext("2d");
+      context.fillStyle = options.color.light;
+      context.fillRect(0, 0, 2048, 2048);
+      context.drawImage(
+        bitmap,
+        Math.floor((2048 - bitmap.width) / 2),
+        Math.floor((2048 - bitmap.height) / 2),
+      );
+      const png = file.toDataURL("image/png");
+      if (!dialog.open || !dialog.contains(frame)) return;
+      save.onclick = () => download(png, `ali-turan-${p.id}-qr.png`);
+      save.disabled = false;
     } catch {
+      if (!dialog.open || !dialog.contains(frame)) return;
+      frame.setAttribute("aria-busy", "false");
+      if (!frame.querySelector("svg"))
+        frame.textContent = "QR kodu hazırlanamadı.";
       dialog.querySelector("p").textContent =
-        "QR kodu yüklenemedi. Ürün bağlantısını kullanabilirsiniz.";
-      dialog.querySelector("#qr-save").disabled = true;
+        "QR dosyası hazırlanamadı. Ürün bağlantısını kullanabilirsiniz.";
+      save.disabled = true;
     }
   };
   const host = document.querySelector("#exploded-canvas");

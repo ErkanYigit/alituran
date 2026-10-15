@@ -762,7 +762,7 @@ body[data-page="home"] .hero {
   background: var(--color-surface);
 }
 .qr-content h2 {
-  font-size: 32px;
+  font-size: clamp(24px, 6vw, 32px);
 }
 #qr-dialog {
   border-radius: 24px;

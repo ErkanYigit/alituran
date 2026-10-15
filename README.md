@@ -123,7 +123,7 @@ Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yen
 
 ### QR kodları
 
-Ürünün sayfasında “QR Kodu Göster” → “PNG Olarak Kaydet”. Kodlar 768 px, dört modül kenar boşluğu ve yüksek hata düzeltme seviyesiyle oluşturulur. Tarayıcı testinde indirilen PNG gerçek bir QR okuyucuyla çözülür ve canonical hedef doğrulanır.
+Ürünün sayfasında “QR Kodu Göster” → “PNG İndir (2048 × 2048)”. Ekrandaki kod, kare oranını koruyan SVG olarak gösterilir. PNG dosyası ayrıca, modülleri tam piksel boyutlarında çizilip ortalanarak tam 2048 × 2048 px üretilir; en az dört modül beyaz kenar boşluğu ve yüksek hata düzeltme seviyesi kullanılır. Pencere normal telefon ekranlarında taşmaz; kısa yatay ekranlarda içerik kaydırılarak erişilebilir. Tarayıcı testinde dört ürünün hem ekranda görünen QR'sı hem indirilen PNG'si gerçek bir QR okuyucuyla çözülür ve `alituranmob.com` üzerindeki ürün hedefleri doğrulanır. Mobil ve masaüstü önizlemeler `docs/qr-mobile.png` ve `docs/qr-desktop.png` dosyalarındadır.
 
 Canonical domain `company.json → domain` alanından gelir ve `https://alituranmob.com` olarak ayarlıdır. Alan adını değiştirirseniz yeniden derleyin; önceden basılmış QR kodlarının hedefi değişmez. Kodların yayında açılması için domain ve HTTPS kurulumunu tamamlamak gerekir.
 
