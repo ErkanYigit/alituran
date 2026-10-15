@@ -21,8 +21,9 @@ import {
   download,
   canonicalProduct,
   safeURL,
-  imageSrcset,
 } from "./utils/ui.js";
+
+import { mountProductGallery } from "./ui/product-gallery.js";
 
 const wordmark = `<span class="brand-logo"><img class="brand-wordmark" src="/assets/branding/ali-turan-logo.png" alt="${e(company.name)}" width="3000" height="750"></span>`;
 const headerNavigation = [
@@ -172,20 +173,7 @@ function collectionEvents() {
   document.querySelector("#product-search").oninput = update;
 }
 async function productEvents(p, id) {
-  document.querySelectorAll("[data-image]").forEach(
-    (btn) =>
-      (btn.onclick = () => {
-        document.querySelector("#gallery-image").src = btn.dataset.image;
-        document.querySelector("#gallery-image").srcset = imageSrcset(
-          btn.dataset.image,
-        );
-        document.querySelector("#gallery-image").alt =
-          `${p.name} — ürün görseli`;
-        document
-          .querySelectorAll("[data-image]")
-          .forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-      }),
-  );
+  cleanups.push(mountProductGallery(p));
   document.querySelectorAll("[data-color]").forEach(
     (btn) =>
       (btn.onclick = () => {

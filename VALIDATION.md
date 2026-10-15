@@ -4,10 +4,21 @@
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
 - 17 birim testi geçti; sıfır başarısız/atlanmış test.
 - Başlangıç odası ve kaldırılabilir duvarlar sonrası 18 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
+- Son detay galerisi düzenlemesinde ilgili altı Chromium senaryosu geçti (iki yeni galeri senaryosu dahil).
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
+
+## Dokuz detay fotoğrafı ve yakınlaştırmalı ürün galerisi — 15 Ekim 2026
+
+`detay gorseller.zip` içindeki `nass1/2/3.png`, `sila1/2/3.png`, `nassberjer1/2/3.png` fotoğrafları sırasıyla Nass Model, Sıla Model ve Nass Berjer ile eşleştirildi. Her galeride ana fotoğraf + üç detay bulunur; Kristal Model tek fotoğrafıyla kalır. Orijinal PNG'ler byte düzeyinde ZIP ile karşılaştırılarak `public/assets/source-images/details/` altında korundu. Orijinal çözünürlükte kalite 92 WebP'ler ve geliştirme/derlemede üretilen duyarlı türevler kullanılır. 14 yerel görselin türevleri ve 11 sayfalık üretim derlemesi geçti.
+
+Galeri seçimi büyük fotoğrafı değiştirir. Ortak çerçeveler ve `object-fit: contain` oranları korur; fotoğraflar esnetilmez veya kırpılmaz. Fotoğraf düğmesi yerel HTML dialog açar: %100–400 yakınlaştırma, düğmeler, fare tekerleği, iki parmak, sürükleyerek gezinme, önceki/sonraki fotoğraf ve klavye kontrolleri vardır. Pencere tam çözünürlüklü WebP'yi kullanır. Escape/kapatma odağı geri verir; hızlı kapat/aç ve eski asenkron görüntü çözümleme işlemleri yeni pencere durumunu bozamaz. Sayfa geçişinde pencere ve gözlemciler temizlenir.
+
+17 birim testi ve ilgili altı Chromium senaryosu geçti. Yeni galeri senaryosu 1440 px masaüstü ve 390 px telefonda dört ürünün tüm fotoğraflarını, seçimin büyük fotoğrafa geçmesini, çerçeve boyutunun sabit kalmasını, %150/%400 zoom, sınırlar, gerçek fare sürüklemesi, sıfırlama, fotoğraf okları, Escape, odak dönüşü, yeniden açma ve sayfa geçişinde temizliği doğrular. Ayrı dokunmatik senaryo gerçek CDP çoklu dokunma hareketiyle büyütmeyi ve tekerlek zoomunu doğrular. Açık fotoğraf penceresi WCAG A/AA taramalarını geçti. Önceki sayfa/metaveri/varlıklar, mobil menü, QR çözümleme/indirme ve içerik erişilebilirliği kontrolleri de geçti. 320 × 568 ve 844 × 390 görünümde pencere ve %100 fotoğrafın ekrana sığması ayrıca kontrol edildi.
+
+Önizlemeler: `docs/product-gallery-desktop.png`, `docs/product-zoom-desktop.png`, `docs/product-zoom-mobile.png`. Canlı hosting bu işlemle güncellenmez; yeni `dist` içeriğinin yüklenmesi gerekir.
 
 ## Köşe kolonu, hazır pencereler ve kaldırılabilir duvarlar — 15 Ekim 2026
 

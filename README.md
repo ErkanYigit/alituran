@@ -94,6 +94,14 @@ Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/i
 
 `npm run dev` ve `npm run build`, JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px WebP türevlerini oluşturur; tarayıcı `srcset` ve `sizes` ile uygun olanı seçer. Geliştirme sunucusu `predev` adımı tamamlandıktan sonra açılır. Böylece Git'ten yeni indirilen projede de görseller hazır olur. `-w320.webp` gibi son ekler üretilen dosyalara ayrılmıştır. Bu dosyalar Git'e eklenmez. Kaynak görselleri silmeyin.
 
+### Ürün galerisi ve fotoğraf yakınlaştırma
+
+Nass Model, Sıla Model ve Nass Berjer galerilerinde ana fotoğrafa ek üçer detay fotoğrafı bulunur. Küçük fotoğrafı seçmek büyük alandaki görseli değiştirir. Tüm büyük görseller ve küçük görseller kendi ortak çerçeve boyutlarını korur; `object-fit: contain` fotoğrafı esnetmez veya kırpmaz.
+
+Büyük görsele / **Fotoğrafı büyüt** düğmesine tıklayarak fotoğraf penceresini açın. +/− düğmeleri, fare tekerleği veya telefonda iki parmakla %100–400 aralığında yakınlaştırın; sürükleyerek gezinin. Önceki/sonraki düğmeleri ve klavye okları fotoğraf değiştirir. `+`, `−`, `0` yakınlaştırmayı yönetir; Escape veya kapatma düğmesi pencereyi kapatır ve odağı galeriye döndürür. Büyütme penceresi tam çözünürlüklü WebP kullanır. Fotoğraf ayrıntısının sınırı kaynak dosyanın çözünürlüğüdür.
+
+Fotoğraflar `products.json → images` sırasıyla gösterilir; ilk fotoğraf katalog/ana sayfa görseli olarak kalır. Galeri davranışı `src/ui/product-gallery.js` içindedir. ZIP'teki orijinal PNG'ler `public/assets/source-images/details/`, WebP'ler `public/assets/images/details/` altında saklanır. `npm run dev` / `npm run build` yeni görsellerin duyarlı türevlerini de hazırlar.
+
 ### Başlangıç odası, kolon ve pencereler
 
 Yeni oda 4 × 5 × 2,7 m ölçülerinde iki duvar, birleşim köşesinde 40 × 40 cm kolon ve her duvarda bir pencereyle açılır. Yeni kolon ekleme formu da varsayılan olarak birleşim köşesinden başlar; kolonun ölçüsü ve konumu sonradan değiştirilebilir.

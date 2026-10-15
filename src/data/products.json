@@ -11,7 +11,12 @@
       }
     ],
     "slug": "fuari-gozdesi-berjer",
-    "images": ["/assets/images/fair-favorite-armchair.webp"],
+    "images": [
+      "/assets/images/fair-favorite-armchair.webp",
+      "/assets/images/details/fair-favorite-armchair-detail-1.webp",
+      "/assets/images/details/fair-favorite-armchair-detail-2.webp",
+      "/assets/images/details/fair-favorite-armchair-detail-3.webp"
+    ],
     "dimensions": {
       "width": 95,
       "depth": 95,
@@ -38,7 +43,12 @@
       }
     ],
     "slug": "kose-modeli-01",
-    "images": ["/assets/images/corner-01.webp"],
+    "images": [
+      "/assets/images/corner-01.webp",
+      "/assets/images/details/corner-01-detail-1.webp",
+      "/assets/images/details/corner-01-detail-2.webp",
+      "/assets/images/details/corner-01-detail-3.webp"
+    ],
     "dimensions": {
       "width": 280,
       "depth": 300,
@@ -64,7 +74,12 @@
       }
     ],
     "slug": "kose-modeli-02",
-    "images": ["/assets/images/corner-02.webp"],
+    "images": [
+      "/assets/images/corner-02.webp",
+      "/assets/images/details/corner-02-detail-1.webp",
+      "/assets/images/details/corner-02-detail-2.webp",
+      "/assets/images/details/corner-02-detail-3.webp"
+    ],
     "dimensions": {
       "width": 230,
       "depth": 300,
