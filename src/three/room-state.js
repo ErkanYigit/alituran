@@ -1,3 +1,5 @@
+import { defaultAppearance, validateAppearance } from "./room-finishes.js";
+
 export const extras = [
   {
     id: "coffee-table",
@@ -28,6 +30,7 @@ export const defaultRoom = () => ({
   width: 4,
   depth: 5,
   height: 2.7,
+  appearance: defaultAppearance(),
   windows: [],
   columns: [],
   furniture: [],
@@ -187,6 +190,7 @@ export function validateSaved(value, library) {
     width: input.width,
     depth: input.depth,
     height: input.height,
+    appearance: validateAppearance(input.appearance),
     windows: [],
     columns: [],
     furniture: [],

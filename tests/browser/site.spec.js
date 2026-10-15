@@ -161,7 +161,7 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
   await page.locator("#room-width").fill("6");
   await page.locator("#room-width").dispatchEvent("change");
   await expect(page.locator("#axis-width")).toHaveText("Genişlik · X: 6.0 m");
-  await page.getByText("02 — Duvarlar ve Pencereler", { exact: true }).click();
+  await page.getByText("03 — Duvarlar ve Pencereler", { exact: true }).click();
   await page.locator("#window-add").click();
   await expect(page.locator("[data-remove-window]")).toHaveCount(1);
   await page.locator("[data-edit-window]").click();
@@ -169,7 +169,7 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
   await page.locator("#window-position").fill("3");
   await page.locator("#window-width").fill("1.5");
   await page.locator("#window-add").click();
-  await page.getByText("03 — Kolonlar", { exact: true }).click();
+  await page.getByText("04 — Kolonlar", { exact: true }).click();
   await page.locator("#column-add").click();
   await expect(page.locator("[data-remove-column]")).toHaveCount(1);
   await page.locator("[data-edit-column]").click();
@@ -221,8 +221,8 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
   await page.locator("#room-load").click();
   saved = await saveState(page);
   expect(saved.furniture).toHaveLength(2);
-  await page.getByText("02 — Duvarlar ve Pencereler", { exact: true }).click();
-  await page.getByText("03 — Kolonlar", { exact: true }).click();
+  await page.getByText("03 — Duvarlar ve Pencereler", { exact: true }).click();
+  await page.getByText("04 — Kolonlar", { exact: true }).click();
   await page.locator("[data-remove-window]").click();
   await page.locator("[data-remove-column]").click();
   await page.locator("#furniture-delete").click();

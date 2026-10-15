@@ -4,6 +4,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { dimensions } from "./room-state.js";
 import { disposeGroup } from "./engine.js";
 import { photoFurniture } from "./photo-furniture.js";
+import { defaultAppearance } from "./room-finishes.js";
+import { floorMaterial } from "./room-surfaces.js";
 
 export function proceduralFurniture(product, color = product.colors[0].hex) {
   if (product.type === "set") {
@@ -226,49 +228,32 @@ export function replaceColor(group, color) {
 }
 
 export function makeRoom(room) {
-  const group = new THREE.Group(),
-    wallMaterial = new THREE.MeshStandardMaterial({
-      color: "#ede6dc",
-      roughness: 1,
-    }),
-    floorMaterial = new THREE.MeshStandardMaterial({
-      color: "#c8b293",
-      roughness: 0.88,
-    });
-  const mesh = (size, pos, material) => {
+  const group = new THREE.Group();
+  const appearance = room.appearance ?? defaultAppearance();
+  const wallMaterials = Object.fromEntries(
+    ["back", "side"].map((wall) => [
+      wall,
+      new THREE.MeshStandardMaterial({
+        color: appearance.wallColors[wall],
+        roughness: 1,
+      }),
+    ]),
+  );
+  const mesh = (size, pos, material, surface) => {
     const m = new THREE.Mesh(new THREE.BoxGeometry(...size), material);
     m.position.set(...pos);
     m.receiveShadow = true;
     m.castShadow = true;
+    if (surface) m.userData.roomSurface = surface;
     group.add(m);
     return m;
   };
   mesh(
     [room.width, 0.08, room.depth],
     [room.width / 2, -0.04, room.depth / 2],
-    floorMaterial,
+    floorMaterial(room),
+    "floor",
   );
-  const seams = new THREE.Group();
-  const seamMaterial = new THREE.LineBasicMaterial({
-    color: "#b9a17e",
-    transparent: true,
-    opacity: 0.4,
-  });
-  for (let x = 0.18; x < room.width; x += 0.18) {
-    const geometry = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(x, 0.002, 0),
-      new THREE.Vector3(x, 0.002, room.depth),
-    ]);
-    seams.add(new THREE.Line(geometry, seamMaterial));
-  }
-  for (let z = 0.7; z < room.depth; z += 0.7) {
-    const geometry = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(0, 0.002, z),
-      new THREE.Vector3(room.width, 0.002, z),
-    ]);
-    seams.add(new THREE.Line(geometry, seamMaterial));
-  }
-  group.add(seams);
   for (const wall of ["back", "side"]) {
     const windows = room.windows.filter((w) => w.wall === wall),
       length = wall === "back" ? room.width : room.depth;
@@ -301,8 +286,9 @@ export function makeRoom(room) {
           )
         )
           continue;
-        if (wall === "back") mesh([dx, dy, 0.1], [x, y, -0.05], wallMaterial);
-        else mesh([0.1, dy, dx], [-0.05, y, x], wallMaterial);
+        if (wall === "back")
+          mesh([dx, dy, 0.1], [x, y, -0.05], wallMaterials.back, wall);
+        else mesh([0.1, dy, dx], [-0.05, y, x], wallMaterials.side, wall);
       }
     const frameMaterial = new THREE.MeshStandardMaterial({
       color: "#c6b79f",
@@ -347,7 +333,8 @@ export function makeRoom(room) {
     const m = mesh(
       [column.width, room.height, column.depth],
       [column.x, room.height / 2, column.z],
-      wallMaterial,
+      wallMaterials.back,
+      "back",
     );
     m.rotation.y = column.rotation;
   }

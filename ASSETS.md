@@ -30,3 +30,5 @@ ZIP eşleştirmesi:
 Nass Berjer’in gövdesi ayrıca kullanıcının paylaştığı dört ön/yan/arka fotoğrafa göre `src/three/nass-armchair.js` içinde yeniden oluşturulmuştur. `docs/nass-berjer-views.png` aynı etkileşimli geometrinin dört açıdan Three.js renderıdır. Yeni referans fotoğrafları bu işlemde ürün galerisine eklenmemiştir.
 
 GPT-6 Astra’nın son modelleme geçişinde kullandığı dört orijinal JPEG, `WhatsApp Unknown 2026-10-15 at 13.48.21.zip` dosyasından alınmıştır. Astra her fotoğrafı doğrudan incelemiştir; dosyalar yalnızca geometri referansı olarak kullanılmıştır.
+
+Oda zemininin meşe/ceviz parke, seramik ve beton desenleri `src/three/room-surfaces.js` içinde deterministik, yerel DataTexture olarak üretilir. Harici görsel veya gerçek malzeme taraması kullanılmaz. Kullanıcının seçtiği renklerle boyanır ve metre ölçeğinde tekrar eder. `docs/room-surfaces-*.png` gerçek oda tasarımcısından alınan örnek görüntülerdir.

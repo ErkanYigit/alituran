@@ -29,6 +29,7 @@ Tasarım, site sahibinin paylaştığı mobilya sitesi referansına göre uyarla
 - `https://alituranmob.com/urun/<slug>` adresini içeren yüksek çözünürlüklü QR kodu ve PNG indirme.
 - Ortografik kamera, iki duvarlı gerçek 3D oda, sınırlı orbit ve yakınlaştırma.
 - Oda genişliği/derinliği/yüksekliği, duvarda gerçek pencere açıklıkları, kolon ekleme/düzenleme/silme.
+- Arka/yan duvar için ayrı renkler; meşe/ceviz parke, seramik ve beton zemin kaplamaları; özel zemin rengi. Seçimler oda kaydında saklanır.
 - Mobilya seçme, mouse/touch sürükleme, konum girme, 15° döndürme, silme, model ve renk değiştirme.
 - Metre bazında gerçek ölçek; dönmüş modeller için oda sınırı kontrolü; mobilya/kolon çakışma uyarısı.
 - Tarayıcıda yerel oda kaydı, kayıt açma/silme, oda/kamera sıfırlama, PNG görünüm dışa aktarma.
@@ -92,6 +93,14 @@ Ek kanepe veya berjer fotoğrafları gelirse takımın `images` listesine ekleyi
 Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/images/dosya.webp` yolunu kullanın. İnternet fotoğraf bağlantısını doğrudan kullanmayın. Tercihen 900–1600 px genişlikte WebP, gerçek ürünü temsil eden ve kullanım hakları doğrulanmış görseller seçin. Ana sayfa için `company.json → hero.image`, başlık için `hero.heading` ve alt metin için `hero.description` alanlarını düzenleyin. Başlıkta `\n` satır sonudur.
 
 `npm run dev` ve `npm run build`, JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px WebP türevlerini oluşturur; tarayıcı `srcset` ve `sizes` ile uygun olanı seçer. Geliştirme sunucusu `predev` adımı tamamlandıktan sonra açılır. Böylece Git'ten yeni indirilen projede de görseller hazır olur. `-w320.webp` gibi son ekler üretilen dosyalara ayrılmıştır. Bu dosyalar Git'e eklenmez. Kaynak görselleri silmeyin.
+
+### Duvar ve zemin düzenleme
+
+Odanı Tasarla → **02 — Duvar ve Zemin** bölümünde arka ve yan duvar renklerini ayrı seçin. Zemin kaplaması meşe parke, ceviz parke, seramik veya beton olabilir; zemin rengi ayrıca değiştirilebilir. Kaplama seçimi kendi başlangıç rengini getirir. Renkler anında uygulanır; mobilyalar ve kamera yerinde kalır. Kolonlar arka duvar rengini kullanır.
+
+**Tasarımı Kaydet** bu seçimleri de saklar; **Kaydı Aç** geri getirir. Önceki sürümlerdeki kayıtlar varsayılan krem duvarlar ve meşe parke ile açılır. **Odayı Sıfırla** yüzeyleri de varsayılanlara döndürür; saklanan kayıt korunur. PNG indirmesi seçili renkleri ve kaplamayı içerir. Telefonda **Ayarlar** düğmesinden aynı bölüme ulaşılır.
+
+Varsayılanlar ve seçenekler `src/three/room-finishes.js`, yerel yüzey desenleri `src/three/room-surfaces.js` içindedir. Desenler metreye göre tekrar eder; oda büyüdüğünde parke ve seramik boyutları değişmez. Hazır doku indirme veya ek hizmet gerekmez.
 
 ### Gerçek 3D model eklemek
 

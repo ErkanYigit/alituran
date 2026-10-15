@@ -2,12 +2,22 @@
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
-- 11 birim testi geçti; sıfır başarısız/atlanmış test.
-- FBX entegrasyonu sonrası 16 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
+- 14 birim testi geçti; sıfır başarısız/atlanmış test.
+- Duvar ve zemin düzenleme sonrası 17 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
+
+## Duvar renkleri ve zemin kaplamaları — 15 Ekim 2026
+
+Oda ayarlarında **02 — Duvar ve Zemin** eklendi: arka ve yan duvar rengi ayrı seçilebilir; meşe parke, ceviz parke, seramik ve beton kaplamaları arasında geçilebilir ve zemin rengi ayrıca ayarlanabilir. Renk girişi mevcut malzemelere anında uygulanır; geometri ve doku nesneleri korunur. Kaplama değişimi oda mimarisini yeniden kurar; mobilyaları ve kamera konumunu değiştirmez. Kolonlar arka duvar rengini kullanır. Yerel, deterministik DataTexture desenleri metre ölçeğinde tekrar eder; oda büyürken malzeme boyutu sabit kalır.
+
+`room.appearance` duvar renklerini ve zemin seçimini sürüm 1 oda kaydında saklar. Önceki kayıtlarda bu alan yoksa varsayılanlar eklenir. Geçersiz renk ve kaplama bilgileri reddedilir. Kaydı açma ve sıfırlama tüm yeni kontrolleri eşitler; kayıt otomatik silinmez. PNG dışa aktarımı mevcut yüzeyleri içerir.
+
+Üretim derlemesi, 14 birim testi ve 17 Chromium senaryosu geçti; başarısız/atlanmış test yok. Yeni birim kontrolleri eski kayıt uyumu, özel görünümün dönüşü, geçersiz kayıtlar, pencere çerçevelerinin korunması, malzeme/geometri kimliğinin renk girişinde değişmemesi ve kaplama ölçeğini doğrular. Yeni tarayıcı senaryosu 1440 px masaüstü ve 390 px mobilde her duvarın ve zemin renginin ayrı ayrı gerçek canvas piksellerini değiştirmesini, dört kaplamanın görünür farkını, sıfırlama/yenileme/kaydı açma, oda ölçüsü değişiminde görünümün korunması, PNG indirme ve yeni ayarların WCAG A/AA taramasını doğrular. Önceki sürükleme, gerçek pencere açıklıkları, mobilyalar, GLB yükleme, QR ve erişilebilirlik senaryoları da geçti.
+
+Önizlemeler: `docs/room-surfaces-desktop.png` (seramik), `docs/room-surfaces-parquet.png` (ceviz parke), `docs/room-surfaces-mobile.png` (telefon ayarları). Canlı hosting bu işlemle güncellenmez; yeni `dist` içeriğinin `public_html` içine yüklenmesi gerekir.
 
 ## Alt imza logosu ve daha küçük üst logolar — 15 Ekim 2026
 
