@@ -275,8 +275,8 @@ body[data-page="home"] .hero {
 .hero-wordmark {
   position: absolute;
   z-index: 2;
-  left: 8%;
-  right: 8%;
+  left: 15%;
+  right: 15%;
   bottom: 57px;
   pointer-events: none;
 }
@@ -567,13 +567,15 @@ body[data-page="home"] .hero {
   font-size: 11px;
 }
 .footer-signature {
-  font-size: clamp(70px, 16vw, 235px);
-  color: var(--color-text);
-  letter-spacing: -0.085em;
-  line-height: 1;
-  padding: 25px 0;
-  white-space: nowrap;
-  text-align: center;
+  width: 55%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 18px 0;
+}
+.footer-signature img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .footer-bottom {
   font-size: 9px;
@@ -981,8 +983,8 @@ body[data-page="home"] .hero {
     gap: 16px;
   }
   .hero-wordmark {
-    left: 4%;
-    right: 4%;
+    left: 10%;
+    right: 10%;
     bottom: 76px;
   }
   .hero-sample {
@@ -1183,7 +1185,8 @@ body[data-page="home"] .hero {
     font-size: 30px;
   }
   .footer-signature {
-    font-size: 21vw;
+    width: 64%;
+    max-width: 260px;
     padding: 10px 0 24px;
   }
   .footer-bottom {
@@ -1316,7 +1319,7 @@ body[data-page="home"] .hero {
 /* Original transparent wordmark supplied by the owner (4:1 aspect ratio). */
 .brand-logo {
   display: block;
-  width: 190px;
+  width: 170px;
   max-width: 100%;
 }
 .brand-wordmark {
@@ -1329,6 +1332,6 @@ body[data-page="home"] .hero {
 }
 @media (max-width: 600px) {
   .site-header .brand-logo {
-    width: 160px;
+    width: 145px;
   }
 }

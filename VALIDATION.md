@@ -9,6 +9,12 @@
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
 
+## Alt imza logosu ve daha küçük üst logolar — 15 Ekim 2026
+
+Alt bölümdeki büyük `ali turan.` yazısı aynı şeffaf marka logosuyla değiştirildi. Logo krem zeminde koyu renkte, ortalanmış ve en fazla 420 px genişlikte gösterilir; telefonda 260 px ile sınırlanır. Ana görseldeki beyaz logonun genişliği masaüstünde %84'ten %70'e, telefonda %92'den %80'e indirildi. Üst menü logosu da 190→170 px ve telefonda 160→145 px olarak küçültüldü. Tüm görsellerin 4:1 oranı korunur.
+
+Derleme ve ilgili üç Chromium senaryosu geçti. 320, 390, 768, 1024 ve 1440 px genişlikte üst/alt logo boyutları, kaynak yüklemesi, ana görsel düğmesiyle çakışmama ve yatay taşma olmaması doğrulandı. Masaüstü, mobil ve alt bölüm önizlemeleri `docs/brand-desktop.png`, `docs/brand-mobile.png`, `docs/brand-footer.png` olarak güncellendi. Canlı hosting bu işlemle güncellenmez.
+
 ## Ana sayfadaki büyük beyaz logo — 15 Ekim 2026
 
 Kullanıcının işaretlediği `.hero-wordmark` içindeki `ali turan.` metni tam marka logosuyla değiştirildi. `Beyaz ALI TURAN Logo ve Kurt Silüeti.zip` içindeki 2172 × 724 px RGBA görsel incelendi; harflerin çevresinde beyaz lekeler ve çizgiler bulundu. Bu izleri yayımlamamak için daha önce sağlanan temiz şeffaf PNG aynı alanda CSS `brightness(0) invert(1)` filtresiyle beyaz gösterilir. Kaynak görsel değiştirilmedi; yeni bir logo üretilmedi.

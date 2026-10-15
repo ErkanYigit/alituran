@@ -51,7 +51,7 @@ document.querySelector("#app").innerHTML =
           )
           .join("")}</div>`
       : ""
-  }</div></div><div class="footer-signature" aria-hidden="true">ali turan.</div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
+  }</div></div><div class="footer-signature" aria-hidden="true"><img src="/assets/branding/ali-turan-logo.png" alt="" width="3000" height="750" loading="lazy"></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
 const main = document.querySelector("#main");
 let cleanups = [],
   routeId = 0;
