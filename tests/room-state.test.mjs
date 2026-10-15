@@ -219,6 +219,34 @@ test("detailed models have finite mesh data and stay within a mobile-friendly ge
     disposeGroup(model);
   }
 });
+test("Nass armchair has open C-shaped side recesses and a solid upholstered back", () => {
+  const product = products.find((p) => p.id === "fair-favorite-armchair");
+  const model = proceduralFurniture(product);
+  model.updateMatrixWorld(true);
+  const shell = model.getObjectByName("Sırt ve Kol Gövdesi");
+  assert.ok(shell?.isMesh);
+  const { width, depth, height } = dimensions(product);
+  const ray = (y, z) =>
+    new THREE.Raycaster(
+      shell.localToWorld(new THREE.Vector3(width * 2, height * y, depth * z)),
+      new THREE.Vector3(-1, 0, 0),
+    ).intersectObject(shell, false);
+  assert.equal(
+    ray(0.455, 0.12).length,
+    0,
+    "the side opening must remain unfilled",
+  );
+  assert.ok(ray(0.66, 0.12).length > 0, "padded upper arm");
+  assert.ok(ray(0.25, 0.12).length > 0, "lower upholstered return");
+  assert.ok(ray(0.455, -0.35).length > 0, "continuous rear shell");
+  const normal = shell.geometry.attributes.normal;
+  for (let i = 0; i < normal.count; i++) {
+    const length = Math.hypot(normal.getX(i), normal.getY(i), normal.getZ(i));
+    assert.ok(Number.isFinite(length) && Math.abs(length - 1) < 0.0001);
+  }
+  disposeGroup(model);
+});
+
 test("recoloring fabric preserves timber, metal and decorative pillow colors", () => {
   for (const product of products) {
     const model = proceduralFurniture(product);

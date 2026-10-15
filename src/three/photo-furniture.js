@@ -1,7 +1,8 @@
 import * as THREE from "three";
+import { nassArmchair } from "./nass-armchair.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 
-// Geometry and synthetic surface detail inferred from the four supplied photos.
+// Geometry and synthetic surface detail inferred from supplied product photos.
 // These remain approximate models; photographs are not used as flat billboards.
 const profiles = new Set([
   "fair-favorite-armchair",
@@ -507,80 +508,7 @@ function builder(profile, color) {
 }
 
 function fairArmchair(product, color) {
-  const b = builder(product.id, color),
-    { root, mats, soft, plush, box, tube, loop, leg, pillow, band } = b;
-  const w = product.dimensions.width / 100,
-    d = product.dimensions.depth / 100,
-    h = product.dimensions.height / 100;
-  soft(
-    "Gövde",
-    [w * 0.92, h * 0.19, d * 0.84],
-    [0, h * 0.245, d * 0.025],
-    mats.fabric,
-    root,
-    0.45,
-  );
-  const waist = band("Ahşap Bel Kuşağı", w * 0.93, d * 0.85, h * 0.345);
-  waist.position.z = d * 0.025;
-  soft(
-    "Oturum Minderi",
-    [w * 0.94, h * 0.245, d * 0.84],
-    [0, h * 0.47, d * 0.025],
-    mats.fabric,
-    root,
-    0.6,
-  );
-  const seam = loop(
-    "Oturum Dikişi",
-    w * 0.89,
-    d * 0.8,
-    h * 0.535,
-    mats.seam,
-    root,
-    0.0025,
-  );
-  seam.position.z = d * 0.025;
-  // The back is supported by an upholstered shell beneath the separate headrest.
-  soft(
-    "Sırt Alt Gövde",
-    [w * 0.72, h * 0.3, d * 0.16],
-    [0, h * 0.61, -d * 0.3],
-    mats.fabric,
-    root,
-    0.65,
-  );
-  for (const side of [-1, 1]) {
-    const name = side < 0 ? "Sol Kol" : "Sağ Kol";
-    const arm = plush(
-      name,
-      [w * 0.27, h * 0.34, d * 0.7],
-      [side * w * 0.385, h * 0.655, -d * 0.025],
-      side,
-    );
-    arm.rotation.x = -0.04;
-    arm.rotation.z = side * 0.12;
-
-    box(
-      "Sırt Ahşap Desteği",
-      [0.035, h * 0.38, 0.04],
-      [side * w * 0.28, h * 0.67, -d * 0.32],
-      mats.wood,
-    );
-  }
-  const head = soft(
-    "Sırt Başlığı",
-    [w * 0.8, h * 0.255, d * 0.21],
-    [0, h * 0.865, -d * 0.29],
-    mats.fabric,
-    root,
-    0.85,
-  );
-  head.rotation.x = -0.05;
-
-  pillow("Bel Minderi", w * 0.55, h * 0.3, [0, h * 0.64, -d * 0.035]);
-  for (const x of [-w * 0.38, w * 0.38])
-    for (const z of [-d * 0.31, d * 0.31]) leg(x, z, h * 0.23);
-  return root;
+  return nassArmchair(builder(product.id, color), product);
 }
 
 function woodFramedSeat(product, color) {

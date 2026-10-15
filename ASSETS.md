@@ -24,3 +24,5 @@ ZIP eşleştirmesi:
 `npm run render:assets` yalnızca oda önizlemesini üretir, ürün fotoğraflarını değiştirmez.
 
 3D model geometrileri `src/three/photo-furniture.js` içinde, kullanıcının dört fotoğrafındaki biçimlere göre programatik olarak oluşturulmuştur. Kumaş mikro dokusu, döşeme deseni, ahşap damarı ve dekoratif yastık desenleri sentetik, yerel DataTexture verileridir; dış varlık indirilmez ve birebir kumaş taraması iddia edilmez. `docs/3d-models.png` bu geometrilerin Three.js ile gerçek renderlarını ürün fotoğraflarıyla karşılaştırır.
+
+Nass Berjer’in gövdesi ayrıca kullanıcının paylaştığı dört ön/yan/arka fotoğrafa göre `src/three/nass-armchair.js` içinde yeniden oluşturulmuştur. `docs/nass-berjer-views.png` aynı etkileşimli geometrinin dört açıdan Three.js renderıdır. Yeni referans fotoğrafları bu işlemde ürün galerisine eklenmemiştir.

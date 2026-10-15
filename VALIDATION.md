@@ -2,7 +2,7 @@
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
-- 10 birim testi geçti; sıfır başarısız/atlanmış test.
+- 11 birim testi geçti; sıfır başarısız/atlanmış test.
 - 15 gerçek Chromium tarayıcı senaryosu geçti; sıfır başarısız/atlanmış senaryo.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
@@ -30,6 +30,12 @@ Dört ürün sayfasının canlı 3D gösterimi hem birleşik hem tamamen ayrılm
 Berjer ve köşe kolları öne/aşağı kıvrılan oval hacimlere dönüştürüldü. Oturumlar ve serbest yastıklar dolduruldu; köşelerde düz sırtları birleştiren kapalı, eğrisel döşeme paneli oluşturuldu. Ahşap kuşaklar ve üçgen yan çerçeveler geniş, pahlanmış yüzeyler kullanır. Deforme edilmiş döşeme geometrilerinde konuma göre ortak normal hesaplaması yüzeydeki sert üçgen/bant izlerini giderir. Bouclé dokusunda renk ve kabartı aynı düzensiz ilmek alanından üretilir; antrasit döşemede düşük kontrastlı çiçek desenleri kullanılır. Döşeme rengi değişirken kumaş parlaklık rengi de güncellenir.
 
 Son geometriyle 10 birim testi ve üretim derlemesi üzerinde 15 Chromium tarayıcı senaryosu geçti. Dört modelin oda yerleşimleri ayrıca 1440 ve 390 px genişliklerde açılıp klavyeyle hareket ettirildi; takım üç bağımsız parça olarak kaldı. Her ürünün gerçek WebGL canvas'ı birleşik ve tamamen ayrılmış durumda renderlandı; boş canvas veya JavaScript hatası bulunmadı. Fotoğraf karşılaştırması ve oda önizlemesi yeni geometriyle tekrar üretildi. Fotoğraflar ve tahmini ölçü verileri değiştirilmedi. Bu sürüm fotoğraftan uyarlanan yaklaşık geometri kullanır; CAD veya fotogrametri taraması değildir.
+
+## Nass Berjer: yeni ön, yan ve arka referanslar — 15 Ekim 2026
+
+Kullanıcının eklediği dört açıya göre yalnızca Nass Berjer’in geometrisi yeniden kuruldu. Kollar ve alt yan parçalar C biçimindeki açıklıkları koruyan tek döşemeli yüzeyle arka sırta bağlanır. Yan ve arka dönüşler yuvarlatıldı; ince ayrı başlık, kısa ahşap başlık köprüsü, ön köşelerle sınırlı ahşap kuşak ve döşemenin önüne uzanan yuvarlak uçlu ayaklar eklendi. Yeni üretici ölçüsü verilmediğinden ölçüler tahmini kalır. Ürün fotoğrafları değiştirilmedi.
+
+Yeni gövde kapalı bir alandan üretilen, köşe normalleri ortak ve önbelleğe alınan yüzeydir; her örnek bağımsız geometri kopyası kullanır. Gövde 32.034 köşe ve 63.936 üçgen, tam berjer 77.604 üçgendir. Yeni test yan oyukların açık, üst/alt yan dolguların ve arka sırtın dolu olduğunu ışın kesişimleriyle doğrular; yüzey normalleri de sonlu ve birim uzunluktadır. 11 birim testi, 15 üretim Chromium senaryosu ve 11 sayfalık derleme geçti. Sürükleme, mobil touch, renk değiştirme ve parçalanma animasyonu kontrol edildi. Gerçek geometrinin dört açılı incelemesi `docs/nass-berjer-views.png`, güncel genel karşılaştırma `docs/3d-models.png` dosyasındadır. Hosting hesabına yükleme yapılmadı.
 
 ## Model adları ve bildirilen ölçüler — 15 Ekim 2026
 

@@ -99,6 +99,8 @@ Mevcut dört modelin fotoğraflara göre uyarlanan geometrileri `src/three/photo
 
 Geliştirme sunucusu açıkken `npm run render:models`, gerçek etkileşimli geometrilerin fotoğraflarla karşılaştırmasını `docs/3d-models.png` dosyasına yazar. Fotoğrafları değiştirmez. Render araçları mevcut Chromium'u veya `CHROMIUM_PATH` değerini kullanır.
 
+Nass Berjer’in yeni ön/yan/arka referanslarına göre hazırlanan gövdesi `src/three/nass-armchair.js` içindedir. Tek, kapalı döşemeli yüzeyde C biçimindeki yan açıklıklar ve arka sırt birlikte modellenir; üst ve alt yan parçalar sırta yumuşak dönüşlerle bağlanır. Ayrı ince başlık, kısa ahşap başlık köprüsü, ön kuşak ve döşemenin önüne çıkan yuvarlak uçlu ayaklar kullanılır. Yüzeyin ortak köşeleri birleştirilir, şablon önbelleğe alınır ve her yerleşime bağımsız geometri kopyalanır. Geliştirme sunucusu açıkken `npm run render:nass`, gerçek modelin ön, yan, arka ve çapraz görünümlerini `docs/nass-berjer-views.png` dosyasına yazar. Geometri fotoğraflardan uyarlanmıştır; mevcut ölçüler tahminidir.
+
 GLB dosyasını `public/assets/models/` içine koyun; ürünün `model3d` alanını `/assets/models/kose-modeli-01.glb` gibi ayarlayın. `null` değeri prosedürel örnek modeli seçer. Model yüklenemezse açıklamalı örnek model kullanılır.
 
 Modeller Y yukarı ekseniyle hazırlanmalıdır. Yerleşimde modelin sınır kutusu ürünün `width/depth/height` ölçülerine ölçeklenir ve zemine oturtulur. Gömülü dokulu GLB tercih edin. Aynı dizindeki dış dokulu GLTF de desteklenir. Malzeme renklerinin değişmesini istediğiniz mesh adlarında `fabric`, `upholstery` veya `kumas` kullanın.
