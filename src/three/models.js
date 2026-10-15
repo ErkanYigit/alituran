@@ -255,6 +255,9 @@ export function makeRoom(room) {
     "floor",
   );
   for (const wall of ["back", "side"]) {
+    // A removed wall also hides its frames/glass; its windows remain editable
+    // after the wall is restored, unless the user deletes them separately.
+    if (room.walls?.[wall] === false) continue;
     const windows = room.windows.filter((w) => w.wall === wall),
       length = wall === "back" ? room.width : room.depth;
     const xs = [
@@ -299,6 +302,8 @@ export function makeRoom(room) {
         height = win.height,
         y = win.sill + height / 2;
       const frame = new THREE.Group();
+      frame.userData.windowId = win.id;
+      frame.userData.wall = wall;
       const addFrame = (size, pos) => {
         const f = new THREE.Mesh(new THREE.BoxGeometry(...size), frameMaterial);
         f.position.set(...pos);
@@ -336,6 +341,7 @@ export function makeRoom(room) {
       wallMaterials.back,
       "back",
     );
+    m.userData.columnId = column.id;
     m.rotation.y = column.rotation;
   }
   return group;

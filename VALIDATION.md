@@ -2,12 +2,22 @@
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
-- 14 birim testi geçti; sıfır başarısız/atlanmış test.
-- Duvar ve zemin düzenleme sonrası 17 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
+- 17 birim testi geçti; sıfır başarısız/atlanmış test.
+- Başlangıç odası ve kaldırılabilir duvarlar sonrası 18 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
+
+## Köşe kolonu, hazır pencereler ve kaldırılabilir duvarlar — 15 Ekim 2026
+
+Yeni 4 × 5 × 2,7 m odada iki duvarın birleşiminde 40 × 40 cm kolon (merkez X/Z=0,2 m) ve her duvarda 120 × 110 cm, denizliği 90 cm olan bir pencere bulunur. Pencereler duvarların ortasındadır. Kolonun ve pencere listelerinin her oda için bağımsız kopyaları üretilir. Yeni kolon ekleme formu X/Z=0 ile başlar; sınır kontrolü kolonun ölçüsüne göre köşeye oturtur. Kullanıcının düzenlediği kolon konumları ayrıca değiştirilebilir.
+
+**03 — Duvarlar ve Pencereler** bölümünde her duvar için göster/kaldır seçeneği eklendi. Kapalı duvarın geometrisi, çerçeveleri ve camları sahneye eklenmez; duvar geri açıldığında ayrı silinmemiş pencereler korunur. Gizli duvarın pencereleri düzenlenemez, ancak listeden silinebilir. İki duvar da kapalıysa pencere ekleme kontrolleri devre dışıdır. Kolon ayrı nesne olarak kalır ve ayrıca silinebilir. `room.walls` kayda eklenir; eski kayıtlarda iki duvar açık varsayılır, pencere/kolon listeleri değiştirilmez. Sıfırlama yeni hazır mimariyi getirir; kaldırılan mimari kaydı açıldığında kendiliğinden eklenmez.
+
+Üretim derlemesi, 17 birim testi ve 18 Chromium senaryosu geçti; başarısız/atlanmış test yok. Yeni birim kontrolleri köşe yerleşimi, pencere geçerliliği, duvar kaldırıldığında raycast ile açıklık, cam/çerçeve kaldırılması, bağımsız kolonun korunması, eski boş kayıt uyumu ve duvar verisi doğrulamasını kapsar. Yeni tarayıcı senaryosu masaüstü ve telefonda hazır nesneleri, oda büyürken köşede kalmayı, duvar kaldırıp geri getirmeyi, pencere/kolon silmeyi, sonraki kolonu köşeden eklemeyi, sıfırlama ve yenileme sonrası kayıt açmayı doğrular. Duvar kontrollerinin WCAG A/AA taraması da geçti. Önceki oda, kaplama, sürükleme, GLB, QR ve erişilebilirlik senaryoları geçti.
+
+Güncel masaüstü ve mobil önizlemeler `docs/room-default-desktop.png` ve `docs/room-default-mobile.png` dosyalarındadır. Canlı hosting bu işlemle güncellenmez; yeni `dist` içeriğinin yüklenmesi gerekir.
 
 ## Duvar renkleri ve zemin kaplamaları — 15 Ekim 2026
 

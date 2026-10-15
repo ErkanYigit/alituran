@@ -9,6 +9,7 @@ import { disposeGroup } from "../src/three/engine.js";
 test("old room saves receive defaults; custom surfaces round-trip and invalid appearances are rejected", () => {
   const legacy = defaultRoom();
   delete legacy.appearance;
+  delete legacy.walls;
   assert.deepEqual(
     validateSaved({ version: 1, room: legacy }, []),
     defaultRoom(),
@@ -43,14 +44,16 @@ test("old room saves receive defaults; custom surfaces round-trip and invalid ap
 
 test("live recoloring preserves geometry, textures and window frames while walls and columns take their colors", () => {
   const room = defaultRoom();
-  room.windows.push({
-    id: "w",
-    wall: "back",
-    position: 2,
-    width: 1.2,
-    height: 1.1,
-    sill: 0.9,
-  });
+  room.windows = [
+    {
+      id: "w",
+      wall: "back",
+      position: 2,
+      width: 1.2,
+      height: 1.1,
+      sill: 0.9,
+    },
+  ];
   room.columns.push({
     id: "c",
     width: 0.4,

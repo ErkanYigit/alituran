@@ -30,9 +30,36 @@ export const defaultRoom = () => ({
   width: 4,
   depth: 5,
   height: 2.7,
+  walls: { back: true, side: true },
   appearance: defaultAppearance(),
-  windows: [],
-  columns: [],
+  windows: [
+    {
+      id: "default-window-back",
+      wall: "back",
+      position: 2,
+      width: 1.2,
+      height: 1.1,
+      sill: 0.9,
+    },
+    {
+      id: "default-window-side",
+      wall: "side",
+      position: 2.5,
+      width: 1.2,
+      height: 1.1,
+      sill: 0.9,
+    },
+  ],
+  columns: [
+    {
+      id: "default-corner-column",
+      width: 0.4,
+      depth: 0.4,
+      x: 0.2,
+      z: 0.2,
+      rotation: 0,
+    },
+  ],
   furniture: [],
 });
 export const uid = () => crypto.randomUUID();
@@ -190,11 +217,21 @@ export function validateSaved(value, library) {
     width: input.width,
     depth: input.depth,
     height: input.height,
+    walls: { back: true, side: true },
     appearance: validateAppearance(input.appearance),
     windows: [],
     columns: [],
     furniture: [],
   };
+  if (input.walls !== undefined) {
+    if (
+      !input.walls ||
+      typeof input.walls.back !== "boolean" ||
+      typeof input.walls.side !== "boolean"
+    )
+      throw new Error("Duvar bilgileri geçersiz.");
+    room.walls = { back: input.walls.back, side: input.walls.side };
+  }
   const ids = new Set();
   const checkId = (item) => {
     if (typeof item.id !== "string" || item.id.length > 100 || ids.has(item.id))

@@ -94,6 +94,14 @@ Fotoğrafları `public/assets/images/` içine yükleyin; JSON içinde `/assets/i
 
 `npm run dev` ve `npm run build`, JPG/PNG/WebP kaynaklarını değiştirmeden 320, 640, 1024 ve 1536 px WebP türevlerini oluşturur; tarayıcı `srcset` ve `sizes` ile uygun olanı seçer. Geliştirme sunucusu `predev` adımı tamamlandıktan sonra açılır. Böylece Git'ten yeni indirilen projede de görseller hazır olur. `-w320.webp` gibi son ekler üretilen dosyalara ayrılmıştır. Bu dosyalar Git'e eklenmez. Kaynak görselleri silmeyin.
 
+### Başlangıç odası, kolon ve pencereler
+
+Yeni oda 4 × 5 × 2,7 m ölçülerinde iki duvar, birleşim köşesinde 40 × 40 cm kolon ve her duvarda bir pencereyle açılır. Yeni kolon ekleme formu da varsayılan olarak birleşim köşesinden başlar; kolonun ölçüsü ve konumu sonradan değiştirilebilir.
+
+**03 — Duvarlar ve Pencereler** bölümünde **Arka duvarı göster** ve **Yan duvarı göster** seçeneklerini kapatarak duvarları kaldırın. Duvarla birlikte üzerindeki cam ve çerçeve de gizlenir. Duvar geri getirildiğinde silinmemiş pencereler geri görünür. Listelerdeki çöp kutularıyla pencereleri ve **04 — Kolonlar** bölümünden kolonu ayrıca silebilirsiniz. İki duvar da kapalıysa pencere ekleme devre dışıdır.
+
+Bu seçimler oda kaydında korunur. Eski kayıtlar mevcut pencere/kolon listeleriyle açılır; kendiliğinden yeni nesne eklenmez. **Odayı Sıfırla** yeni başlangıç odasını (kolon ve iki pencere dahil) geri getirir; saklanan kayıt korunur.
+
 ### Duvar ve zemin düzenleme
 
 Odanı Tasarla → **02 — Duvar ve Zemin** bölümünde arka ve yan duvar renklerini ayrı seçin. Zemin kaplaması meşe parke, ceviz parke, seramik veya beton olabilir; zemin rengi ayrıca değiştirilebilir. Kaplama seçimi kendi başlangıç rengini getirir. Renkler anında uygulanır; mobilyalar ve kamera yerinde kalır. Kolonlar arka duvar rengini kullanır.

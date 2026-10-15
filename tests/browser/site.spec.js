@@ -162,6 +162,12 @@ test("room dimensions, real windows and columns, furniture, colors, warnings, pe
   await page.locator("#room-width").dispatchEvent("change");
   await expect(page.locator("#axis-width")).toHaveText("Genişlik · X: 6.0 m");
   await page.getByText("03 — Duvarlar ve Pencereler", { exact: true }).click();
+  await expect(page.locator("[data-remove-window]")).toHaveCount(2);
+  while (await page.locator("[data-remove-window]").count())
+    await page.locator("[data-remove-window]").first().click();
+  await page.getByText("04 — Kolonlar", { exact: true }).click();
+  await page.locator("[data-remove-column]").click();
+  await page.getByText("04 — Kolonlar", { exact: true }).click();
   await page.locator("#window-add").click();
   await expect(page.locator("[data-remove-window]")).toHaveCount(1);
   await page.locator("[data-edit-window]").click();
