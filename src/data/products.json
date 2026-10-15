@@ -20,7 +20,8 @@
     "dimensionStatus": "estimated",
     "temporaryName": false,
     "type": "chair",
-    "model3d": null,
+    "model3d": "/assets/models/nass-berjer.glb",
+    "model3dParts": false,
     "featured": true,
     "demo": false,
     "badge": "Fuarın Gözdesi"

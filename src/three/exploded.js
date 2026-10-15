@@ -22,7 +22,7 @@ export async function mountExploded(host, product) {
     engine.dispose();
     return () => {};
   }
-  if (!model.userData.procedural) {
+  if (!model.userData.procedural && product.model3dParts !== false) {
     const count = [];
     model.traverse((object) => {
       if (object.isMesh && /base|seat|back|arm|leg|cushion/i.test(object.name))
@@ -65,6 +65,27 @@ export async function mountExploded(host, product) {
   floor.position.y = -0.005;
   floor.receiveShadow = true;
   engine.scene.add(floor);
+  if (product.model3dParts === false) {
+    // Keep the supplied surface intact instead of replacing it with the old
+    // procedural chair when there are no independent assembly parts.
+    engine.controls.enableRotate = true;
+    engine.controls.enableZoom = true;
+    engine.controls.minAzimuthAngle = -Infinity;
+    engine.controls.maxAzimuthAngle = Infinity;
+    engine.controls.target.set(d.width / 2, d.height * 0.5, d.depth / 2);
+    engine.camera.position.set(d.width / 2 + 3, 1.7, d.depth / 2 + 5);
+    engine.camera.zoom = 1;
+    engine.camera.updateProjectionMatrix();
+    engine.controls.update();
+    if (model.userData.loadFailed)
+      toast("3D dosyası yüklenemedi; yaklaşık model gösteriliyor.");
+    const onColor = (event) => replaceColor(model, event.detail);
+    document.addEventListener("product-color", onColor);
+    return () => {
+      document.removeEventListener("product-color", onColor);
+      engine.dispose();
+    };
+  }
   const parts = [];
   model.traverse((object) => {
     if (!object.isMesh) return;

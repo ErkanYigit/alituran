@@ -31,8 +31,8 @@ try {
         '<div id="model-studio" style="width:800px;height:520px"></div>';
       const THREE = await import("/node_modules/three/build/three.module.js");
       const { createEngine } = await import("/src/three/engine.js");
-      const { proceduralFurniture } = await import("/src/three/models.js");
-      const model = proceduralFurniture(p),
+      const { loadFurniture } = await import("/src/three/models.js");
+      const model = await loadFurniture(p, p.colors[0].hex),
         engine = createEngine(document.querySelector("#model-studio"));
       engine.scene.add(model);
       const ground = new THREE.Mesh(

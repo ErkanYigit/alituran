@@ -3,11 +3,23 @@
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.
 - 11 birim testi geçti; sıfır başarısız/atlanmış test.
-- Önceki tam kontrolde 15 Chromium senaryosu geçti; son QR düzeltmesinde ilgili dört senaryo doğrulandı.
+- FBX entegrasyonu sonrası 16 Chromium senaryosunun tamamı geçti; sıfır başarısız/atlanmış test.
 - QR PNG dosyası gerçek QR çözümleme kütüphanesiyle okunup canonical ürün adresi doğrulandı.
 - Mouse ve gerçek touch olaylarıyla mobilya sürükleme doğrulandı.
 - Oda işlemleri, kaydet/aç/sil, PNG görüntü indirme, doğrudan URL yenileme, WebGL fallback, küre coğrafi dokusu ve animasyon kontrolleri doğrulandı.
 - Yedi normal içerik sayfasında, azaltılmış hareket tercihiyle yapılan axe WCAG A/AA taramasında ihlal bulunmadı. Bu otomatik tarama tek başına tüm erişilebilirlik koşulları için sertifika değildir.
+
+## Kullanıcının sağladığı FBX modelinin eklenmesi — 15 Ekim 2026
+
+`orange+lounge+chair+3d+model.zip` içinde bir FBX ve beş doku haritası bulundu. Blender 4.3.2 ile `scripts/convert-nass-fbx.py` kullanılarak GLB üretildi; kaynak dosyalar değiştirilmedi. GLB, 47.770 üçgenli tek mesh ve gömülü renk/normal/metal-pürüzlülük dokuları içerir. Doku boyutları 4096 px'ten 2048 px'e indirildi; dosya 7.736.008 bayttır. Draco veya başka özel çözücü gerektirmez. SHA-256: `ed2ef69b83a1ee15030cf9e07c894844f3817164c61fc711e00fc6179ac52aa9`.
+
+Gerçek tarayıcıdaki GLTFLoader üzerinden dosyanın yedek geometriye düşmeden yüklenmesi (`procedural: false`, `loadFailed: false`), tüm dört malzeme haritasının 2048 × 2048 px olması, ayrı yüklemelerin bağımsız nesne/malzeme kullanması ve renk değişiminin ortak kumaş/ahşap atlasını bozmaması kontrol edildi. Sınır kutusu X=0,95 m / Y=0,90 m / Z=0,95 m; alt yüzey Y=0. Ölçüler önceki tahmini değerlerdir.
+
+`model3dParts: false` ile ürün sayfası aynı dosyayı çevrilebilir ve yakınlaştırılabilir olarak gösterir; ayrılma kontrolleri gizlenir. Tek mesh yerine eski prosedürel sandalyenin gösterilmesi önlendi. Oda tasarımcısı da GLB'yi kullanır. Orijinal renk atlası ahşapla ortak olduğu için korunur. Diğer ürünlerin parçalanma animasyonu değişmez.
+
+Üretim derlemesi, 11 birim testi ve 16 Chromium senaryosu geçti. Yeni senaryo 1440 px masaüstü ve 390 px mobilde GLB yüklemesini, model döndürmeyle canvas görüntüsünün değişmesini, ayrılma kontrollerinin gizlenmesini ve aynı modelin oda tasarımcısında açılmasını doğrular. Diğer ürünlerin animasyonu, fare/dokunmatik sürükleme, QR çözümleme ve WCAG A/AA kontrolleri de geçti.
+
+Gerçek dosyadan ön/yan/arka/çapraz renderlar yeniden üretildi (`docs/nass-berjer-views.png`); katalog fotoğraf/3D karşılaştırması da güncellendi. Derlenen `dist/assets/models/nass-berjer.glb` kaynakla bayt düzeyinde aynıdır. Canlı hosting bu işlemle güncellenmez; yeni `dist` içeriğinin `public_html` içine yüklenmesi gerekir.
 
 ## QR pencere oranı, indirme çözünürlüğü ve hedef adres — 15 Ekim 2026
 

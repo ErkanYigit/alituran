@@ -35,9 +35,9 @@ try {
           '<div id="nass-studio" style="width:650px;height:550px"></div>';
         const THREE = await import("/node_modules/three/build/three.module.js");
         const { createEngine } = await import("/src/three/engine.js");
-        const { proceduralFurniture } = await import("/src/three/models.js");
+        const { loadFurniture } = await import("/src/three/models.js");
         const engine = createEngine(document.querySelector("#nass-studio"));
-        const model = proceduralFurniture(product);
+        const model = await loadFurniture(product, product.colors[0].hex);
         engine.scene.add(model);
         const floor = new THREE.Mesh(
           new THREE.PlaneGeometry(30, 30),
@@ -77,7 +77,7 @@ try {
       "<style>body{margin:0;padding:32px;background:#faf4eb;color:#362e27;font-family:Manrope,Arial,sans-serif}h1{font-size:30px;margin:0 0 10px}header p{font-size:14px;margin:0 0 24px}main{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0;border-radius:16px;overflow:hidden;background:#eee7de}img{width:100%;display:block}figcaption{padding:14px 20px;font-size:16px;background:#e4dad0}</style>",
     );
     document.body.innerHTML =
-      "<header><h1>Nass Berjer · dört açıdan 3D görünüm</h1><p>Yeni ön, yan ve arka fotoğraflara göre modellenen etkileşimli geometri. Ölçüler tahminidir.</p></header><main></main>";
+      "<header><h1>Nass Berjer · dört açıdan 3D görünüm</h1><p>Sağladığınız FBX dosyasından aktarılan dokulu 3D model. Ölçüler tahminidir.</p></header><main></main>";
     for (const { label, frame } of frames) {
       const figure = document.createElement("figure"),
         img = document.createElement("img"),
