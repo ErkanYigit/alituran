@@ -19,7 +19,7 @@ async function planner(page) {
   await page.goto("/odani-tasarla/");
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
   await expect(page.locator("#selection-info")).toContainText(
-    "Berjer Modeli 01",
+    "Nass Berjer",
   );
   await page.waitForTimeout(300);
 }
@@ -87,7 +87,7 @@ test("catalog search, category selection and empty results", async ({
   await expect(page.locator(".empty-state")).toBeVisible();
   await page.getByRole("searchbox").fill("");
   await page.getByRole("button", { name: "Berjerler", exact: true }).click();
-  await expect(page.locator("#catalog-grid")).toContainText("Berjer Modeli 01");
+  await expect(page.locator("#catalog-grid")).toContainText("Nass Berjer");
   await page.getByRole("button", { name: "Tümü", exact: true }).click();
   await expect(page.locator("#catalog-grid article")).toHaveCount(4);
 });

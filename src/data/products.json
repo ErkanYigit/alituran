@@ -1,7 +1,7 @@
 [
   {
     "id": "fair-favorite-armchair",
-    "name": "Berjer Modeli 01",
+    "name": "Nass Berjer",
     "category": "Berjerler",
     "description": "Kiremit tonlarında dokulu döşemesi, yuvarlak hatları ve koyu ahşap detaylarıyla öne çıkan berjer.",
     "colors": [
@@ -18,7 +18,7 @@
       "height": 90
     },
     "dimensionStatus": "estimated",
-    "temporaryName": true,
+    "temporaryName": false,
     "type": "chair",
     "model3d": null,
     "featured": true,

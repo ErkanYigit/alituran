@@ -23,7 +23,7 @@ test("furniture follows pointer drag and remains within the floor", async ({
 }) => {
   await page.goto("/odani-tasarla/");
   await expect(page.locator("#selection-info")).toContainText(
-    "Berjer Modeli 01",
+    "Nass Berjer",
   );
   await expect(page.locator("#planner-stage canvas")).toBeVisible();
   await page.waitForTimeout(400);

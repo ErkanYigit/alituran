@@ -37,6 +37,8 @@ Köşeler Nass Model (X 280 × Z 300 cm) ve Sıla Model (X 230 × Z 300 cm), tak
 
 10 birim testi ve 15 Chromium senaryosu geçti. Yeni adlarla katalog araması, parça başına 235/90 cm genişlikler, takımın üç bağımsız parça olarak açılıp kaydedilmesi, 3D ölçekler ve mobil görünüm kontrol edildi. Nass/Sıla için X-Z sırası ile ürün HTML metaverisindeki tahmin notları ayrıca doğrulandı. Fotoğraf karşılaştırması ve oda önizlemesi yeni ölçülerle tekrar üretildi. Hosting hesabına yükleme yapılmadı.
 
+Fuarın Gözdesi etiketli tek berjerin adı daha sonra Nass Berjer olarak güncellendi. Ürün adı, ana sayfa açıklaması ve görsel alt metni, katalog/arama ve karşılaştırma görseli yeni adı kullanır. Üretim HTML başlığı ile ölçülerin tahmini olduğunu belirten not doğrulandı; derleme ve katalog/arama/takım yerleşimini kapsayan üç mevcut Chromium senaryosu geçti.
+
 ## Güzel Hosting alan adı ve güncelleme — 15 Ekim 2026
 
 Site sahibinin bildirdiği `https://alituranmob.com` adresi şirket verisi, HTML başlangıç metaverisi, QR hedefleri ve yayımlama belgelerine uygulandı. Yeni derlemede 11 sayfanın canonical adresleri, sitemap, robots ve uygulama paketindeki alan adı kontrol edildi. Doğrudan sayfalar/metaveri ve indirilen QR PNG'sinin gerçek çözümlemesini kapsayan iki Chromium senaryosu geçti. Apache `.htaccess` dosyasına, `mod_headers` etkin olduğunda HTML/XML/TXT yanıtlarını yeniden doğrulatan `Cache-Control: no-cache` kuralı eklendi; gerçek hosting yanıt başlıkları doğrulanamadı.

@@ -81,7 +81,7 @@ Site sahibi `src/data/` altındaki JSON dosyalarını düzenleyebilir. JSON dosy
 
 ### Mevcut dört model
 
-Sıra: Fuarın Gözdesi (Berjer Modeli 01), Nass Model, Sıla Model, Kristal Model. Nass 280 × 300 cm, Sıla 230 × 300 cm (X × Z); her iki köşenin yüksekliği şimdilik 85 cm tahminidir. Kristal takımının üçlü kanepeleri 235 cm, berjeri 90 cm genişliğindedir. Kanepe derinliği 95 cm, berjer derinliği 90 cm ve yükseklikleri 85 cm tahmini değerlerdir. Yeni bilgiler `products.json` içindeki ölçülerden güncellenebilir. `dimensionStatus: "partial"` ve `dimensionNote` kısmen bildirilen ölçüleri açıklar; `temporaryName: false` firma tarafından verilen model adlarını belirtir. Fuarın Gözdesi berjerin adı ve ölçüleri henüz geçicidir.
+Sıra: Fuarın Gözdesi (Nass Berjer), Nass Model, Sıla Model, Kristal Model. Nass 280 × 300 cm, Sıla 230 × 300 cm (X × Z); her iki köşenin yüksekliği şimdilik 85 cm tahminidir. Kristal takımının üçlü kanepeleri 235 cm, berjeri 90 cm genişliğindedir. Kanepe derinliği 95 cm, berjer derinliği 90 cm ve yükseklikleri 85 cm tahmini değerlerdir. Yeni bilgiler `products.json` içindeki ölçülerden güncellenebilir. `dimensionStatus: "partial"` ve `dimensionNote` kısmen bildirilen ölçüleri açıklar; `temporaryName: false` firma tarafından verilen model adlarını belirtir. Nass Berjer’in ölçüleri henüz tahminidir.
 
 Takım `type: "set"` ve `composition: "3+3+1"` kullanır. `components` alanındaki `quantity` iki üçlü kanepe ve bir berjeri belirtir; ölçü tablosu her parçanın ölçülerini ayrı gösterir ve tahmini değerleri açıklayan not içerir. `dimensions` bu kayıtta yalnızca 3D önizleme yerleşiminin sınır kutusudur (`dimensionScope: "preview-layout"`), takımın üretici ölçüsü değildir. `previewLayout` metre cinsinden parça merkezlerini ve radyan cinsinden dönüşlerini belirler. Oda tasarımcısı takım bağlantısını üç bağımsız mobilya olarak açar; parça ölçülerini yerleşimden dolayı değiştirmez.
 
@@ -156,7 +156,7 @@ Testler ürün ölçülerini, gerçek pencere açıklıklarını, dönmüş nesn
 
 Kaynaklar ve lisans dosyaları `ASSETS.md` ve `public/assets/licenses/` içindedir. Hiçbir NORDICA logosu veya görseli kullanılmadı. Güncel tasarım, kullanıcının paylaştığı referans ekran görüntüsüne göre uyarlanmıştır.
 
-Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Nass, Sıla ve Kristal adları ile bildirilen ölçüler site sahibinden alınmıştır; kalan ölçüler ve Fuarın Gözdesi berjerin adı şimdilik geçicidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
+Katalog yalnızca kullanıcı tarafından gönderilen dört modeli içerir. Berjer “Fuarın Gözdesi” etiketiyle ilk sıradadır ve ana görseldir. Nass, Sıla ve Kristal adları ile bildirilen ölçüler site sahibinden alınmıştır; kalan ölçüler şimdilik tahminidir. Görseller `modeller.zip` dosyasından alınmıştır; orijinal PNG dosyaları `public/assets/source-images/` altında korunur. Her model için yalnızca fotoğrafta görülen renk listelenir. Prosedürel 3D modeller yaklaşık yerleşim temsilleridir. Adres, iletişim kişisi ve sevkiyat ülkeleri kullanıcı tarafından sağlanmıştır.
 
 ## Proje yapısı
 

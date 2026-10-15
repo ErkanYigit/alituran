@@ -11,7 +11,7 @@ test("owner's four models and photos replace the demo catalog; fair favorite com
   );
   await expect(page.locator(".product-card")).toHaveCount(4);
   await expect(page.locator(".product-card").first().locator("h3")).toHaveText(
-    "Berjer Modeli 01",
+    "Nass Berjer",
   );
   await expect(
     page.locator(".product-card").first().locator(".product-badge"),
@@ -19,7 +19,7 @@ test("owner's four models and photos replace the demo catalog; fair favorite com
   await page.goto("/koleksiyon/");
   await expect(page.locator("#catalog-count")).toHaveText("4 model");
   await expect(page.locator("#catalog-grid h3")).toHaveText([
-    "Berjer Modeli 01",
+    "Nass Berjer",
     "Nass Model",
     "Sıla Model",
     "Kristal Model",
