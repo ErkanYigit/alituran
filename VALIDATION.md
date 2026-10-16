@@ -1,5 +1,13 @@
 # Doğrulama
 
+## İletişim sayfasında gömülü adres haritası — 16 Ekim 2026
+
+Dekoratif harita alanı yerine `company.address` adresini sorgulayan Türkçe Google Maps iframe'i eklendi. Harita tembel yüklenir; adres ve ayrı “Haritada Aç” bağlantısı haritanın altında kalır. Eski çapraz çizgiler kaldırıldı, harita çerçevesi mobil ve masaüstüne uyarlandı. Gizlilik sayfası Google'a yapılan harita isteğini açıklar.
+
+12 sayfalık üretim derlemesi, iki iletişim/harita testi, iki SEO testi ve sekiz içerik sayfası ile QR penceresini tarayan erişilebilirlik senaryosu geçti. Harita testi 1440/390/320 px genişliklerde doğru adres sorgusunu, iframe yüklenmesini, en az 320 px yüksekliği, yatay taşma olmamasını ve sağlayıcı isteği engellendiğinde adres/bağlantının kalmasını doğrular. Bu test üçüncü tarafı UTF-8 HTML ile taklit eder; Google'ın harita içeriğini doğrulamaz. Tüm 3D ve galeri senaryoları bu metin/harita değişikliği için yeniden çalıştırılmadı.
+
+Gerçek Google Maps embed isteği ortamın çıkış proxy'sinde CONNECT 403 ile engellendi. Google'ın adresi doğru işaretlemesi ve gerçek harita etkileşimleri bu ortamda doğrulanamadı; verilen açık adres kullanıldı, koordinat veya işletme kaydı uydurulmadı. Canlı hosting güncellenmedi.
+
 ## “İnegöl mobilyası” ifadesi — 16 Ekim 2026
 
 Ana sayfanın SEO başlığı, açıklaması, sosyal paylaşım bilgileri ve görünür yerel tanıtım başlığı “İnegöl mobilyası” ifadesiyle güncellendi. SEO hedef tablosuna ana sayfa eşleştirmesi eklendi. Üretim derlemesi, doğrudan çalıştırılan üç SEO birim testi ve iki SEO Chromium senaryosu geçti. Bu ekleme için tüm özellik testleri yeniden çalıştırılmadı; önceki tam koşunun sonuçları aşağıdadır.

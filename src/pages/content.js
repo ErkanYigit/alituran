@@ -70,6 +70,14 @@ export function about(company) {
 }
 
 export function contact(company) {
+  const mapEmbed = company.address
+    ? `https://www.google.com/maps?${new URLSearchParams({
+        q: company.address.replace(/\.$/, ""),
+        output: "embed",
+        hl: "tr",
+        z: "16",
+      })}`
+    : "";
   const phone = company.phone
     ? `tel:${company.phone.replace(/[^+\d]/g, "")}`
     : "";
@@ -90,7 +98,7 @@ export function contact(company) {
           )
           .join("")}</article>`
       : ""
-  }</div><p class="notice">Ziyaret, ürün seçenekleri ve sevkiyat detayları için telefon veya WhatsApp üzerinden bize ulaşabilirsiniz.</p></div><div class="contact-map">${icon("pin", 36)}<h3>İnegöl’de buluşalım.</h3><p>${e(company.address || "Adres bilgisi paylaşılacak.")}</p>${safeURL(company.mapUrl) ? `<a class="text-link" href="${e(safeURL(company.mapUrl))}" rel="noopener" target="_blank">Haritada Aç ${icon("diagonal", 17)}</a>` : ""}</div></section></div>`;
+  }</div><p class="notice">Ziyaret, ürün seçenekleri ve sevkiyat detayları için telefon veya WhatsApp üzerinden bize ulaşabilirsiniz.</p></div><div class="contact-map">${mapEmbed ? `<iframe src="${e(mapEmbed)}" title="${e(company.name)} — İnegöl adres haritası" width="640" height="460" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` : ""}<div class="contact-map-info"><h3>İnegöl’de buluşalım.</h3><p>${e(company.address || "Adres bilgisi paylaşılacak.")}</p>${safeURL(company.mapUrl) ? `<a class="text-link" href="${e(safeURL(company.mapUrl))}" rel="noopener" target="_blank">Haritada Aç ${icon("diagonal", 17)}</a>` : ""}</div></div></section></div>`;
 }
 
 export function world(company, locations) {
@@ -98,5 +106,5 @@ export function world(company, locations) {
 }
 
 export function privacy() {
-  return `<article class="privacy"><span class="eyebrow">Gizlilik bilgileri</span><h1>Sizin alanınız,<br><em>sizin tercihiniz.</em></h1><p>Bu statik site hesap, ödeme veya sunucuya mesaj gönderen form içermez. Analitik ve reklam takip kodu kullanılmaz.</p><h2>Oda tasarımları</h2><p>Oda tasarımını kaydettiğinizde, ölçüler ve yerleşim yalnızca tarayıcınızın yerel depolama alanında tutulur. Şirkete gönderilmez. Tasarımcıdaki “Kaydı Sil” seçeneğiyle kaldırabilirsiniz.</p><h2>Görseller ve yazı tipleri</h2><p>Görseller, katalog verileri ve yazı tipleri bu sitenin dosyalarından yüklenir. Dışarıdan yazı tipi veya stok fotoğraf isteği yapılmaz.</p><h2>Dış bağlantılar</h2><p>İletişim bilgileri eklendiğinde, e-posta ve WhatsApp bağlantıları kendi uygulamalarınızı veya ilgili sağlayıcının sitesini açar. Bu hizmetlerin gizlilik koşulları ayrıca geçerlidir.</p><h2>Barındırma bilgileri</h2><p>Barındırma sağlayıcısı teknik erişim kayıtları tutabilir. Veri sorumlusu, iletişim bilgileri ve barındırma sağlayıcısına ilişkin resmî aydınlatma metni firma tarafından tamamlanmalıdır.</p></article>`;
+  return `<article class="privacy"><span class="eyebrow">Gizlilik bilgileri</span><h1>Sizin alanınız,<br><em>sizin tercihiniz.</em></h1><p>Bu statik site hesap, ödeme veya sunucuya mesaj gönderen form içermez. Analitik ve reklam takip kodu kullanılmaz.</p><h2>Oda tasarımları</h2><p>Oda tasarımını kaydettiğinizde, ölçüler ve yerleşim yalnızca tarayıcınızın yerel depolama alanında tutulur. Şirkete gönderilmez. Tasarımcıdaki “Kaydı Sil” seçeneğiyle kaldırabilirsiniz.</p><h2>Görseller ve yazı tipleri</h2><p>Görseller, katalog verileri ve yazı tipleri bu sitenin dosyalarından yüklenir. Dışarıdan yazı tipi veya stok fotoğraf isteği yapılmaz.</p><h2>İletişim haritası</h2><p>İletişim sayfasında adresimizi göstermek için Google Maps haritası kullanılır. Harita yüklendiğinde tarayıcınız Google sunucularına bağlanır; Google’ın gizlilik ve çerez koşulları geçerlidir. Haritayı ayrı açmak ve yol tarifi almak için “Haritada Aç” bağlantısını kullanabilirsiniz.</p><h2>Dış bağlantılar</h2><p>İletişim bilgileri eklendiğinde, e-posta ve WhatsApp bağlantıları kendi uygulamalarınızı veya ilgili sağlayıcının sitesini açar. Bu hizmetlerin gizlilik koşulları ayrıca geçerlidir.</p><h2>Barındırma bilgileri</h2><p>Barındırma sağlayıcısı teknik erişim kayıtları tutabilir. Veri sorumlusu, iletişim bilgileri ve barındırma sağlayıcısına ilişkin resmî aydınlatma metni firma tarafından tamamlanmalıdır.</p></article>`;
 }

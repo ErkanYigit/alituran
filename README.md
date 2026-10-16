@@ -150,6 +150,10 @@ Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yen
 
 `locations.json` içindeki İnegöl kaydı şirketin bulunduğu ilçeyi, Almanya/Avusturya/Kosova kayıtları sevkiyat yapılan ülkeleri gösterir. Bilgiler site sahibi tarafından sağlanmıştır. `kind: "base"` şirket konumunu, `kind: "export"` sevkiyat ülkesini belirtir. Ülke işaretlerinde `city: null` kullanılır; bir depo veya showroom adresi ima edilmez. Koordinatlar ülke/ilçe genelini temsil eder; açık adres Google Maps arama bağlantısındadır. Diğer Balkan ülkeleri tek tek belirtilmediğinden listeye eklenmemiştir. Yeni kayıtlar için `id`, `kind`, `country`, `city`, `latitude`, `longitude`, `description`, `demo` alanlarını düzenleyin. Örnek işaretler eklenirse `demo: true` kullanın.
 
+### İletişim haritası
+
+İletişim sayfasında `company.json → address` adresini arayan, Türkçe ve yakınlaştırılabilir Google Maps haritası gösterilir. API anahtarı gerekmez. Adres ve “Haritada Aç” bağlantısı haritanın altında kalır; harita sağlayıcısı yüklenmese de bu bilgiler kullanılabilir. Harita Google sunucularından yüklenir; gizlilik sayfası bu dış bağlantıyı açıklar. Adres araması kullanıldığı için kesin işletme işareti ve yol tarifi gerçek tarayıcıda doğrulanmalıdır.
+
 ### QR kodları
 
 Ürünün sayfasında “QR Kodu Göster” → “PNG İndir (2048 × 2048)”. Ekrandaki kod, kare oranını koruyan SVG olarak gösterilir. PNG dosyası ayrıca, modülleri tam piksel boyutlarında çizilip ortalanarak tam 2048 × 2048 px üretilir; en az dört modül beyaz kenar boşluğu ve yüksek hata düzeltme seviyesi kullanılır. Pencere normal telefon ekranlarında taşmaz; kısa yatay ekranlarda içerik kaydırılarak erişilebilir. Tarayıcı testinde dört ürünün hem ekranda görünen QR'sı hem indirilen PNG'si gerçek bir QR okuyucuyla çözülür ve `alituranmob.com` üzerindeki ürün hedefleri doğrulanır. Mobil ve masaüstü önizlemeler `docs/qr-mobile.png` ve `docs/qr-desktop.png` dosyalarındadır.

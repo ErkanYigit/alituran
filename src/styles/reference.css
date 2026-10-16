@@ -732,6 +732,33 @@ body[data-page="home"] .hero {
 .contact-map {
   border-radius: 20px;
   background: var(--color-surface);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  align-items: stretch;
+  justify-content: stretch;
+}
+.contact-map::before,
+.contact-map::after {
+  display: none;
+}
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 35vw, 460px);
+  border: 0;
+}
+.contact-map-info {
+  padding: 24px;
+}
+.contact-map-info p {
+  max-width: none;
+  margin-bottom: 16px;
+}
+.contact-map-info svg {
+  margin-bottom: 0;
 }
 .contact-map h3 {
   font-size: 28px;
@@ -1293,7 +1320,10 @@ body[data-page="home"] .hero {
     border-radius: 16px;
   }
   .contact-map {
-    padding: 28px 18px;
+    padding: 0;
+  }
+  .contact-map-info {
+    padding: 24px 18px;
   }
   .contact-list h3 {
     font-size: 22px;

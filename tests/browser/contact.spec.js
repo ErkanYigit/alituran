@@ -51,3 +51,55 @@ test("company contact details, dial links, WhatsApp and address map match owner-
     "Kosova",
   ]);
 });
+
+test("embedded map uses the shop address, fits desktop and phones, and retains directions when Google is unavailable", async ({
+  page,
+}) => {
+  // Isolate layout and address integration from the third-party map service.
+  await page.route("https://www.google.com/maps?*", (route) =>
+    route.fulfill({
+      contentType: "text/html; charset=utf-8",
+      body: '<html lang="tr"><head><meta charset="utf-8"><title>Harita test içeriği</title></head><body><p>Adres haritası</p></body></html>',
+    }),
+  );
+  const html = await (await page.request.get("/iletisim/")).text();
+  expect(html).toContain("<iframe");
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/iletisim/");
+    const map = page.locator(".contact-map iframe");
+    await map.scrollIntoViewIfNeeded();
+    await expect(map).toBeVisible();
+    await expect(map).toHaveAttribute("title", /Ali Turan Koltuk.*İnegöl/);
+    const url = new URL(await map.getAttribute("src"));
+    expect(url.origin).toBe("https://www.google.com");
+    expect(url.searchParams.get("q")).toBe(
+      "Mahmudiye, 7. Mobilya Sk. No:24, 16400 İnegöl/Bursa",
+    );
+    expect(url.searchParams.get("output")).toBe("embed");
+    await expect(
+      page.frameLocator(".contact-map iframe").getByText("Adres haritası"),
+    ).toBeVisible();
+    const bounds = await map.boundingBox();
+    expect(bounds.height).toBeGreaterThanOrEqual(320);
+    expect(bounds.x).toBeGreaterThanOrEqual(0);
+    expect(bounds.x + bounds.width).toBeLessThanOrEqual(width);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await expect(page.getByRole("link", { name: "Haritada Aç" })).toBeVisible();
+  }
+  await page.unroute("https://www.google.com/maps?*");
+  await page.route("https://www.google.com/maps?*", (route) => route.abort());
+  await page.goto("/iletisim/");
+  await page.locator(".contact-map").scrollIntoViewIfNeeded();
+  await expect(page.locator(".contact-map-info")).toContainText(
+    "7. Mobilya Sk. No:24",
+  );
+  await expect(page.getByRole("link", { name: "Haritada Aç" })).toHaveAttribute(
+    "href",
+    /^https:\/\/www\.google\.com\/maps\/search/,
+  );
+});
