@@ -7,6 +7,7 @@ Hedef alan adı: **https://alituranmob.com**. Bu çalışma site içeriğini ve 
 | Arama / konu                                           | Ana sayfa hedefi                          |
 | ------------------------------------------------------ | ----------------------------------------- |
 | Ali Turan, Ali Turan koltuk, Ali Turan mobilya         | `/` ve `/hakkimizda`                      |
+| İnegöl mobilyası | `/` |
 | İnegöl köşe koltuk, koltuk takımı, berjer              | `/koleksiyon` ve ilgili dört ürün sayfası |
 | Ali Turan İnegöl adres, telefon                        | `/iletisim`                               |
 | İnegöl fuarı, İnegöl mobilya fuarı koltuk seçimi       | `/inegol-mobilya-fuari`                   |

@@ -1,5 +1,9 @@
 # Doğrulama
 
+## “İnegöl mobilyası” ifadesi — 16 Ekim 2026
+
+Ana sayfanın SEO başlığı, açıklaması, sosyal paylaşım bilgileri ve görünür yerel tanıtım başlığı “İnegöl mobilyası” ifadesiyle güncellendi. SEO hedef tablosuna ana sayfa eşleştirmesi eklendi. Üretim derlemesi, doğrudan çalıştırılan üç SEO birim testi ve iki SEO Chromium senaryosu geçti. Bu ekleme için tüm özellik testleri yeniden çalıştırılmadı; önceki tam koşunun sonuçları aşağıdadır.
+
 ## Marka, İnegöl ve fuar rehberi SEO çalışması — 16 Ekim 2026
 
 Üretim derlemesi geçti: 12 sayfa için içeriği önceden yazılmış HTML, ayrıca `404.html`, görselleri içeren `sitemap.xml` ve `robots.txt` üretildi. Sayfaya özel başlık/açıklama, canonical, Open Graph/Twitter ve JSON-LD aynı modülden üretilir; uygulama içi geçişte önceki ürün verisi temizlenir. `FurnitureStore` firma adresi ve telefonunu, ürün şemaları gerçek galeri fotoğraflarını kullanır. Fuar rehberi tarih veya stant numarası iddiası taşımaz.
