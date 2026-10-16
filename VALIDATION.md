@@ -1,4 +1,16 @@
-# Doğrulama — 15 Ekim 2026
+# Doğrulama
+
+## Marka, İnegöl ve fuar rehberi SEO çalışması — 16 Ekim 2026
+
+Üretim derlemesi geçti: 12 sayfa için içeriği önceden yazılmış HTML, ayrıca `404.html`, görselleri içeren `sitemap.xml` ve `robots.txt` üretildi. Sayfaya özel başlık/açıklama, canonical, Open Graph/Twitter ve JSON-LD aynı modülden üretilir; uygulama içi geçişte önceki ürün verisi temizlenir. `FurnitureStore` firma adresi ve telefonunu, ürün şemaları gerçek galeri fotoğraflarını kullanır. Fuar rehberi tarih veya stant numarası iddiası taşımaz.
+
+20 birim testi ve 22 Chromium senaryosunun tamamı geçti; başarısız veya atlanmış test yok. Yeni SEO senaryoları 12 sayfanın tamamında JavaScript kapalıyken görünür başlık/gövdeyi, başlık/açıklama/canonical eşleşmesini, site haritası ve ürün görsellerini doğrular. Sayfa geçişlerinde metaveri/şema güncellenmesi, 404 için `noindex`, koleksiyona dönüşte `index` ve rehberin 320/390/768/1440 px genişliklerde taşmaması kontrol edildi. Sekiz içerik sayfası ve QR penceresinin WCAG A/AA taramasında ihlal bulunmadı. Galeri, QR çözümleme/indirme, GLB, oda tasarımı, sürükleme/dokunma, kaydet/aç ve mevcut diğer özelliklerin tarayıcı senaryoları da geçti.
+
+Masaüstü ve mobil rehber ile ana sayfanın yeni yerel tanıtım bölümü görsel olarak incelendi. Görüntüler `docs/seo-guide-desktop.png`, `docs/seo-guide-mobile.png` ve `docs/seo-home-local-mobile.png` içindedir. Son JSON içe aktarma düzenlemesi ve rehber ölçülerinin katalogdan okunması sonrası derleme ve 20 birim testi yeniden geçti; etkilenen dört SEO, firma bilgisi ve erişilebilirlik senaryosu da yeniden geçti.
+
+Canlı alan adına HTTPS CONNECT isteği bu ortamın çıkış proxy'sinde 403 ile reddedildi. Bu, hostingin HTTP 403 döndürdüğünü kanıtlamaz. Canlı HTML, yönlendirmeler, sunucunun 404 durum kodu ve Google dizini doğrulanamadı. Hosting veya Search Console hesabında değişiklik yapılmadı. Yayımlama ve dizine ekleme adımları `SEO.md` içindedir. Önceden var olan büyük Three.js parçası derleme uyarısı devam eder; bu çalışmada yeni Lighthouse puanı ölçülmedi.
+
+## Önceki doğrulama — 15 Ekim 2026
 
 - Node.js 24.19.0; kilit dosyasıyla `npm ci` kurulumu tekrar doğrulandı.
 - Üretim derlemesi geçti; 11 bağımsız sayfa, sitemap ve robots dosyaları üretildi.

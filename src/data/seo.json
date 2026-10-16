@@ -1,0 +1,42 @@
+{
+  "/": {
+    "title": "Ali Turan Koltuk | İnegöl Mobilya ve Köşe Koltuk",
+    "description": "Ali Turan Mobilya ile İnegöl’den köşe koltuk, koltuk takımı ve berjer modellerini keşfedin. Detay fotoğrafları, 3D oda tasarımı ve yurt dışı sevkiyat bilgileri.",
+    "label": "Ana Sayfa"
+  },
+  "/koleksiyon": {
+    "title": "Köşe Koltuk, Koltuk Takımı ve Berjer | Ali Turan",
+    "description": "Ali Turan Koltuk koleksiyonu: Nass ve Sıla köşe koltuk, Kristal 3+3+1 koltuk takımı ve Nass Berjer. İnegöl’de modelleri, ölçüleri ve detay görsellerini inceleyin.",
+    "label": "Koleksiyon"
+  },
+  "/hakkimizda": {
+    "title": "Ali Turan Mobilya Hakkında | İnegöl, Bursa",
+    "description": "Bursa İnegöl’de Ali Turan Koltuk ve Mobilya’yı tanıyın. Köşe koltuk, takım ve berjer koleksiyonu; Almanya, Avusturya, Kosova ve Balkan ülkelerine sevkiyat.",
+    "label": "Hakkımızda"
+  },
+  "/iletisim": {
+    "title": "Ali Turan Koltuk İletişim | İnegöl Adres ve Telefon",
+    "description": "Ali Turan Koltuk İnegöl: Mahmudiye, 7. Mobilya Sk. No:24, Bursa. Ürün, ziyaret ve sevkiyat için Feyzi Yiğit: 0530 346 8678. Telefon ve WhatsApp ile ulaşın.",
+    "label": "İletişim"
+  },
+  "/dunyada-biz": {
+    "title": "İnegöl’den Avrupa’ya Koltuk Sevkiyatı | Ali Turan",
+    "description": "Ali Turan Mobilya, Bursa İnegöl’den Almanya, Avusturya, Kosova ve çeşitli Balkan ülkelerine koltuk gönderiyor. Sevkiyat koşulları için iletişime geçin.",
+    "label": "Dünyada Biz"
+  },
+  "/odani-tasarla": {
+    "title": "3D Oda Tasarla: Koltuk Yerleşimini Dene | Ali Turan",
+    "description": "Ali Turan koltuk modellerini 3D odanızda deneyin. Oda ölçüsü, duvar rengi, zemin kaplaması ve mobilya yerleşimini değiştirin; tasarımınızı tarayıcıda kaydedin.",
+    "label": "Odanı Tasarla"
+  },
+  "/inegol-mobilya-fuari": {
+    "title": "İnegöl Mobilya Fuarı Koltuk Rehberi | Ali Turan",
+    "description": "İnegöl fuarı ziyaretine hazırlanırken köşe koltuk, takım ve berjer seçimini planlayın. Ali Turan Mobilya modelleri, İnegöl adresi ve iletişim bilgileri.",
+    "label": "İnegöl Fuarı Rehberi"
+  },
+  "/gizlilik": {
+    "title": "Gizlilik ve Yerel Oda Kayıtları | Ali Turan Koltuk",
+    "description": "Ali Turan Koltuk web sitesinde gizlilik: oda tasarımlarının tarayıcıda saklanması, yerel görseller, dış bağlantılar ve barındırma bilgileri.",
+    "label": "Gizlilik Bilgileri"
+  }
+}

@@ -39,10 +39,15 @@ test("company contact details, dial links, WhatsApp and address map match owner-
     .locator('script[type="application/ld+json"]')
     .evaluateAll((nodes) =>
       nodes
-        .map((node) => JSON.parse(node.textContent))
-        .find((data) => data["@type"] === "Organization"),
+        .flatMap((node) => JSON.parse(node.textContent)["@graph"] || [])
+        .find((data) => data["@type"] === "FurnitureStore"),
     );
   expect(organization.address.addressLocality).toBe("İnegöl");
   expect(organization.telephone).toBe("+905303468678");
-  expect(organization.areaServed).toEqual(["Almanya", "Avusturya", "Kosova"]);
+  expect(organization.areaServed).toEqual([
+    "Türkiye",
+    "Almanya",
+    "Avusturya",
+    "Kosova",
+  ]);
 });

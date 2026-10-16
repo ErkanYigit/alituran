@@ -1,9 +1,6 @@
 import "./styles/main.css";
 import "./styles/reference.css";
-import products from "./data/products.json";
-import company from "./data/company.json";
-import navigation from "./data/navigation.json";
-import locations from "./data/locations.json";
+import { products, company, navigation, locations } from "./data/site.js";
 import {
   home,
   collection,
@@ -20,39 +17,18 @@ import {
   toast,
   download,
   canonicalProduct,
-  safeURL,
 } from "./utils/ui.js";
 
+import { siteShell } from "./pages/layout.js";
+import { applySeo } from "./seo.js";
+import { fairGuide, plannerIntro, notFound } from "./pages/discovery.js";
 import { mountProductGallery } from "./ui/product-gallery.js";
 
-const wordmark = `<span class="brand-logo"><img class="brand-wordmark" src="/assets/branding/ali-turan-logo.png" alt="${e(company.name)}" width="3000" height="750"></span>`;
-const headerNavigation = [
-  ...navigation.filter((n) => n.path !== "/koleksiyon"),
-  navigation.find((n) => n.path === "/koleksiyon"),
-];
-document.querySelector("#app").innerHTML =
-  `<header class="site-header"><a href="/" aria-label="${e(company.wordmark || company.name)} ${e(company.subtitle)} — Ana Sayfa">${wordmark}</a><nav class="nav" id="navigation" aria-label="Ana menü">${headerNavigation.map((n) => `<a href="${n.path}" class="${n.path === "/koleksiyon" ? "catalog-nav" : ""}">${n.label}${n.path === "/koleksiyon" ? `<span class="nav-arrow">${icon("arrow", 15)}</span>` : ""}</a>`).join("")}</nav><button class="menu-button icon-button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Menüyü aç">${icon("menu")}</button><button class="menu-backdrop" aria-label="Menüyü kapat" tabindex="-1"></button></header><main id="main" tabindex="-1"></main><footer class="site-footer wrap"><div class="footer-main"><div class="footer-brand"><a href="/">${wordmark}</a><p>${e(company.footerDescription || company.introduction)}</p></div><div><div class="footer-title">Keşfedin</div><div class="footer-links">${navigation
-    .filter((n) => n.path !== "/")
-    .map((n) => `<a href="${n.path}">${n.label}</a>`)
-    .join(
-      "",
-    )}</div></div><div><div class="footer-title">Koleksiyon</div><div class="footer-links">${products
-    .filter((p) => p.featured)
-    .slice(0, 4)
-    .map((p) => `<a href="/urun/${p.slug}">${e(p.name)}</a>`)
-    .join(
-      "",
-    )}</div></div><div><div class="footer-title">Tanışalım</div><p class="footer-note">${e(company.address || "Showroom ve iletişim bilgileri firma tarafından paylaşılacak.")}</p>${company.phone ? `<p class="footer-note">${e(company.contactPerson || "")}<br><a href="tel:${e(company.phone.replace(/[^+\d]/g, ""))}">${e(company.phoneDisplay || company.phone)}</a></p>` : ""}<a class="text-link" href="/iletisim">İletişim Bilgileri ${icon("diagonal", 16)}</a>${
-    company.socials.length
-      ? `<div class="footer-social">${company.socials
-          .filter((s) => safeURL(s.url))
-          .map(
-            (s) =>
-              `<a href="${e(safeURL(s.url))}" target="_blank" rel="noopener">${e(s.label)}</a>`,
-          )
-          .join("")}</div>`
-      : ""
-  }</div></div><div class="footer-signature" aria-hidden="true"><img src="/assets/branding/ali-turan-logo.png" alt="" width="3000" height="750" loading="lazy"></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(company.name)}</span><span>İnegöl’den dünyaya</span><a href="/gizlilik">Gizlilik Bilgileri</a></div></footer>`;
+document.querySelector("#app").innerHTML = siteShell(
+  company,
+  products,
+  navigation,
+);
 const main = document.querySelector("#main");
 let cleanups = [],
   routeId = 0;
@@ -126,19 +102,6 @@ window.addEventListener(
   { passive: true },
 );
 
-function setMetadata(title, description, path, image = company.hero.image) {
-  document.title = `${title} — ${company.name}`;
-  document.querySelector('meta[name="description"]').content = description;
-  document.querySelector('link[rel="canonical"]').href =
-    `${company.domain}${path}`;
-  document.querySelector('meta[property="og:title"]').content = document.title;
-  document.querySelector('meta[property="og:description"]').content =
-    description;
-  document.querySelector('meta[property="og:url"]').content =
-    `${company.domain}${path}`;
-  document.querySelector('meta[property="og:image"]').content =
-    `${company.domain}${image}`;
-}
 function collectionEvents() {
   let category = "Tümü";
   const update = () => {
@@ -291,40 +254,29 @@ async function render(focus = false) {
   const product = path.startsWith("/urun/")
     ? products.find((p) => p.slug === path.split("/")[2])
     : null;
-  let title = "Yaşam Alanlarına Yeni Bir Hikâye",
-    description = company.hero.description;
   if (path === "/") main.innerHTML = home(company, products);
   else if (path === "/koleksiyon") {
     main.innerHTML = collection(company, products);
-    title = "Koleksiyon";
     collectionEvents();
   } else if (product) {
     main.innerHTML = productPage(company, product, products);
-    title = product.name;
-    description = product.description;
     productEvents(product, id);
+  } else if (path === "/inegol-mobilya-fuari") {
+    main.innerHTML = fairGuide(company, products);
   } else if (path === "/hakkimizda") {
     main.innerHTML = about(company);
-    title = "Hakkımızda";
   } else if (path === "/iletisim") {
     main.innerHTML = contact(company);
-    title = "İletişim";
   } else if (path === "/dunyada-biz") {
     main.innerHTML = world(company, locations);
-    title = "Dünyada Biz";
   } else if (path === "/gizlilik") {
     main.innerHTML = privacy();
-    title = "Gizlilik Bilgileri";
   } else if (path === "/odani-tasarla") {
-    main.innerHTML =
-      '<div class="wrap"><div class="page-head"><h1>Odanız hazırlanıyor…</h1><p>3D tasarımcı yükleniyor.</p></div></div>';
-    title = "Odanı Tasarla";
+    main.innerHTML = plannerIntro();
   } else {
-    main.innerHTML =
-      '<div class="wrap route-error"><span class="eyebrow">404 / Sayfa bulunamadı</span><h1>Bu hikâye<br>henüz <em>yazılmadı.</em></h1><p>Aradığınız sayfaya ulaşılamadı.</p><a class="btn" href="/koleksiyon">Koleksiyona Dön</a></div>';
-    title = "Sayfa Bulunamadı";
+    main.innerHTML = notFound();
   }
-  setMetadata(title, description, path, product?.images[0]);
+  applySeo(path);
   observeReveals();
   if (focus) main.focus({ preventScroll: true });
   if (path === "/") {

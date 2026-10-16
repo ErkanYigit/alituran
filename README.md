@@ -156,6 +156,12 @@ Kartların mevcut 3D görselleri bu projede üretilmiştir. İsteğe bağlı yen
 
 Canonical domain `company.json → domain` alanından gelir ve `https://alituranmob.com` olarak ayarlıdır. Alan adını değiştirirseniz yeniden derleyin; önceden basılmış QR kodlarının hedefi değişmez. Kodların yayında açılması için domain ve HTTPS kurulumunu tamamlamak gerekir.
 
+## SEO ve Google'da görünürlük
+
+Marka ve İnegöl aramaları için sayfaya özel başlık/açıklamalar `src/data/seo.json` içindedir. `src/seo.js` statik HTML ve uygulama içindeki geçişler için aynı canonical, sosyal paylaşım ve JSON-LD verisini üretir. Firma ve ürün bilgileri mevcut JSON dosyalarından gelir. Ortak arayüz `src/pages/layout.js` içinde hem tarayıcıda hem derlemede kullanılır; JavaScript çalışmadan da sayfaların ana içeriği okunabilir.
+
+`/inegol-mobilya-fuari` ziyaret öncesi ölçü ve koltuk seçim rehberidir. 12 sayfa ve ürün fotoğrafları site haritasına eklenir. Anahtar kelime/sayfa eşleştirmesi, Güzel Hosting'e yükleme ve Google Search Console adımları [SEO.md](SEO.md) içindedir. Canlı hosting ve Search Console güncellemesi kaynak kodun GitHub'a yüklenmesinden ayrı adımlardır.
+
 ## Statik yayımlama ve alan adı
 
 **Netlify:** Depoyu bağlayın, derleme komutu `npm run build`, çıktı `dist`. `netlify.toml` hazırdır. Ürünler için HTML üretilir; backend gerekmez.

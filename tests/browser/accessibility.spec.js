@@ -11,6 +11,7 @@ test("standard content pages and QR dialog have no WCAG A/AA accessibility viola
     "/urun/koltuk-takimi-01/",
     "/hakkimizda/",
     "/iletisim/",
+    "/inegol-mobilya-fuari/",
     "/gizlilik/",
   ]) {
     await page.goto(path);

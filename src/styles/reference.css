@@ -1335,3 +1335,113 @@ body[data-page="home"] .hero {
     width: 145px;
   }
 }
+
+.local-discovery {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  padding: 44px var(--gutter);
+  align-items: center;
+}
+.local-discovery h2 {
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.1;
+  margin: 16px 0;
+}
+.local-discovery p,
+.guide-copy p,
+.guide-contact p {
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 14px 0;
+}
+.local-discovery .actions {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.local-address {
+  border-left: 1px solid var(--color-border);
+  padding-left: 28px;
+}
+.local-address h3 {
+  font-size: 24px;
+}
+.guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 48px;
+  padding-bottom: 55px;
+  align-items: start;
+}
+.guide-copy section + section {
+  margin-top: 36px;
+}
+.guide-copy h2,
+.guide-contact h2 {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.guide-copy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.guide-models {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.guide-models li,
+.guide-contact {
+  background: var(--color-surface);
+  border-radius: 18px;
+  padding: 24px;
+}
+.guide-models h3 {
+  font-size: 23px;
+}
+.guide-contact {
+  position: sticky;
+  top: 115px;
+}
+.guide-contact .text-link {
+  margin-top: 18px;
+}
+.guide-questions details {
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 0;
+}
+.guide-questions summary {
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 860px) {
+  .local-discovery,
+  .guide-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .guide-contact {
+    position: static;
+  }
+  .local-address {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding: 24px 0 0;
+  }
+}
+@media (max-width: 600px) {
+  .guide-models {
+    grid-template-columns: 1fr;
+  }
+  .local-discovery {
+    padding: 32px 22px;
+  }
+  .guide-copy h2 {
+    font-size: 26px;
+  }
+}
